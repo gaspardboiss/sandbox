@@ -7,24 +7,24 @@
     <title>Gaspard Boissinot — Portfolio Audiovisuel</title>
     <link rel="icon" type="image/png" sizes="64x64" href="images/favicon.png">
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#111318">
+    <meta name="theme-color" content="#090a0f">
     <link rel="apple-touch-icon" href="images/icon-192.png">
 
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- CONSTANTES & THEME MINIMALISTE --- */
+        /* --- CONSTANTES & DIRECTION ARTISTIQUE --- */
         :root {
-            --bg-main: #0c0d11;
-            --bg-card: #13151a;
-            --bg-nav: rgba(12, 13, 17, 0.9);
+            --bg-main: #090a0f;
+            --bg-card: #12141c;
+            --bg-nav: rgba(9, 10, 15, 0.85);
             --text-primary: #ffffff;
-            --text-muted: #8b949e;
-            --border-subtle: rgba(255, 255, 255, 0.08);
+            --text-muted: #8c95a1;
+            --border-subtle: rgba(255, 255, 255, 0.07);
             --border-hover: rgba(255, 255, 255, 0.25);
         }
 
@@ -42,35 +42,35 @@
 
         a { color: inherit; text-decoration: none; }
 
-        /* --- HERO SECTION PARALLAXE --- */
+        /* --- HERO SECTION AVEC VRAI PARALLAXE FIXE --- */
         .hero {
             position: relative;
-            height: 80vh;
+            height: 85vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             overflow: hidden;
-            transform: translateZ(0);
-        }
-
-        .hero-bg {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 120%;
             background-image: url('images/Voiture noire.png');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
-            filter: brightness(0.4) contrast(1.1);
+            background-attachment: fixed; /* L'image reste immobile pendant le scroll */
+        }
+
+        /* Voile assombrissant pour faire ressortir le texte */
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(9, 10, 15, 0.6);
             z-index: 1;
-            will-change: transform;
         }
 
         .hero::after {
             content: '';
             position: absolute;
-            bottom: 0; left: 0; width: 100%; height: 160px;
+            bottom: 0; left: 0; width: 100%; height: 180px;
             background: linear-gradient(to top, var(--bg-main), transparent);
             z-index: 2;
         }
@@ -82,233 +82,389 @@
         }
 
         .hero-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            letter-spacing: 6px;
+            font-size: 3.8rem;
+            font-weight: 700;
+            letter-spacing: 8px;
             text-transform: uppercase;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             color: #ffffff;
         }
 
         .hero-subtitle {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--text-muted);
-            letter-spacing: 4px;
+            letter-spacing: 5px;
             font-weight: 400;
             text-transform: uppercase;
         }
 
-        /* --- NAVBAR BARRE DE NAVIGATION --- */
+        /* --- NAVBAR FLUIDE --- */
         .navbar {
             position: sticky;
             top: 0;
             background: var(--bg-nav);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             z-index: 1000;
             border-bottom: 1px solid var(--border-subtle);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 18px 5%;
-            transform: translateZ(0);
-            will-change: transform;
+            padding: 20px 6%;
         }
 
         .nav-brand {
             font-weight: 600;
-            letter-spacing: 2px;
-            font-size: 0.95rem;
+            letter-spacing: 3px;
+            font-size: 0.9rem;
             text-transform: uppercase;
             color: var(--text-primary);
         }
 
-        .nav-links { display: flex; gap: 35px; list-style: none; }
-        .nav-links a { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); transition: color 0.3s; font-weight: 500; }
+        .nav-links { display: flex; gap: 40px; list-style: none; }
+        .nav-links a { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); transition: color 0.3s; font-weight: 500; }
         .nav-links a.active, .nav-links a:hover { color: #ffffff; }
 
-        .nav-socials { display: flex; gap: 22px; }
-        .nav-socials a { color: var(--text-muted); font-size: 1.1rem; transition: transform 0.3s, color 0.3s; }
+        .nav-socials { display: flex; gap: 24px; }
+        .nav-socials a { color: var(--text-muted); font-size: 1.1rem; transition: color 0.3s, transform 0.3s; }
         .nav-socials a:hover { color: #ffffff; transform: translateY(-2px); }
 
-        /* --- GRILLE & CARTE CENTRÉE SUR 2 COLONNES --- */
-        .container { max-width: 1100px; margin: 0 auto; padding: 80px 20px; }
+        /* --- CONTENEUR & GRILLE EDITORIALE --- */
+        .container { 
+            max-width: 1280px; 
+            margin: 0 auto; 
+            padding: 100px 30px; 
+        }
         
         .section-title { 
             text-align: center; 
-            font-size: 1.8rem; 
-            letter-spacing: 4px; 
+            font-size: 1.5rem; 
+            letter-spacing: 6px; 
             text-transform: uppercase; 
-            margin-bottom: 70px; 
-            font-weight: 700; 
-            color: #ffffff; 
+            margin-bottom: 80px; 
+            font-weight: 600; 
+            color: var(--text-muted); 
         }
 
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Grille symétrique à 2 colonnes */
-            gap: 45px;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 30px;
         }
 
         .card {
             position: relative;
-            border-radius: 8px;
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
+            border-radius: 4px;
+            overflow: hidden;
             cursor: pointer;
-            aspect-ratio: 16/10; /* Format photo harmonieux */
-            height: auto;
             transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s;
-            will-change: transform;
-            transform: translateZ(0);
         }
 
-        .card.featured { 
-            grid-column: 1 / -1; /* Pleine largeur pour les bannières vidéos */
-            aspect-ratio: 21/9; 
-            max-height: 480px;
-        }
-
-        /* Halo Blanc Discret */
-        .card::before {
-            content: '';
-            position: absolute;
-            inset: -1px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.12);
-            z-index: -1;
-            opacity: 0;
-            filter: blur(12px);
-            transition: opacity 0.4s ease;
-            will-change: opacity;
-        }
-
-        .card:hover::before { opacity: 1; }
+        .card.featured-wide { grid-column: span 12; aspect-ratio: 21/9; }
+        .card.portrait-card { grid-column: span 5; aspect-ratio: 4/5; }
+        .card.landscape-card { grid-column: span 7; aspect-ratio: 16/10; }
+        .card.standard-card { grid-column: span 6; aspect-ratio: 16/10; }
 
         .card-inner {
             width: 100%; height: 100%;
-            border-radius: 8px;
-            overflow: hidden;
             position: relative;
-            background-color: var(--bg-card);
         }
 
         .card-img {
             width: 100%; height: 100%;
-            object-fit: contain; /* Affiche l'entièreté de l'image sans aucun rognage */
-            transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
-            will-change: transform;
+            object-fit: cover;
+            transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), filter 0.5s;
+            filter: brightness(0.9);
         }
 
-        /* Voile minimaliste réduit (laisse l'image visible) */
         .card-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, transparent 65%, rgba(12,13,17,0.85) 100%);
-            display: flex; flex-direction: column; justify-content: flex-end; padding: 25px;
-            transition: opacity 0.4s;
+            background: linear-gradient(180deg, transparent 55%, rgba(9, 10, 15, 0.85) 100%);
+            display: flex; 
+            flex-direction: column; 
+            justify-content: flex-end; 
+            padding: 35px;
+            transition: background 0.3s;
         }
 
         .card-title {
-            font-size: 1.3rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #ffffff;
-            transform: translateY(4px); transition: transform 0.4s ease;
+            font-size: 1.35rem; 
+            font-weight: 600; 
+            letter-spacing: 2px; 
+            text-transform: uppercase; 
+            color: #ffffff;
+            transform: translateY(4px); 
+            transition: transform 0.4s ease;
         }
 
-        .card-subtitle { font-size: 0.78rem; color: var(--text-muted); margin-top: 3px; letter-spacing: 1px; }
+        .card-subtitle { 
+            font-size: 0.75rem; 
+            color: var(--text-muted); 
+            margin-top: 5px; 
+            letter-spacing: 1.5px; 
+            text-transform: uppercase;
+        }
 
         .card-btn {
-            display: inline-flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: #ffffff; font-weight: 600;
-            opacity: 0; transition: opacity 0.3s, transform 0.3s; transform: translateX(-10px);
+            display: inline-flex; 
+            align-items: center; 
+            gap: 8px; 
+            margin-top: 12px; 
+            font-size: 0.7rem; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            color: #ffffff; 
+            font-weight: 600;
+            opacity: 0; 
+            transform: translateY(10px);
+            transition: opacity 0.3s, transform 0.3s;
         }
 
-        .card:hover { transform: translateY(-5px); border-color: rgba(255, 255, 255, 0.25); }
-        .card:hover .card-img { transform: scale(1.03); }
-        .card:hover .card-title { transform: translateY(0); }
-        .card:hover .card-btn { opacity: 1; transform: translateX(0); }
+        .card:hover { 
+            transform: translateY(-6px); 
+            border-color: var(--border-hover); 
+        }
+        
+        .card:hover .card-img { 
+            transform: scale(1.04); 
+            filter: brightness(1); 
+        }
+        
+        .card:hover .card-title { 
+            transform: translateY(0); 
+        }
+        
+        .card:hover .card-btn { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
 
-        /* --- FOOTER --- */
-        .footer { background: #08090b; border-top: 1px solid var(--border-subtle); padding: 80px 20px 40px; margin-top: 60px; }
-        .footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
-        .contact-form input, .contact-form textarea { width: 100%; background: #111217; border: 1px solid var(--border-subtle); padding: 14px 18px; color: #fff; border-radius: 6px; margin-bottom: 18px; font-family: inherit; transition: border-color 0.3s; }
-        .contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: #ffffff; }
-        .submit-btn { background: #ffffff; color: #000000; border: none; padding: 14px 32px; border-radius: 4px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: background 0.3s; }
-        .submit-btn:hover { background: #cccccc; }
-        .contact-info p { margin-bottom: 22px; color: var(--text-muted); font-size: 0.95rem; }
-        .contact-info a { color: #ffffff; transition: color 0.3s; }
-        .contact-info a:hover { color: #8b949e; }
-        .copyright { text-align: center; margin-top: 60px; color: #555; font-size: 0.85rem; }
+        /* --- FOOTER ÉPURÉ --- */
+        .footer { 
+            background: #06070a; 
+            border-top: 1px solid var(--border-subtle); 
+            padding: 100px 30px 50px; 
+            margin-top: 100px; 
+        }
+        
+        .footer-grid { 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 80px; 
+        }
 
-        /* --- MODALE GLOBALE --- */
+        .contact-form input, .contact-form textarea { 
+            width: 100%; 
+            background: #11131a; 
+            border: 1px solid var(--border-subtle); 
+            padding: 16px 20px; 
+            color: #fff; 
+            border-radius: 4px; 
+            margin-bottom: 20px; 
+            font-family: inherit; 
+            font-size: 0.9rem;
+            transition: border-color 0.3s; 
+        }
+        
+        .contact-form input:focus, .contact-form textarea:focus { 
+            outline: none; 
+            border-color: #ffffff; 
+        }
+
+        .submit-btn { 
+            background: #ffffff; 
+            color: #000000; 
+            border: none; 
+            padding: 15px 35px; 
+            border-radius: 4px; 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            cursor: pointer; 
+            font-size: 0.8rem;
+            transition: background 0.3s, transform 0.2s; 
+        }
+        
+        .submit-btn:hover { background: #dcdcdc; }
+
+        .contact-info p { 
+            margin-bottom: 25px; 
+            color: var(--text-muted); 
+            font-size: 0.95rem; 
+        }
+        
+        .contact-info a { 
+            color: #ffffff; 
+            transition: color 0.3s; 
+        }
+        
+        .contact-info a:hover { color: var(--text-muted); }
+
+        .copyright { 
+            text-align: center; 
+            margin-top: 80px; 
+            color: #555; 
+            font-size: 0.8rem; 
+            letter-spacing: 1px;
+        }
+
+        /* --- MODALE --- */
         .modal-overlay {
-            display: none; position: fixed; inset: 0; z-index: 99999; background: rgba(8, 9, 11, 0.96);
-            overflow-y: auto; padding: 40px 20px; opacity: 0; transition: opacity 0.3s ease; transform: translateZ(0); will-change: opacity;
+            display: none; 
+            position: fixed; 
+            inset: 0; 
+            z-index: 99999; 
+            background: rgba(6, 7, 10, 0.96);
+            backdrop-filter: blur(12px);
+            overflow-y: auto; 
+            padding: 40px 20px; 
+            opacity: 0; 
+            transition: opacity 0.3s ease; 
         }
+        
         .modal-overlay.active { display: block; opacity: 1; }
-        .modal-container { max-width: 1100px; margin: 0 auto; position: relative; }
-        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 20px; }
-        .modal-title { font-size: 1.5rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
-        .modal-close-btn { background: transparent; color: #fff; border: 1px solid var(--border-subtle); width: 40px; height: 40px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; transition: all 0.3s; }
+        .modal-container { max-width: 1200px; margin: 0 auto; position: relative; }
+        
+        .modal-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 35px; 
+            border-bottom: 1px solid var(--border-subtle); 
+            padding-bottom: 20px; 
+        }
+        
+        .modal-title { font-size: 1.4rem; text-transform: uppercase; letter-spacing: 3px; font-weight: 600; }
+        
+        .modal-close-btn { 
+            background: transparent; 
+            color: #fff; 
+            border: 1px solid var(--border-subtle); 
+            width: 42px; 
+            height: 42px; 
+            border-radius: 4px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 1.1rem; 
+            cursor: pointer; 
+            transition: all 0.3s; 
+        }
+        
         .modal-close-btn:hover { background: #ffffff; color: #000; }
 
-        /* VUE GALERIE PHOTO (MASONRY IMBRIQUÉ) */
         .photo-gallery-grid { column-count: 3; column-gap: 20px; width: 100%; }
         .gallery-thumb-item {
-            break-inside: avoid; margin-bottom: 20px; position: relative; border-radius: 6px; overflow: hidden; cursor: pointer;
-            border: 1px solid var(--border-subtle); transition: transform 0.3s, border-color 0.3s; will-change: transform;
-            background-color: #13151a;
+            break-inside: avoid; 
+            margin-bottom: 20px; 
+            position: relative; 
+            border-radius: 4px; 
+            overflow: hidden; 
+            cursor: pointer;
+            border: 1px solid var(--border-subtle); 
+            background-color: #12141c;
+            transition: transform 0.3s, border-color 0.3s;
         }
-        .gallery-thumb-item img { width: 100%; height: auto; display: block; object-fit: cover; transition: transform 0.5s ease; }
-        .gallery-thumb-item:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.3); }
-        .gallery-thumb-item:hover img { transform: scale(1.05); }
+        
+        .gallery-thumb-item img { width: 100%; height: auto; display: block; object-fit: cover; transition: transform 0.5s; }
+        .gallery-thumb-item:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.3); }
+        .gallery-thumb-item:hover img { transform: scale(1.04); }
 
-        /* VUE SLIDER LIGHTBOX */
         .lightbox-view { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 70vh; position: relative; }
-        .lightbox-back-btn { align-self: flex-start; margin-bottom: 20px; background: transparent; border: 1px solid var(--border-subtle); color: #fff; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; transition: all 0.3s; }
+        
+        .lightbox-back-btn { 
+            align-self: flex-start; 
+            margin-bottom: 20px; 
+            background: transparent; 
+            border: 1px solid var(--border-subtle); 
+            color: #fff; 
+            padding: 10px 20px; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            font-size: 0.75rem; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            transition: all 0.3s; 
+        }
+        
         .lightbox-back-btn:hover { background: rgba(255, 255, 255, 0.1); }
+        
         .lightbox-media-wrapper { position: relative; display: flex; align-items: center; justify-content: center; width: 100%; max-height: 75vh; }
-        .lightbox-img-full { max-width: 90vw; max-height: 75vh; border-radius: 6px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); object-fit: contain; user-select: none; }
-        .lightbox-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0, 0, 0, 0.5); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.2); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; cursor: pointer; z-index: 10; transition: all 0.3s ease; user-select: none; }
+        
+        .lightbox-img-full { 
+            max-width: 90vw; 
+            max-height: 75vh; 
+            border-radius: 4px; 
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7); 
+            object-fit: contain; 
+            user-select: none; 
+        }
+        
+        .lightbox-arrow { 
+            position: absolute; 
+            top: 50%; 
+            transform: translateY(-50%); 
+            background: rgba(0, 0, 0, 0.6); 
+            color: #ffffff; 
+            border: 1px solid rgba(255, 255, 255, 0.15); 
+            width: 46px; 
+            height: 46px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 1rem; 
+            cursor: pointer; 
+            z-index: 10; 
+            transition: background 0.3s; 
+        }
+        
         .lightbox-arrow:hover { background: #ffffff; color: #000000; }
         .lightbox-arrow.prev { left: 10px; }
         .lightbox-arrow.next { right: 10px; }
-        .lightbox-counter { margin-top: 15px; color: var(--text-muted); font-size: 0.85rem; letter-spacing: 1px; }
+        .lightbox-counter { margin-top: 15px; color: var(--text-muted); font-size: 0.8rem; letter-spacing: 2px; }
 
-        /* MODALE VIDÉO */
-        .video-section-title { font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; color: #fff; margin: 30px 0 15px 0; padding-bottom: 8px; border-bottom: 1px solid var(--border-subtle); }
-        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 30px; }
-        .video-card { background: #161920; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-subtle); box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+        .video-section-title { font-size: 0.95rem; text-transform: uppercase; letter-spacing: 2px; color: #fff; margin: 30px 0 15px 0; padding-bottom: 8px; border-bottom: 1px solid var(--border-subtle); }
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 25px; }
+        .video-card { background: #12141c; border-radius: 4px; overflow: hidden; border: 1px solid var(--border-subtle); }
         .video-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; }
         .video-wrapper iframe { width: 100%; height: 100%; border: none; }
 
         @media (max-width: 1024px) {
+            .card.portrait-card { grid-column: span 6; }
+            .card.landscape-card { grid-column: span 6; }
             .photo-gallery-grid { column-count: 2; }
         }
         @media (max-width: 768px) {
-            .hero-title { font-size: 2.2rem; }
+            .hero-title { font-size: 2.4rem; }
             .footer-grid { grid-template-columns: 1fr; gap: 40px; }
             .navbar { padding: 15px 20px; }
             .nav-brand { display: none; }
-            .portfolio-grid { grid-template-columns: 1fr; gap: 25px; }
-            .card.featured { aspect-ratio: 16/9; max-height: none; }
-            .photo-gallery-grid { column-count: 2; gap: 15px; }
-            .gallery-thumb-item { margin-bottom: 15px; }
-            .video-grid { grid-template-columns: 1fr; }
-        }
-        @media (max-width: 480px) {
+            .card.portrait-card, .card.landscape-card, .card.standard-card { grid-column: span 12; aspect-ratio: 16/10; }
             .photo-gallery-grid { column-count: 1; }
+            .video-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
+    <!-- HERO SECTION AVEC PARALLAXE FIXE -->
     <section class="hero">
-        <div class="hero-bg"></div>
         <div class="hero-content">
             <h1 class="hero-title">Gaspard Boissinot</h1>
-            <p class="hero-subtitle">Audiovisuel ⸱ Réalisation ⸱ Photographie</p>
+            <p class="hero-subtitle">Audiovisuel &bull; Réalisation &bull; Photographie</p>
         </div>
     </section>
 
+    <!-- NAVBAR -->
     <nav class="navbar">
         <div class="nav-brand">Gaspard Boissinot</div>
         <ul class="nav-links">
@@ -323,11 +479,12 @@
         </div>
     </nav>
 
+    <!-- GRILLE PORTFOLIO EDITORIALE -->
     <main class="container">
-        <h2 class="section-title">Portfolio</h2>
+        <h2 class="section-title">Portfolio Sélection</h2>
         <div class="portfolio-grid">
-            <!-- Courts-Métrages -->
-            <div class="card featured" onclick="openVideoModal('courts_metrages')">
+            <!-- 1. Courts-Métrages -->
+            <div class="card featured-wide" onclick="openVideoModal('courts_metrages')">
                 <div class="card-inner">
                     <img class="card-img" src="images/DÖD.png" alt="Courts-métrages" loading="lazy" decoding="async">
                     <div class="card-overlay">
@@ -337,74 +494,81 @@
                     </div>
                 </div>
             </div>
-            <!-- Portraits -->
-            <div class="card" onclick="openPhotoModal('portraits', 'Portraits')">
+
+            <!-- 2. Portraits -->
+            <div class="card portrait-card" onclick="openPhotoModal('portraits', 'Portraits')">
                 <div class="card-inner">
                     <img class="card-img" src="images/portrait1.jpg" alt="Portraits" loading="lazy" decoding="async">
                     <div class="card-overlay">
                         <h3 class="card-title">Portraits</h3>
                         <p class="card-subtitle">Série photographique humaine</p>
-                        <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
+                        <span class="card-btn">Explorer <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
             </div>
-            <!-- Noir & Blanc -->
-            <div class="card" onclick="openPhotoModal('noir_et_blanc', 'Noir & Blanc')">
+
+            <!-- 3. Noir & Blanc -->
+            <div class="card landscape-card" onclick="openPhotoModal('noir_et_blanc', 'Noir & Blanc')">
                 <div class="card-inner">
                     <img class="card-img" src="images/rose.jpg" alt="Noir & Blanc" loading="lazy" decoding="async">
                     <div class="card-overlay">
                         <h3 class="card-title">Noir & Blanc</h3>
                         <p class="card-subtitle">Contrastes & ombres</p>
-                        <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
+                        <span class="card-btn">Explorer <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
             </div>
-            <!-- Architecture -->
-            <div class="card" onclick="openPhotoModal('architecture', 'Architecture')">
+
+            <!-- 4. Architecture -->
+            <div class="card standard-card" onclick="openPhotoModal('architecture', 'Architecture')">
                 <div class="card-inner">
                     <img class="card-img" src="images/archi6.jpg" alt="Architecture" loading="lazy" decoding="async">
                     <div class="card-overlay">
                         <h3 class="card-title">Architecture</h3>
                         <p class="card-subtitle">Perspectives & structures</p>
-                        <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
+                        <span class="card-btn">Explorer <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
             </div>
-            <!-- Pose Longue -->
-            <div class="card" onclick="openPhotoModal('pose_longue', 'Pose Longue')">
+
+            <!-- 5. Pose Longue -->
+            <div class="card standard-card" onclick="openPhotoModal('pose_longue', 'Pose Longue')">
                 <div class="card-inner">
                     <img class="card-img" src="images/flou9.jpg" alt="Pose Longue" loading="lazy" decoding="async">
                     <div class="card-overlay">
                         <h3 class="card-title">Pose Longue</h3>
                         <p class="card-subtitle">Mouvement & lumière</p>
-                        <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
+                        <span class="card-btn">Explorer <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
             </div>
-            <!-- Nature -->
-            <div class="card" onclick="openPhotoModal('nature', 'Nature')">
+
+            <!-- 6. Nature -->
+            <div class="card landscape-card" onclick="openPhotoModal('nature', 'Nature')">
                 <div class="card-inner">
                     <img class="card-img" src="images/nature1.jpg" alt="Nature" loading="lazy" decoding="async">
                     <div class="card-overlay">
                         <h3 class="card-title">Nature</h3>
                         <p class="card-subtitle">Paysages & flore</p>
-                        <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
+                        <span class="card-btn">Explorer <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
             </div>
-            <!-- Drone -->
-            <div class="card" onclick="openPhotoModal('drone', 'Prises de vues Drone')">
+
+            <!-- 7. Drone -->
+            <div class="card portrait-card" onclick="openPhotoModal('drone', 'Prises de vues Drone')">
                 <div class="card-inner">
                     <img class="card-img" src="images/hiver2.jpg" alt="Prises de vues drones" loading="lazy" decoding="async">
                     <div class="card-overlay">
                         <h3 class="card-title">Drone</h3>
                         <p class="card-subtitle">Perspectives aériennes</p>
-                        <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
+                        <span class="card-btn">Explorer <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
             </div>
-            <!-- Montages Variés -->
-            <div class="card featured" onclick="openVideoModal('montages_varies')">
+
+            <!-- 8. Montages Variés -->
+            <div class="card featured-wide" onclick="openVideoModal('montages_varies')">
                 <div class="card-inner">
                     <img class="card-img" src="images/hiverdrone.png" alt="Montages variés" loading="lazy" decoding="async">
                     <div class="card-overlay">
@@ -417,10 +581,11 @@
         </div>
     </main>
 
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-grid">
             <div class="contact-form">
-                <h3 style="margin-bottom: 20px; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px;">Me Contacter</h3>
+                <h3 style="margin-bottom: 25px; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px;">Me Contacter</h3>
                 <form id="contact-form" action="https://formspree.io/f/mgolaapb" method="POST">
                     <input type="text" name="name" placeholder="Votre nom" required />
                     <input type="email" name="email" placeholder="Votre adresse email" required />
@@ -431,17 +596,18 @@
                 </form>
             </div>
             <div class="contact-info">
-                <h3 style="margin-bottom: 20px; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px;">Coordonnées</h3>
+                <h3 style="margin-bottom: 25px; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px;">Coordonnées</h3>
                 <p><strong>Adresse :</strong><br>Rue Pellart, Roubaix 59100</p>
                 <p><strong>Téléphone :</strong><br><a href="tel:+33624146473">+33 6 24 14 64 73</a></p>
                 <p><strong>Email :</strong><br><a href="mailto:gaspboiss@gmail.com">gaspboiss@gmail.com</a></p>
             </div>
         </div>
         <div class="copyright">
-            &copy; Gaspard Boissinot — Tous droits réservés
+            &copy; Gaspard Boissinot &mdash; Tous droits réservés
         </div>
     </footer>
 
+    <!-- MODALE -->
     <div id="modal-overlay" class="modal-overlay" onclick="handleBackdropClick(event)">
         <div class="modal-container">
             <div class="modal-header">
