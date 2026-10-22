@@ -4,58 +4,47 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta name="description" content="Portfolio audiovisuel de Gaspard Boissinot : vidéo, montage, photographie, drone et post-production.">
-    <title>Gaspard Boissinot — Portfolio</title>
+    <title>Gaspard Boissinot — Portfolio Audiovisuel</title>
     <link rel="icon" type="image/png" sizes="64x64" href="images/favicon.png">
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#0e0e0e">
+    <meta name="theme-color" content="#111318">
     <link rel="apple-touch-icon" href="images/icon-192.png">
 
-    <!-- Fonts & FontAwesome -->
+    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+        /* --- CONSTANTES & THEME SLATE / ANTHRACITE --- */
+        :root {
+            --bg-main: #111318;
+            --bg-card: #181b22;
+            --bg-nav: rgba(17, 19, 24, 0.88);
+            --accent-glow: rgba(99, 102, 241, 0.25);
+            --text-primary: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.25);
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            background-color: #08090d;
-            color: #ffffff;
+            background-color: var(--bg-main);
+            color: var(--text-primary);
             font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
             line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            position: relative;
-        }
-
-        /* --- HALO AMBIANT FUTURISTE EN FOND --- */
-        body::before, body::after {
-            content: '';
-            position: fixed;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            filter: blur(140px);
-            opacity: 0.15;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        body::before {
-            top: 20%;
-            left: -100px;
-            background: #00d2ff;
-        }
-
-        body::after {
-            bottom: 20%;
-            right: -100px;
-            background: #9d00ff;
         }
 
         a {
@@ -73,7 +62,6 @@
             align-items: center;
             text-align: center;
             overflow: hidden;
-            transform: translateZ(0);
         }
 
         .hero-bg {
@@ -81,58 +69,73 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 120%;
             background-image: url('images/Voiture noire.png');
             background-size: cover;
             background-position: center;
-            filter: brightness(0.5) contrast(1.1);
+            background-attachment: fixed;
+            filter: brightness(0.55) contrast(1.1);
             z-index: 1;
-            will-change: transform;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 160px;
+            background: linear-gradient(to top, var(--bg-main), transparent);
+            z-index: 2;
         }
 
         .hero-content {
             position: relative;
-            z-index: 2;
+            z-index: 3;
             padding: 0 20px;
         }
 
         .hero-title {
-            font-family: 'Space Grotesk', sans-serif;
             font-size: 3.8rem;
-            font-weight: 700;
-            letter-spacing: 6px;
+            font-weight: 800;
+            letter-spacing: 5px;
             text-transform: uppercase;
             margin-bottom: 12px;
-            background: linear-gradient(135deg, #ffffff 0%, #a1a8c3 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(255,255,255,0.2);
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .hero-subtitle {
-            font-size: 1.05rem;
-            color: rgba(255, 255, 255, 0.7);
-            letter-spacing: 4px;
-            font-weight: 400;
+            font-size: 1.15rem;
+            color: #94a3b8;
+            letter-spacing: 3px;
+            font-weight: 500;
             text-transform: uppercase;
         }
 
-        /* --- NAVIGATION GLASSMORPHISME & FLOU --- */
+        /* --- NAVBAR BARRE DE NAVIGATION --- */
         .navbar {
             position: sticky;
             top: 0;
-            background: rgba(10, 12, 18, 0.65);
+            background: var(--bg-nav);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--border-subtle);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 16px 40px;
-            will-change: transform;
-            transform: translateZ(0);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            padding: 18px 5%;
+        }
+
+        .nav-brand {
+            font-weight: 700;
+            letter-spacing: 2px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            color: var(--text-primary);
         }
 
         .nav-links {
@@ -141,4 +144,921 @@
             list-style: none;
         }
 
-        .nav
+        .nav-links a {
+            font-size: 0.88rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            transition: color 0.3s;
+            font-weight: 600;
+        }
+
+        .nav-links a.active, .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        .nav-socials {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-socials a {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .nav-socials a:hover {
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* --- GRILLE & CARTE INTERACTIVE --- */
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 35px;
+        }
+
+        .card {
+            position: relative;
+            border-radius: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            cursor: pointer;
+            height: 340px;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s;
+        }
+
+        .card.featured {
+            grid-column: 1 / -1;
+            height: 420px;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 22px;
+            background: var(--card-glow, linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.05)));
+            z-index: -1;
+            opacity: 0;
+            filter: blur(20px);
+            transition: opacity 0.5s ease;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), filter 0.5s ease;
+            filter: brightness(0.85);
+        }
+
+        .card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(17,19,24,0.05) 20%, rgba(17,19,24,0.88) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 35px;
+            transition: background 0.4s;
+        }
+
+        .card-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #ffffff;
+            transform: translateY(6px);
+            transition: transform 0.4s ease;
+        }
+
+        .card-subtitle {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            margin-top: 4px;
+            letter-spacing: 1px;
+        }
+
+        .card-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ffffff;
+            font-weight: 600;
+            opacity: 0.8;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-hover);
+        }
+
+        .card:hover .card-img {
+            transform: scale(1.08);
+            filter: brightness(1);
+        }
+
+        .card:hover .card-title {
+            transform: translateY(0);
+        }
+
+        .card:hover .card-btn {
+            opacity: 1;
+            transform: translateX(6px);
+        }
+
+        /* GLOWS DE COULEURS */
+        .card[data-glow="nature"] { --card-glow: linear-gradient(135deg, rgba(34, 197, 94, 0.4), rgba(16, 185, 129, 0.1)); }
+        .card[data-glow="cinema"] { --card-glow: linear-gradient(135deg, rgba(239, 68, 68, 0.4), rgba(244, 63, 94, 0.1)); }
+        .card[data-glow="portrait"] { --card-glow: linear-gradient(135deg, rgba(168, 85, 247, 0.4), rgba(217, 70, 239, 0.1)); }
+        .card[data-glow="drone"] { --card-glow: linear-gradient(135deg, rgba(56, 189, 248, 0.4), rgba(59, 130, 246, 0.1)); }
+        .card[data-glow="bw"] { --card-glow: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(148, 163, 184, 0.1)); }
+        .card[data-glow="archi"] { --card-glow: linear-gradient(135deg, rgba(245, 158, 11, 0.4), rgba(217, 119, 6, 0.1)); }
+        .card[data-glow="motion"] { --card-glow: linear-gradient(135deg, rgba(236, 72, 153, 0.4), rgba(139, 92, 246, 0.1)); }
+
+        /* --- FOOTER & CONTACT --- */
+        .footer {
+            background: #0b0c0f;
+            border-top: 1px solid var(--border-subtle);
+            padding: 80px 20px 40px;
+            margin-top: 80px;
+        }
+
+        .footer-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            background: #161920;
+            border: 1px solid var(--border-subtle);
+            padding: 16px 20px;
+            color: #fff;
+            border-radius: 12px;
+            margin-bottom: 18px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            border-color: #ffffff;
+        }
+
+        .submit-btn {
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            padding: 16px 36px;
+            border-radius: 30px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #e2e8f0;
+            transform: scale(1.03);
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+        }
+
+        .contact-info p {
+            margin-bottom: 22px;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        .contact-info a {
+            color: #ffffff;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: #38bdf8;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 60px;
+            color: #64748b;
+            font-size: 0.88rem;
+        }
+
+        /* --- MODALE GLOBALE & MULTI-VUES --- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: rgba(10, 12, 16, 0.94);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            overflow-y: auto;
+            padding: 40px 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .modal-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 800;
+        }
+
+        .modal-close-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid var(--border-subtle);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .modal-close-btn:hover {
+            background: #ffffff;
+            color: #000;
+            transform: scale(1.1);
+        }
+
+        /* VUE GALERIE PHOTO (GRILLE) */
+        .photo-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-thumb-item {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 14px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid var(--border-subtle);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .gallery-thumb-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-thumb-item:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        .gallery-thumb-item:hover img {
+            transform: scale(1.08);
+        }
+
+        /* VUE SLIDER LIGHTBOX GRAND FORMAT */
+        .lightbox-view {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 70vh;
+            position: relative;
+        }
+
+        .lightbox-back-btn {
+            align-self: flex-start;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-subtle);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .lightbox-back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-4px);
+        }
+
+        .lightbox-media-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-height: 75vh;
+        }
+
+        .lightbox-img-full {
+            max-width: 90vw;
+            max-height: 70vh;
+            border-radius: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+            object-fit: contain;
+            user-select: none;
+        }
+
+        .lightbox-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .lightbox-arrow:hover {
+            background: #ffffff;
+            color: #000000;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lightbox-arrow.prev { left: 10px; }
+        .lightbox-arrow.next { right: 10px; }
+
+        .lightbox-counter {
+            margin-top: 15px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* MODALE VIDÉO ET SECTIONS / SÉPARATEURS */
+        .video-section-title {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #38bdf8;
+            margin: 35px 0 20px 0;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+            gap: 25px;
+        }
+
+        .video-card {
+            background: #161920;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+        }
+
+        .video-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.4rem; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+            .navbar { padding: 15px 20px; }
+            .nav-brand { display: none; }
+            .card.featured { height: 340px; }
+            .video-grid { grid-template-columns: 1fr; }
+            .lightbox-arrow { width: 40px; height: 40px; font-size: 1rem; }
+            .lightbox-arrow.prev { left: 5px; }
+            .lightbox-arrow.next { right: 5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Gaspard Boissinot</h1>
+            <p class="hero-subtitle">Audiovisuel ⸱ Réalisation ⸱ Photographie</p>
+        </div>
+    </section>
+
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar">
+        <div class="nav-brand">Gaspard Boissinot</div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Audiovisuel</a></li>
+            <li><a href="generic.html">À propos</a></li>
+            <li><a href="elements.html">Projets</a></li>
+        </ul>
+        <div class="nav-socials">
+            <a href="https://www.linkedin.com/in/gaspard-boissinot-57aab1403/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.youtube.com/@ormission" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/gaspard._b" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+    </nav>
+
+    <!-- GRILLE DU PORTFOLIO -->
+    <main class="container">
+        <h2 class="section-title">Portfolio</h2>
+
+        <div class="portfolio-grid">
+
+            <!-- 1. Courts-Métrages -->
+            <div class="card featured" data-glow="cinema" onclick="openVideoModal('courts_metrages')">
+                <div class="card-inner">
+                    <img class="card-img" src="images/DÖD.png" alt="Courts-métrages">
+                    <div class="card-overlay">
+                        <h3 class="card-title">Courts-Métrages</h3>
+                        <p class="card-subtitle">Projets cinématographiques, fictions & projets de lycée</p>
+                        <span class="card-btn">Visionner les projets <i class="fas fa-play" style="font-size:0.7rem;"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Portraits -->
+            <div class="card" data-glow="portrait" onclick="openPhotoModal('portraits', 'Portraits')">
+                <div class="card-inner">
+                    <img class="card-img" src="images/portrait1.jpg" alt="Portraits">
+                    <div class="card-overlay">
+                        <h3 class="card-title">Portraits</h3>
+                        <p class="card-subtitle">Série photographique humaine</p>
+                        <span class="card-btn">Voir la galerie <i class="fas fa-images"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Noir & Blanc -->
+            <div class="card" data-glow="bw" onclick="openPhotoModal('noir_et_blanc', 'Noir & Blanc')">
+                <div class="card-inner">
+                    <img class="card-img" src="images/rose.jpg" alt="Noir & Blanc">
+                    <div class="card-overlay">
+                        <h3 class="card-title">Noir & Blanc</h3>
+                        <p class="card-subtitle">Contrastes & ombres</p>
+                        <span class="card-btn">Voir la galerie <i class="fas fa-images"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Architecture -->
+            <div class="card" data-glow="archi" onclick="openPhotoModal('architecture', 'Architecture')">
+                <div class="card-inner">
+                    <img class="card-img" src="images/archi6.jpg" alt="Architecture">
+                    <div class="card-overlay">
+                        <h3 class="card-title">Architecture</h3>
+                        <p class="card-subtitle">Perspectives & structures</p>
+                        <span class="card-btn">Voir la galerie <i class="fas fa-images"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Pose Longue -->
+            <div class="card" data-glow="motion" onclick="openPhotoModal('pose_longue', 'Pose Longue')">
+                <div class="card-inner">
+                    <img class="card-img" src="images/flou9.jpg" alt="Pose Longue">
+                    <div class="card-overlay">
+                        <h3 class="card-title">Pose Longue</h3>
+                        <p class="card-subtitle">Mouvement & lumière</p>
+                        <span class="card-btn">Voir la galerie <i class="fas fa-images"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Nature -->
+            <div class="card" data-glow="nature" onclick="openPhotoModal('nature', 'Nature')">
+                <div class="card-inner">
+                    <img class="card-img" src="images/nature1.jpg" alt="Nature">
+                    <div class="card-overlay">
+                        <h3 class="card-title">Nature</h3>
+                        <p class="card-subtitle">Paysages & flore</p>
+                        <span class="card-btn">Voir la galerie <i class="fas fa-images"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. Prises de vues Drones -->
+            <div class="card" data-glow="drone" onclick="openPhotoModal('drone', 'Prises de vues Drone')">
+                <div class="card-inner">
+                    <img class="card-img" src="images/hiver2.jpg" alt="Prises de vues drones">
+                    <div class="card-overlay">
+                        <h3 class="card-title">Prises de vues Drone</h3>
+                        <p class="card-subtitle">Perspectives aériennes</p>
+                        <span class="card-btn">Voir la galerie <i class="fas fa-images"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. Montages Variés -->
+            <div class="card featured" data-glow="motion" onclick="openVideoModal('montages_varies')">
+                <div class="card-inner">
+                    <img class="card-img" src="images/hiverdrone.png" alt="Montages variés">
+                    <div class="card-overlay">
+                        <h3 class="card-title">Montages Variés</h3>
+                        <p class="card-subtitle">Créations, clips drone & montages jeux vidéo</p>
+                        <span class="card-btn">Visionner les montages <i class="fas fa-play" style="font-size:0.7rem;"></i></span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER & FORMULAIRE -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="contact-form">
+                <h3 style="margin-bottom: 20px; font-size: 1.5rem;">Me Contacter</h3>
+                <form id="contact-form" action="https://formspree.io/f/mgolaapb" method="POST">
+                    <input type="text" name="name" placeholder="Votre nom" required />
+                    <input type="email" name="email" placeholder="Votre adresse email" required />
+                    <textarea name="message" rows="4" placeholder="Votre message..." required></textarea>
+                    <button type="submit" class="submit-btn">Envoyer</button>
+                    <input type="hidden" name="_subject" value="Nouveau message depuis ton portfolio !" />
+                    <input type="hidden" name="_captcha" value="false">
+                </form>
+            </div>
+            <div class="contact-info">
+                <h3 style="margin-bottom: 20px; font-size: 1.5rem;">Coordonnées</h3>
+                <p><strong>Adresse :</strong><br>Rue Pellart, Roubaix 59100</p>
+                <p><strong>Téléphone :</strong><br><a href="tel:+33624146473">+33 6 24 14 64 73</a></p>
+                <p><strong>Email :</strong><br><a href="mailto:gaspboiss@gmail.com">gaspboiss@gmail.com</a></p>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; Gaspard Boissinot — Tous droits réservés
+        </div>
+    </footer>
+
+    <!-- STRUCTURE UNIQUE MODALE POUR PHOTO ET VIDEO -->
+    <div id="modal-overlay" class="modal-overlay" onclick="handleBackdropClick(event)">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title">Galerie</h3>
+                <button class="modal-close-btn" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="modal-body">
+                <!-- Contenu dynamique (Galerie Grille, Lightbox ou Vidéos) -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT SYSTEME DE MODALE COMPLET -->
+    <script>
+        // BASE DE DONNÉES PHOTO
+        const photoGalleries = {
+            noir_et_blanc: [
+                'images/rue.jpg', 'images/rose.jpg', 'images/noiretblanc.jpg', 
+                'images/expo3.jpg', 'images/oiseaux.jpg', 'images/b&w1.jpg'
+            ],
+            drone: [
+                'images/hiver2.jpg', 'images/hiver1.jpg', 'images/hiver3.jpg', 
+                'images/hiver4.jpg', 'images/hiver5.jpg', 'images/hiver6.jpg', 
+                'images/drone1.jpg', 'images/drone2.jpg', 'images/drone3.jpg'
+            ],
+            portraits: [
+                'images/portrait1.jpg', 'images/portrait11.jpg', 'images/école3.jpg', 
+                'images/portrait2.jpg', 'images/pompier2.jpg', 'images/portrait3.jpg', 
+                'images/portrait13.jpg', 'images/portrait6.jpg', 'images/portrait7.jpg', 
+                'images/portrait10.jpg', 'images/portrait4.jpg', 'images/portrait12.jpg', 
+                'images/école.jpg', 'images/pompier1.jpg', 'images/portrait15.jpg', 
+                'images/école2.jpg', 'images/portrait5.jpg', 'images/portrait14.jpg'
+            ],
+            architecture: [
+                'images/archi1.jpg', 'images/archi5.jpg', 'images/chateau1.jpg', 
+                'images/chateau2.jpg', 'images/archi4.jpg', 'images/archi3.jpg', 
+                'images/archi2.jpg', 'images/batiment1.jpg', 'images/archi6.jpg', 
+                'images/archi7.jpg', 'images/archi8.jpg', 'images/archi9.jpg'
+            ],
+            pose_longue: [
+                'images/flou1.jpg', 'images/expo1.jpg', 'images/flou9.jpg', 
+                'images/Voitnoire.jpg', 'images/flou7.jpg', 'images/expo2.jpg', 
+                'images/flou3.jpg', 'images/flou10.jpg'
+            ],
+            nature: [
+                'images/nature2.jpg', 'images/nature11.jpg', 'images/hiver7.jpg', 
+                'images/nature8.jpg', 'images/ciel2.jpg', 'images/nature7.jpg', 
+                'images/nature6.jpg', 'images/nature9.jpg', 'images/nature4.jpg', 
+                'images/nature1.jpg', 'images/ciel1.jpg', 'images/nature3.jpg', 
+                'images/nature5.jpg', 'images/nature10.jpg'
+            ]
+        };
+
+        // BASE DE DONNÉES VIDÉO AVEC CATÉGORIES ET SÉPARATEURS
+        const videoGalleries = {
+            courts_metrages: {
+                title: "Courts-Métrages",
+                sections: [
+                    {
+                        heading: null,
+                        videos: [
+                            "https://www.youtube.com/embed/1Mja8tMPmmc",
+                            "https://www.youtube.com/embed/PgySILbVU0c",
+                            "https://www.youtube.com/embed/r1Cv7a5lTPU",
+                            "https://www.youtube.com/embed/Escy0MCVTmo"
+                        ]
+                    },
+                    {
+                        heading: "Projets lycée",
+                        videos: [
+                            "https://www.youtube.com/embed/838EboJXgMQ",
+                            "https://www.youtube.com/embed/s9DObtl3CgE"
+                        ]
+                    }
+                ]
+            },
+            montages_varies: {
+                title: "Montages Variés",
+                sections: [
+                    {
+                        heading: null,
+                        videos: [
+                            "https://www.youtube.com/embed/dMNVtVzXCAg"
+                        ]
+                    },
+                    {
+                        heading: "Montages drone",
+                        videos: [
+                            "https://www.youtube.com/embed/1khe2eo4Kbc",
+                            "https://www.youtube.com/embed/N5z96sImUpc"
+                        ]
+                    },
+                    {
+                        heading: "Montages jeux vidéo",
+                        videos: [
+                            "https://www.youtube.com/embed/Z0JBgfGNSEo",
+                            "https://www.youtube.com/embed/v4AnSb6EHak",
+                            "https://www.youtube.com/embed/yUJhlouEDs4"
+                        ]
+                    }
+                ]
+            }
+        };
+
+        let currentActiveKey = null;
+        let currentPhotos = [];
+        let currentPhotoIndex = 0;
+        let isLightboxView = false;
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        // OUVRIR UNE GALERIE PHOTO (VUE GRILLE D'ABORD)
+        function openPhotoModal(key, title) {
+            currentActiveKey = key;
+            currentPhotos = photoGalleries[key] || [];
+            document.getElementById('modal-title').textContent = title;
+            isLightboxView = false;
+            renderPhotoGrid();
+            showModal();
+        }
+
+        // AFFICHER LA GRILLE D'IMAGES DANS LA MODALE
+        function renderPhotoGrid() {
+            const body = document.getElementById('modal-body');
+            let html = '<div class="photo-gallery-grid">';
+            currentPhotos.forEach((src, idx) => {
+                html += `
+                    <div class="gallery-thumb-item" onclick="openLightbox(${idx})">
+                        <img src="${src}" alt="Photo ${idx + 1}" loading="lazy">
+                    </div>
+                `;
+            });
+            html += '</div>';
+            body.innerHTML = html;
+        }
+
+        // AFFICHER LE GRAND FORMAT (SLIDER LIGHTBOX)
+        function openLightbox(index) {
+            isLightboxView = true;
+            currentPhotoIndex = index;
+            renderLightbox();
+        }
+
+        function renderLightbox() {
+            const body = document.getElementById('modal-body');
+            const src = currentPhotos[currentPhotoIndex];
+            
+            body.innerHTML = `
+                <div class="lightbox-view">
+                    <button class="lightbox-back-btn" onclick="backToGrid()">
+                        <i class="fas fa-th"></i> Retour à la galerie
+                    </button>
+                    <div class="lightbox-media-wrapper">
+                        <div class="lightbox-arrow prev" onclick="prevPhoto(event)">
+                            <i class="fas fa-chevron-left"></i>
+                        </div>
+                        <img class="lightbox-img-full" src="${src}" alt="Grand format ${currentPhotoIndex + 1}">
+                        <div class="lightbox-arrow next" onclick="nextPhoto(event)">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    <div class="lightbox-counter">${currentPhotoIndex + 1} / ${currentPhotos.length}</div>
+                </div>
+            `;
+        }
+
+        function backToGrid() {
+            isLightboxView = false;
+            renderPhotoGrid();
+        }
+
+        function nextPhoto(e) {
+            if (e) e.stopPropagation();
+            if (currentPhotos.length === 0) return;
+            currentPhotoIndex = (currentPhotoIndex + 1) % currentPhotos.length;
+            renderLightbox();
+        }
+
+        function prevPhoto(e) {
+            if (e) e.stopPropagation();
+            if (currentPhotos.length === 0) return;
+            currentPhotoIndex = (currentPhotoIndex - 1 + currentPhotos.length) % currentPhotos.length;
+            renderLightbox();
+        }
+
+        // OUVRIR UNE MODALE VIDÉO (AVEC TOUTES LES SECTIONS ET SÉPARATEURS)
+        function openVideoModal(key) {
+            const data = videoGalleries[key];
+            if (!data) return;
+            
+            document.getElementById('modal-title').textContent = data.title;
+            const body = document.getElementById('modal-body');
+            let html = '';
+
+            data.sections.forEach(sec => {
+                if (sec.heading) {
+                    html += `<h4 class="video-section-title">${sec.heading}</h4>`;
+                }
+                html += '<div class="video-grid">';
+                sec.videos.forEach(url => {
+                    html += `
+                        <div class="video-card">
+                            <div class="video-wrapper">
+                                <iframe src="${url}?rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+            });
+
+            body.innerHTML = html;
+            showModal();
+        }
+
+        // AFFICHAGE ET FERMETURE DE LA MODALE
+        function showModal() {
+            const modal = document.getElementById('modal-overlay');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal-overlay');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            document.getElementById('modal-body').innerHTML = '';
+            isLightboxView = false;
+        }
+
+        function handleBackdropClick(e) {
+            if (e.target.id === 'modal-overlay') {
+                closeModal();
+            }
+        }
+
+        // GESTION DU CLAVIER
+        document.addEventListener('keydown', function(e) {
+            const modal = document.getElementById('modal-overlay');
+            if (!modal.classList.contains('active')) return;
+
+            if (e.key === 'Escape') closeModal();
+            if (isLightboxView) {
+                if (e.key === 'ArrowRight') nextPhoto();
+                if (e.key === 'ArrowLeft') prevPhoto();
+            }
+        });
+
+        // GESTION DU SWIPE MOBILES POUR LA LIGHTBOX
+        const modalEl = document.getElementById('modal-overlay');
+        modalEl.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        modalEl.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (isLightboxView) {
+                if (touchEndX < touchStartX - 40) nextPhoto();
+                if (touchEndX > touchStartX + 40) prevPhoto();
+            }
+        }, { passive: true });
+
+        // FORMULAIRE FORMSPREE
+        const form = document.getElementById("contact-form");
+        if (form) {
+            form.addEventListener("submit", async function(e) {
+                e.preventDefault();
+                const data = new FormData(form);
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (response.ok) {
+                    alert("Votre message a été envoyé avec succès !");
+                    form.reset();
+                } else {
+                    alert("Une erreur est survenue lors de l'envoi.");
+                }
+            });
+        }
+    </script>
+</body>
+</html>
