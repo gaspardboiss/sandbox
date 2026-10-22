@@ -4,47 +4,32 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta name="description" content="Portfolio audiovisuel de Gaspard Boissinot : vidéo, montage, photographie, drone et post-production.">
-    <title>Gaspard Boissinot — Portfolio Audiovisuel</title>
+    <title>Gaspard Boissinot — Portfolio</title>
     <link rel="icon" type="image/png" sizes="64x64" href="images/favicon.png">
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#111318">
+    <meta name="theme-color" content="#0e0e0e">
     <link rel="apple-touch-icon" href="images/icon-192.png">
 
-    <!-- Fonts & Icons -->
+    <!-- Fonts & FontAwesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- CONSTANTES & THEME SLATE / ANTHRACITE --- */
-        :root {
-            --bg-main: #111318;
-            --bg-card: #181b22;
-            --bg-nav: rgba(17, 19, 24, 0.88);
-            --accent-glow: rgba(99, 102, 241, 0.25);
-            --text-primary: #f3f4f6;
-            --text-muted: #9ca3af;
-            --border-subtle: rgba(255, 255, 255, 0.08);
-            --border-hover: rgba(255, 255, 255, 0.25);
-        }
-
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            background-color: var(--bg-main);
-            color: var(--text-primary);
+            background-color: #0b0c10;
+            color: #ffffff;
             font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
         a {
@@ -52,7 +37,7 @@
             text-decoration: none;
         }
 
-        /* --- HERO SECTION PARALLAXE --- */
+        /* --- HERO SECTION (Optimisée GPU) --- */
         .hero {
             position: relative;
             height: 85vh;
@@ -62,6 +47,7 @@
             align-items: center;
             text-align: center;
             overflow: hidden;
+            transform: translateZ(0);
         }
 
         .hero-bg {
@@ -69,87 +55,69 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 120%;
+            height: 100%;
             background-image: url('images/Voiture noire.png');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
-            filter: brightness(0.55) contrast(1.1);
+            filter: brightness(0.5);
             z-index: 1;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 160px;
-            background: linear-gradient(to top, var(--bg-main), transparent);
-            z-index: 2;
+            will-change: transform;
         }
 
         .hero-content {
             position: relative;
-            z-index: 3;
+            z-index: 2;
             padding: 0 20px;
         }
 
         .hero-title {
-            font-size: 3.8rem;
+            font-size: 3.5rem;
             font-weight: 800;
-            letter-spacing: 5px;
+            letter-spacing: 4px;
             text-transform: uppercase;
             margin-bottom: 12px;
-            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+            background: linear-gradient(180deg, #ffffff 0%, #bbbbbb 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .hero-subtitle {
-            font-size: 1.15rem;
-            color: #94a3b8;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.75);
             letter-spacing: 3px;
-            font-weight: 500;
+            font-weight: 300;
             text-transform: uppercase;
         }
 
-        /* --- NAVBAR BARRE DE NAVIGATION --- */
+        /* --- NAVIGATION OPTIMISÉE (Layer Promotion) --- */
         .navbar {
             position: sticky;
             top: 0;
-            background: var(--bg-nav);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            background: rgba(11, 12, 16, 0.95); /* Fond semi-opaque performant */
+            backdrop-filter: blur(8px); /* Blur allégé pour éviter les saccades */
+            -webkit-backdrop-filter: blur(8px);
             z-index: 1000;
-            border-bottom: 1px solid var(--border-subtle);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 18px 5%;
-        }
-
-        .nav-brand {
-            font-weight: 700;
-            letter-spacing: 2px;
-            font-size: 1rem;
-            text-transform: uppercase;
-            color: var(--text-primary);
+            padding: 15px 40px;
+            will-change: transform;
+            transform: translateZ(0);
         }
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 25px;
             list-style: none;
         }
 
         .nav-links a {
-            font-size: 0.88rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: var(--text-muted);
-            transition: color 0.3s;
+            color: #888888;
+            transition: color 0.2s ease;
             font-weight: 600;
         }
 
@@ -159,51 +127,53 @@
 
         .nav-socials {
             display: flex;
-            gap: 20px;
+            gap: 18px;
         }
 
         .nav-socials a {
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            transition: transform 0.3s, color 0.3s;
+            color: #aaaaaa;
+            font-size: 1.1rem;
+            transition: color 0.2s ease;
         }
 
         .nav-socials a:hover {
             color: #ffffff;
-            transform: translateY(-2px);
         }
 
-        /* --- GRILLE & CARTE INTERACTIVE --- */
+        /* --- GRILLE PORTFOLIO --- */
         .container {
-            max-width: 1300px;
+            max-width: 1280px;
             margin: 0 auto;
             padding: 60px 20px;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.2rem;
+            font-size: 2rem;
             letter-spacing: 3px;
             text-transform: uppercase;
             margin-bottom: 50px;
             font-weight: 800;
-            color: #ffffff;
         }
 
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 35px;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
         }
 
+        /* Cartes fluides avec accélération matérielle */
         .card {
             position: relative;
-            border-radius: 20px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            overflow: hidden;
+            background: #14161f;
+            border: 1px solid rgba(255, 255, 255, 0.06);
             cursor: pointer;
-            height: 340px;
-            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s;
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease;
+            height: 320px;
+            will-change: transform;
+            transform: translateZ(0);
         }
 
         .card.featured {
@@ -211,112 +181,65 @@
             height: 420px;
         }
 
-        .card::before {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            border-radius: 22px;
-            background: var(--card-glow, linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.05)));
-            z-index: -1;
-            opacity: 0;
-            filter: blur(20px);
-            transition: opacity 0.5s ease;
-        }
-
-        .card:hover::before {
-            opacity: 1;
-        }
-
-        .card-inner {
+        .card-img-wrapper {
             width: 100%;
             height: 100%;
-            border-radius: 20px;
             overflow: hidden;
             position: relative;
         }
 
-        .card-img {
+        .card-img-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), filter 0.5s ease;
-            filter: brightness(0.85);
+            transition: transform 0.5s ease;
+            will-change: transform;
         }
 
         .card-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(17,19,24,0.05) 20%, rgba(17,19,24,0.88) 100%);
+            background: linear-gradient(180deg, rgba(0,0,0,0.1) 30%, rgba(0,0,0,0.85) 100%);
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            padding: 35px;
-            transition: background 0.4s;
+            padding: 30px;
         }
 
         .card-title {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 700;
             letter-spacing: 1.5px;
             text-transform: uppercase;
             color: #ffffff;
-            transform: translateY(6px);
-            transition: transform 0.4s ease;
-        }
-
-        .card-subtitle {
-            font-size: 0.85rem;
-            color: #94a3b8;
-            margin-top: 4px;
-            letter-spacing: 1px;
         }
 
         .card-btn {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            margin-top: 15px;
+            gap: 8px;
+            margin-top: 10px;
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             color: #ffffff;
-            font-weight: 600;
-            opacity: 0.8;
-            transition: opacity 0.3s, transform 0.3s;
+            opacity: 0.75;
         }
 
+        /* Hover performant (uniquement transform & opacity) */
         .card:hover {
-            transform: translateY(-8px);
-            border-color: var(--border-hover);
+            transform: translateY(-6px);
+            border-color: rgba(255, 255, 255, 0.25);
         }
 
-        .card:hover .card-img {
-            transform: scale(1.08);
-            filter: brightness(1);
+        .card:hover .card-img-wrapper img {
+            transform: scale(1.05);
         }
-
-        .card:hover .card-title {
-            transform: translateY(0);
-        }
-
-        .card:hover .card-btn {
-            opacity: 1;
-            transform: translateX(6px);
-        }
-
-        /* GLOWS DE COULEURS */
-        .card[data-glow="nature"] { --card-glow: linear-gradient(135deg, rgba(34, 197, 94, 0.4), rgba(16, 185, 129, 0.1)); }
-        .card[data-glow="cinema"] { --card-glow: linear-gradient(135deg, rgba(239, 68, 68, 0.4), rgba(244, 63, 94, 0.1)); }
-        .card[data-glow="portrait"] { --card-glow: linear-gradient(135deg, rgba(168, 85, 247, 0.4), rgba(217, 70, 239, 0.1)); }
-        .card[data-glow="drone"] { --card-glow: linear-gradient(135deg, rgba(56, 189, 248, 0.4), rgba(59, 130, 246, 0.1)); }
-        .card[data-glow="bw"] { --card-glow: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(148, 163, 184, 0.1)); }
-        .card[data-glow="archi"] { --card-glow: linear-gradient(135deg, rgba(245, 158, 11, 0.4), rgba(217, 119, 6, 0.1)); }
-        .card[data-glow="motion"] { --card-glow: linear-gradient(135deg, rgba(236, 72, 153, 0.4), rgba(139, 92, 246, 0.1)); }
 
         /* --- FOOTER & CONTACT --- */
         .footer {
-            background: #0b0c0f;
-            border-top: 1px solid var(--border-subtle);
+            background: #07080a;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
             padding: 80px 20px 40px;
             margin-top: 80px;
         }
@@ -331,14 +254,13 @@
 
         .contact-form input, .contact-form textarea {
             width: 100%;
-            background: #161920;
-            border: 1px solid var(--border-subtle);
-            padding: 16px 20px;
+            background: #11131a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 14px 18px;
             color: #fff;
-            border-radius: 12px;
-            margin-bottom: 18px;
+            border-radius: 8px;
+            margin-bottom: 15px;
             font-family: inherit;
-            transition: border-color 0.3s;
         }
 
         .contact-form input:focus, .contact-form textarea:focus {
@@ -350,273 +272,180 @@
             background: #ffffff;
             color: #000000;
             border: none;
-            padding: 16px 36px;
+            padding: 14px 30px;
             border-radius: 30px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: background 0.2s;
         }
 
         .submit-btn:hover {
-            background: #e2e8f0;
-            transform: scale(1.03);
-            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+            background: #dddddd;
         }
 
         .contact-info p {
-            margin-bottom: 22px;
-            color: var(--text-muted);
-            font-size: 1.05rem;
+            margin-bottom: 20px;
+            color: #888888;
         }
 
         .contact-info a {
             color: #ffffff;
-            transition: color 0.3s;
-        }
-
-        .contact-info a:hover {
-            color: #38bdf8;
         }
 
         .copyright {
             text-align: center;
             margin-top: 60px;
-            color: #64748b;
-            font-size: 0.88rem;
+            color: #444444;
+            font-size: 0.85rem;
         }
 
-        /* --- MODALE GLOBALE & MULTI-VUES --- */
-        .modal-overlay {
+        /* --- MODALES & SLIDER HAUTE PERFORMANCE --- */
+        .modal {
             display: none;
             position: fixed;
-            inset: 0;
             z-index: 99999;
-            background: rgba(10, 12, 16, 0.94);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            overflow-y: auto;
-            padding: 40px 20px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .modal-overlay.active {
-            display: block;
-            opacity: 1;
-        }
-
-        .modal-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            border-bottom: 1px solid var(--border-subtle);
-            padding-bottom: 20px;
-        }
-
-        .modal-title {
-            font-size: 1.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 800;
-        }
-
-        .modal-close-btn {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            border: 1px solid var(--border-subtle);
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.92);
             justify-content: center;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s;
+            align-items: center;
         }
 
-        .modal-close-btn:hover {
-            background: #ffffff;
-            color: #000;
-            transform: scale(1.1);
-        }
-
-        /* VUE GALERIE PHOTO (GRILLE) */
-        .photo-gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 20px;
-        }
-
-        .gallery-thumb-item {
+        .modal-content {
+            background-color: #12141c;
+            padding: 30px;
+            border-radius: 16px;
+            max-width: 90%;
+            max-height: 90vh;
+            width: 1000px;
+            overflow-y: auto;
             position: relative;
-            aspect-ratio: 1;
-            border-radius: 14px;
-            overflow: hidden;
-            cursor: pointer;
-            border: 1px solid var(--border-subtle);
-            transition: transform 0.3s, border-color 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .gallery-thumb-item img {
+        .close {
+            position: absolute;
+            top: 15px; right: 20px;
+            color: #aaa;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .close:hover { color: #fff; }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .thumbnail {
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .thumbnail img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.3s ease;
         }
 
-        .gallery-thumb-item:hover {
-            transform: translateY(-4px);
-            border-color: rgba(255,255,255,0.4);
-        }
+        .thumbnail:hover img { transform: scale(1.05); }
 
-        .gallery-thumb-item:hover img {
-            transform: scale(1.08);
-        }
-
-        /* VUE SLIDER LIGHTBOX GRAND FORMAT */
-        .lightbox-view {
-            display: flex;
+        /* VUE SLIDER GRAND FORMAT */
+        .slider-container {
+            display: none;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 70vh;
             position: relative;
+            text-align: center;
+            margin-top: 10px;
         }
 
-        .lightbox-back-btn {
-            align-self: flex-start;
-            margin-bottom: 20px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid var(--border-subtle);
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s;
-        }
-
-        .lightbox-back-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateX(-4px);
-        }
-
-        .lightbox-media-wrapper {
+        .slider-image-wrapper {
             position: relative;
+            max-height: 65vh;
             display: flex;
             align-items: center;
             justify-content: center;
             width: 100%;
-            max-height: 75vh;
         }
 
-        .lightbox-img-full {
-            max-width: 90vw;
-            max-height: 70vh;
-            border-radius: 12px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+        .slider-image-wrapper img {
+            max-height: 65vh;
+            max-width: 100%;
             object-fit: contain;
-            user-select: none;
+            border-radius: 8px;
         }
 
-        .lightbox-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
+        .slider-controls {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .slider-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 30px;
             cursor: pointer;
-            z-index: 10;
-            transition: all 0.3s ease;
-            user-select: none;
+            font-weight: 600;
+            transition: background 0.2s;
         }
 
-        .lightbox-arrow:hover {
-            background: #ffffff;
-            color: #000000;
-            transform: translateY(-50%) scale(1.1);
+        .slider-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
         }
 
-        .lightbox-arrow.prev { left: 10px; }
-        .lightbox-arrow.next { right: 10px; }
-
-        .lightbox-counter {
-            margin-top: 15px;
-            color: var(--text-muted);
+        .slider-counter {
             font-size: 0.9rem;
+            color: #aaa;
             letter-spacing: 1px;
         }
 
-        /* MODALE VIDÉO ET SECTIONS / SÉPARATEURS */
-        .video-section-title {
-            font-size: 1.2rem;
+        .modal-separator {
+            display: flex;
+            align-items: center;
+            margin: 30px 0 15px 0;
+            width: 100%;
+            grid-column: 1 / -1;
+        }
+
+        .modal-separator::before, .modal-separator::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .modal-separator span {
+            padding: 0 15px;
+            font-size: 0.85em;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #38bdf8;
-            margin: 35px 0 20px 0;
-            padding-bottom: 8px;
-            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
-        }
-
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-            gap: 25px;
-        }
-
-        .video-card {
-            background: #161920;
-            border-radius: 14px;
-            overflow: hidden;
-            border: 1px solid var(--border-subtle);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-        }
-
-        .video-wrapper {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16/9;
-        }
-
-        .video-wrapper iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
+            color: #888;
         }
 
         @media (max-width: 768px) {
-            .hero-title { font-size: 2.4rem; }
-            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+            .hero-title { font-size: 2.2rem; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
             .navbar { padding: 15px 20px; }
-            .nav-brand { display: none; }
-            .card.featured { height: 340px; }
-            .video-grid { grid-template-columns: 1fr; }
-            .lightbox-arrow { width: 40px; height: 40px; font-size: 1rem; }
-            .lightbox-arrow.prev { left: 5px; }
-            .lightbox-arrow.next { right: 5px; }
+            .gallery { grid-template-columns: repeat(2, 1fr); }
+            .card.featured { height: 320px; }
         }
     </style>
 </head>
@@ -627,131 +456,120 @@
         <div class="hero-bg"></div>
         <div class="hero-content">
             <h1 class="hero-title">Gaspard Boissinot</h1>
-            <p class="hero-subtitle">Audiovisuel ⸱ Réalisation ⸱ Photographie</p>
+            <p class="hero-subtitle">Audiovisuel ⸱ Cinéma ⸱ Montage ⸱ Photographie</p>
         </div>
     </section>
 
-    <!-- NAVIGATION BAR -->
+    <!-- NAVIGATION -->
     <nav class="navbar">
-        <div class="nav-brand">Gaspard Boissinot</div>
         <ul class="nav-links">
             <li><a href="index.html" class="active">Audiovisuel</a></li>
             <li><a href="generic.html">À propos</a></li>
             <li><a href="elements.html">Projets</a></li>
         </ul>
         <div class="nav-socials">
-            <a href="https://www.linkedin.com/in/gaspard-boissinot-57aab1403/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            <a href="https://www.youtube.com/@ormission" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-            <a href="https://www.instagram.com/gaspard._b" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/gaspard-boissinot-57aab1403/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.youtube.com/@ormission" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/gaspard._b" target="_blank"><i class="fab fa-instagram"></i></a>
         </div>
     </nav>
 
-    <!-- GRILLE DU PORTFOLIO -->
+    <!-- GRILLE PORTFOLIO -->
     <main class="container">
-        <h2 class="section-title">Portfolio</h2>
+        <h2 class="section-title">Mes Réalisations</h2>
 
         <div class="portfolio-grid">
-
             <!-- 1. Courts-Métrages -->
-            <div class="card featured" data-glow="cinema" onclick="openVideoModal('courts_metrages')">
-                <div class="card-inner">
-                    <img class="card-img" src="images/DÖD.png" alt="Courts-métrages">
-                    <div class="card-overlay">
-                        <h3 class="card-title">Courts-Métrages</h3>
-                        <p class="card-subtitle">Projets cinématographiques, fictions & projets de lycée</p>
-                        <span class="card-btn">Visionner les projets <i class="fas fa-play" style="font-size:0.7rem;"></i></span>
-                    </div>
+            <div class="card featured" onclick="openModalVideos()">
+                <div class="card-img-wrapper">
+                    <img src="images/DÖD.png" alt="Courts-métrages" loading="lazy" decoding="async">
+                </div>
+                <div class="card-overlay">
+                    <h3 class="card-title">Courts-Métrages</h3>
+                    <span class="card-btn">Découvrir les vidéos <i class="fas fa-arrow-right"></i></span>
                 </div>
             </div>
 
             <!-- 2. Portraits -->
-            <div class="card" data-glow="portrait" onclick="openPhotoModal('portraits', 'Portraits')">
-                <div class="card-inner">
-                    <img class="card-img" src="images/portrait1.jpg" alt="Portraits">
-                    <div class="card-overlay">
-                        <h3 class="card-title">Portraits</h3>
-                        <p class="card-subtitle">Série photographique humaine</p>
-                        <span class="card-btn">Voir la galerie <i class="fas fa-images"></i></span>
-                    </div>
+            <div class="card" onclick="openModal3()">
+                <div class="card-img-wrapper">
+                    <img src="images/portrait1.jpg" alt="Portraits" loading="lazy" decoding="async">
+                </div>
+                <div class="card-overlay">
+                    <h3 class="card-title">Portraits</h3>
+                    <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
                 </div>
             </div>
 
             <!-- 3. Noir & Blanc -->
-            <div class="card" data-glow="bw" onclick="openPhotoModal('noir_et_blanc', 'Noir & Blanc')">
-                <div class="card-inner">
-                    <img class="card-img" src="images/rose.jpg" alt="Noir & Blanc">
-                    <div class="card-overlay">
-                        <h3 class="card-title">Noir & Blanc</h3>
-                        <p class="card-subtitle">Contrastes & ombres</p>
-                        <span class="card-btn">Voir la galerie <i class="fas fa-images"></i></span>
-                    </div>
+            <div class="card" onclick="openModal()">
+                <div class="card-img-wrapper">
+                    <img src="images/rose.jpg" alt="Noir & Blanc" loading="lazy" decoding="async">
+                </div>
+                <div class="card-overlay">
+                    <h3 class="card-title">Noir & Blanc</h3>
+                    <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
                 </div>
             </div>
 
             <!-- 4. Architecture -->
-            <div class="card" data-glow="archi" onclick="openPhotoModal('architecture', 'Architecture')">
-                <div class="card-inner">
-                    <img class="card-img" src="images/archi6.jpg" alt="Architecture">
-                    <div class="card-overlay">
-                        <h3 class="card-title">Architecture</h3>
-                        <p class="card-subtitle">Perspectives & structures</p>
-                        <span class="card-btn">Voir la galerie <i class="fas fa-images"></i></span>
-                    </div>
+            <div class="card" onclick="openModal4()">
+                <div class="card-img-wrapper">
+                    <img src="images/archi6.jpg" alt="Architecture" loading="lazy" decoding="async">
+                </div>
+                <div class="card-overlay">
+                    <h3 class="card-title">Architecture</h3>
+                    <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
                 </div>
             </div>
 
             <!-- 5. Pose Longue -->
-            <div class="card" data-glow="motion" onclick="openPhotoModal('pose_longue', 'Pose Longue')">
-                <div class="card-inner">
-                    <img class="card-img" src="images/flou9.jpg" alt="Pose Longue">
-                    <div class="card-overlay">
-                        <h3 class="card-title">Pose Longue</h3>
-                        <p class="card-subtitle">Mouvement & lumière</p>
-                        <span class="card-btn">Voir la galerie <i class="fas fa-images"></i></span>
-                    </div>
+            <div class="card" onclick="openModal5()">
+                <div class="card-img-wrapper">
+                    <img src="images/flou9.jpg" alt="Pose Longue" loading="lazy" decoding="async">
+                </div>
+                <div class="card-overlay">
+                    <h3 class="card-title">Pose Longue</h3>
+                    <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
                 </div>
             </div>
 
             <!-- 6. Nature -->
-            <div class="card" data-glow="nature" onclick="openPhotoModal('nature', 'Nature')">
-                <div class="card-inner">
-                    <img class="card-img" src="images/nature1.jpg" alt="Nature">
-                    <div class="card-overlay">
-                        <h3 class="card-title">Nature</h3>
-                        <p class="card-subtitle">Paysages & flore</p>
-                        <span class="card-btn">Voir la galerie <i class="fas fa-images"></i></span>
-                    </div>
+            <div class="card" onclick="openModal6()">
+                <div class="card-img-wrapper">
+                    <img src="images/nature1.jpg" alt="Nature" loading="lazy" decoding="async">
+                </div>
+                <div class="card-overlay">
+                    <h3 class="card-title">Nature</h3>
+                    <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
                 </div>
             </div>
 
-            <!-- 7. Prises de vues Drones -->
-            <div class="card" data-glow="drone" onclick="openPhotoModal('drone', 'Prises de vues Drone')">
-                <div class="card-inner">
-                    <img class="card-img" src="images/hiver2.jpg" alt="Prises de vues drones">
-                    <div class="card-overlay">
-                        <h3 class="card-title">Prises de vues Drone</h3>
-                        <p class="card-subtitle">Perspectives aériennes</p>
-                        <span class="card-btn">Voir la galerie <i class="fas fa-images"></i></span>
-                    </div>
+            <!-- 7. Drones -->
+            <div class="card" onclick="openModal2()">
+                <div class="card-img-wrapper">
+                    <img src="images/hiver2.jpg" alt="Prises de vues drones" loading="lazy" decoding="async">
+                </div>
+                <div class="card-overlay">
+                    <h3 class="card-title">Prises de vues Drones</h3>
+                    <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
                 </div>
             </div>
 
             <!-- 8. Montages Variés -->
-            <div class="card featured" data-glow="motion" onclick="openVideoModal('montages_varies')">
-                <div class="card-inner">
-                    <img class="card-img" src="images/hiverdrone.png" alt="Montages variés">
-                    <div class="card-overlay">
-                        <h3 class="card-title">Montages Variés</h3>
-                        <p class="card-subtitle">Créations, clips drone & montages jeux vidéo</p>
-                        <span class="card-btn">Visionner les montages <i class="fas fa-play" style="font-size:0.7rem;"></i></span>
-                    </div>
+            <div class="card featured" onclick="openModalVideos2()">
+                <div class="card-img-wrapper">
+                    <img src="images/hiverdrone.png" alt="Montages variés" loading="lazy" decoding="async">
+                </div>
+                <div class="card-overlay">
+                    <h3 class="card-title">Montages Variés</h3>
+                    <span class="card-btn">Découvrir les montages <i class="fas fa-arrow-right"></i></span>
                 </div>
             </div>
-
         </div>
     </main>
 
-    <!-- FOOTER & FORMULAIRE -->
+    <!-- FOOTER & CONTACT -->
     <footer class="footer">
         <div class="footer-grid">
             <div class="contact-form">
@@ -767,9 +585,9 @@
             </div>
             <div class="contact-info">
                 <h3 style="margin-bottom: 20px; font-size: 1.5rem;">Coordonnées</h3>
-                <p><strong>Adresse :</strong><br>Rue Pellart, Roubaix 59100</p>
-                <p><strong>Téléphone :</strong><br><a href="tel:+33624146473">+33 6 24 14 64 73</a></p>
-                <p><strong>Email :</strong><br><a href="mailto:gaspboiss@gmail.com">gaspboiss@gmail.com</a></p>
+                <p><strong style="color:#fff;">Adresse :</strong><br>Rue Pellart, Roubaix 59100</p>
+                <p><strong style="color:#fff;">Téléphone :</strong><br><a href="tel:+33624146473">+33 6 24 14 64 73</a></p>
+                <p><strong style="color:#fff;">Email :</strong><br><a href="mailto:gaspboiss@gmail.com">gaspboiss@gmail.com</a></p>
             </div>
         </div>
         <div class="copyright">
@@ -777,270 +595,362 @@
         </div>
     </footer>
 
-    <!-- STRUCTURE UNIQUE MODALE POUR PHOTO ET VIDEO -->
-    <div id="modal-overlay" class="modal-overlay" onclick="handleBackdropClick(event)">
-        <div class="modal-container">
-            <div class="modal-header">
-                <h3 class="modal-title" id="modal-title">Galerie</h3>
-                <button class="modal-close-btn" onclick="closeModal()"><i class="fas fa-times"></i></button>
+    <!-- MODALE 1 : NOIR & BLANC -->
+    <div id="modal" class="modal" onclick="closeModalOnBackground(event, 'modal')">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal')">&times;</span>
+            <div id="gallery-grid-1" class="gallery">
+                <div class="thumbnail" onclick="openSlider(1, 0)"><img src="images/rue.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(1, 1)"><img src="images/rose.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(1, 2)"><img src="images/noiretblanc.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(1, 3)"><img src="images/expo3.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(1, 4)"><img src="images/oiseaux.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(1, 5)"><img src="images/b&w1.jpg" loading="lazy" decoding="async"></div>
             </div>
-            <div id="modal-body">
-                <!-- Contenu dynamique (Galerie Grille, Lightbox ou Vidéos) -->
+            <div id="slider-view-1" class="slider-container">
+                <div class="slider-image-wrapper">
+                    <img id="slider-img-1" src="">
+                </div>
+                <div class="slider-controls">
+                    <button class="slider-btn" onclick="prevSlide(1)"><i class="fas fa-chevron-left"></i> Précédent</button>
+                    <span id="slider-counter-1" class="slider-counter">1 / 6</span>
+                    <button class="slider-btn" onclick="nextSlide(1)">Suivant <i class="fas fa-chevron-right"></i></button>
+                </div>
+                <button class="slider-btn" style="margin-top: 15px; background: transparent; border: 1px solid rgba(255,255,255,0.2);" onclick="backToGrid(1)">Retour à la grille</button>
             </div>
         </div>
     </div>
 
-    <!-- JAVASCRIPT SYSTEME DE MODALE COMPLET -->
-    <script>
-        // BASE DE DONNÉES PHOTO
-        const photoGalleries = {
-            noir_et_blanc: [
-                'images/rue.jpg', 'images/rose.jpg', 'images/noiretblanc.jpg', 
-                'images/expo3.jpg', 'images/oiseaux.jpg', 'images/b&w1.jpg'
-            ],
-            drone: [
-                'images/hiver2.jpg', 'images/hiver1.jpg', 'images/hiver3.jpg', 
-                'images/hiver4.jpg', 'images/hiver5.jpg', 'images/hiver6.jpg', 
-                'images/drone1.jpg', 'images/drone2.jpg', 'images/drone3.jpg'
-            ],
-            portraits: [
-                'images/portrait1.jpg', 'images/portrait11.jpg', 'images/école3.jpg', 
-                'images/portrait2.jpg', 'images/pompier2.jpg', 'images/portrait3.jpg', 
-                'images/portrait13.jpg', 'images/portrait6.jpg', 'images/portrait7.jpg', 
-                'images/portrait10.jpg', 'images/portrait4.jpg', 'images/portrait12.jpg', 
-                'images/école.jpg', 'images/pompier1.jpg', 'images/portrait15.jpg', 
-                'images/école2.jpg', 'images/portrait5.jpg', 'images/portrait14.jpg'
-            ],
-            architecture: [
-                'images/archi1.jpg', 'images/archi5.jpg', 'images/chateau1.jpg', 
-                'images/chateau2.jpg', 'images/archi4.jpg', 'images/archi3.jpg', 
-                'images/archi2.jpg', 'images/batiment1.jpg', 'images/archi6.jpg', 
-                'images/archi7.jpg', 'images/archi8.jpg', 'images/archi9.jpg'
-            ],
-            pose_longue: [
-                'images/flou1.jpg', 'images/expo1.jpg', 'images/flou9.jpg', 
-                'images/Voitnoire.jpg', 'images/flou7.jpg', 'images/expo2.jpg', 
-                'images/flou3.jpg', 'images/flou10.jpg'
-            ],
-            nature: [
-                'images/nature2.jpg', 'images/nature11.jpg', 'images/hiver7.jpg', 
-                'images/nature8.jpg', 'images/ciel2.jpg', 'images/nature7.jpg', 
-                'images/nature6.jpg', 'images/nature9.jpg', 'images/nature4.jpg', 
-                'images/nature1.jpg', 'images/ciel1.jpg', 'images/nature3.jpg', 
-                'images/nature5.jpg', 'images/nature10.jpg'
-            ]
-        };
-
-        // BASE DE DONNÉES VIDÉO AVEC CATÉGORIES ET SÉPARATEURS
-        const videoGalleries = {
-            courts_metrages: {
-                title: "Courts-Métrages",
-                sections: [
-                    {
-                        heading: null,
-                        videos: [
-                            "https://www.youtube.com/embed/1Mja8tMPmmc",
-                            "https://www.youtube.com/embed/PgySILbVU0c",
-                            "https://www.youtube.com/embed/r1Cv7a5lTPU",
-                            "https://www.youtube.com/embed/Escy0MCVTmo"
-                        ]
-                    },
-                    {
-                        heading: "Projets lycée",
-                        videos: [
-                            "https://www.youtube.com/embed/838EboJXgMQ",
-                            "https://www.youtube.com/embed/s9DObtl3CgE"
-                        ]
-                    }
-                ]
-            },
-            montages_varies: {
-                title: "Montages Variés",
-                sections: [
-                    {
-                        heading: null,
-                        videos: [
-                            "https://www.youtube.com/embed/dMNVtVzXCAg"
-                        ]
-                    },
-                    {
-                        heading: "Montages drone",
-                        videos: [
-                            "https://www.youtube.com/embed/1khe2eo4Kbc",
-                            "https://www.youtube.com/embed/N5z96sImUpc"
-                        ]
-                    },
-                    {
-                        heading: "Montages jeux vidéo",
-                        videos: [
-                            "https://www.youtube.com/embed/Z0JBgfGNSEo",
-                            "https://www.youtube.com/embed/v4AnSb6EHak",
-                            "https://www.youtube.com/embed/yUJhlouEDs4"
-                        ]
-                    }
-                ]
-            }
-        };
-
-        let currentActiveKey = null;
-        let currentPhotos = [];
-        let currentPhotoIndex = 0;
-        let isLightboxView = false;
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        // OUVRIR UNE GALERIE PHOTO (VUE GRILLE D'ABORD)
-        function openPhotoModal(key, title) {
-            currentActiveKey = key;
-            currentPhotos = photoGalleries[key] || [];
-            document.getElementById('modal-title').textContent = title;
-            isLightboxView = false;
-            renderPhotoGrid();
-            showModal();
-        }
-
-        // AFFICHER LA GRILLE D'IMAGES DANS LA MODALE
-        function renderPhotoGrid() {
-            const body = document.getElementById('modal-body');
-            let html = '<div class="photo-gallery-grid">';
-            currentPhotos.forEach((src, idx) => {
-                html += `
-                    <div class="gallery-thumb-item" onclick="openLightbox(${idx})">
-                        <img src="${src}" alt="Photo ${idx + 1}" loading="lazy">
-                    </div>
-                `;
-            });
-            html += '</div>';
-            body.innerHTML = html;
-        }
-
-        // AFFICHER LE GRAND FORMAT (SLIDER LIGHTBOX)
-        function openLightbox(index) {
-            isLightboxView = true;
-            currentPhotoIndex = index;
-            renderLightbox();
-        }
-
-        function renderLightbox() {
-            const body = document.getElementById('modal-body');
-            const src = currentPhotos[currentPhotoIndex];
-            
-            body.innerHTML = `
-                <div class="lightbox-view">
-                    <button class="lightbox-back-btn" onclick="backToGrid()">
-                        <i class="fas fa-th"></i> Retour à la galerie
-                    </button>
-                    <div class="lightbox-media-wrapper">
-                        <div class="lightbox-arrow prev" onclick="prevPhoto(event)">
-                            <i class="fas fa-chevron-left"></i>
-                        </div>
-                        <img class="lightbox-img-full" src="${src}" alt="Grand format ${currentPhotoIndex + 1}">
-                        <div class="lightbox-arrow next" onclick="nextPhoto(event)">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                    </div>
-                    <div class="lightbox-counter">${currentPhotoIndex + 1} / ${currentPhotos.length}</div>
+    <!-- MODALE 2 : DRONES -->
+    <div id="modal2" class="modal" onclick="closeModalOnBackground(event, 'modal2')">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal2')">&times;</span>
+            <div id="gallery-grid-2" class="gallery">
+                <div class="thumbnail" onclick="openSlider(2, 0)"><img src="images/hiver2.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(2, 1)"><img src="images/hiver1.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(2, 2)"><img src="images/hiver3.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(2, 3)"><img src="images/hiver4.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(2, 4)"><img src="images/hiver5.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(2, 5)"><img src="images/hiver6.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(2, 6)"><img src="images/drone1.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(2, 7)"><img src="images/drone2.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(2, 8)"><img src="images/drone3.jpg" loading="lazy" decoding="async"></div>
+            </div>
+            <div id="slider-view-2" class="slider-container">
+                <div class="slider-image-wrapper">
+                    <img id="slider-img-2" src="">
                 </div>
-            `;
-        }
+                <div class="slider-controls">
+                    <button class="slider-btn" onclick="prevSlide(2)"><i class="fas fa-chevron-left"></i> Précédent</button>
+                    <span id="slider-counter-2" class="slider-counter">1 / 9</span>
+                    <button class="slider-btn" onclick="nextSlide(2)">Suivant <i class="fas fa-chevron-right"></i></button>
+                </div>
+                <button class="slider-btn" style="margin-top: 15px; background: transparent; border: 1px solid rgba(255,255,255,0.2);" onclick="backToGrid(2)">Retour à la grille</button>
+            </div>
+        </div>
+    </div>
 
-        function backToGrid() {
-            isLightboxView = false;
-            renderPhotoGrid();
-        }
+    <!-- MODALE 3 : PORTRAITS -->
+    <div id="modal3" class="modal" onclick="closeModalOnBackground(event, 'modal3')">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal3')">&times;</span>
+            <div id="gallery-grid-3" class="gallery">
+                <div class="thumbnail" onclick="openSlider(3, 0)"><img src="images/portrait1.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(3, 1)"><img src="images/portrait11.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(3, 2)"><img src="images/école3.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(3, 3)"><img src="images/portrait2.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(3, 4)"><img src="images/pompier2.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(3, 5)"><img src="images/portrait3.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(3, 6)"><img src="images/portrait13.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(3, 7)"><img src="images/portrait6.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(3, 8)"><img src="images/portrait7.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(3, 9)"><img src="images/portrait10.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(3, 10)"><img src="images/portrait4.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(3, 11)"><img src="images/portrait12.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(3, 12)"><img src="images/école.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(3, 13)"><img src="images/pompier1.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(3, 14)"><img src="images/portrait15.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(3, 15)"><img src="images/école2.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(3, 16)"><img src="images/portrait5.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(3, 17)"><img src="images/portrait14.jpg" loading="lazy" decoding="async"></div>
+            </div>
+            <div id="slider-view-3" class="slider-container">
+                <div class="slider-image-wrapper">
+                    <img id="slider-img-3" src="">
+                </div>
+                <div class="slider-controls">
+                    <button class="slider-btn" onclick="prevSlide(3)"><i class="fas fa-chevron-left"></i> Précédent</button>
+                    <span id="slider-counter-3" class="slider-counter">1 / 18</span>
+                    <button class="slider-btn" onclick="nextSlide(3)">Suivant <i class="fas fa-chevron-right"></i></button>
+                </div>
+                <button class="slider-btn" style="margin-top: 15px; background: transparent; border: 1px solid rgba(255,255,255,0.2);" onclick="backToGrid(3)">Retour à la grille</button>
+            </div>
+        </div>
+    </div>
 
-        function nextPhoto(e) {
-            if (e) e.stopPropagation();
-            if (currentPhotos.length === 0) return;
-            currentPhotoIndex = (currentPhotoIndex + 1) % currentPhotos.length;
-            renderLightbox();
-        }
+    <!-- MODALE 4 : ARCHITECTURE -->
+    <div id="modal4" class="modal" onclick="closeModalOnBackground(event, 'modal4')">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal4')">&times;</span>
+            <div id="gallery-grid-4" class="gallery">
+                <div class="thumbnail" onclick="openSlider(4, 0)"><img src="images/archi1.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(4, 1)"><img src="images/archi5.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(4, 2)"><img src="images/chateau1.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(4, 3)"><img src="images/chateau2.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(4, 4)"><img src="images/archi4.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(4, 5)"><img src="images/archi3.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(4, 6)"><img src="images/archi2.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(4, 7)"><img src="images/batiment1.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(4, 8)"><img src="images/archi6.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(4, 9)"><img src="images/archi7.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(4, 10)"><img src="images/archi8.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(4, 11)"><img src="images/archi9.jpg" loading="lazy" decoding="async"></div>
+            </div>
+            <div id="slider-view-4" class="slider-container">
+                <div class="slider-image-wrapper">
+                    <img id="slider-img-4" src="">
+                </div>
+                <div class="slider-controls">
+                    <button class="slider-btn" onclick="prevSlide(4)"><i class="fas fa-chevron-left"></i> Précédent</button>
+                    <span id="slider-counter-4" class="slider-counter">1 / 12</span>
+                    <button class="slider-btn" onclick="nextSlide(4)">Suivant <i class="fas fa-chevron-right"></i></button>
+                </div>
+                <button class="slider-btn" style="margin-top: 15px; background: transparent; border: 1px solid rgba(255,255,255,0.2);" onclick="backToGrid(4)">Retour à la grille</button>
+            </div>
+        </div>
+    </div>
 
-        function prevPhoto(e) {
-            if (e) e.stopPropagation();
-            if (currentPhotos.length === 0) return;
-            currentPhotoIndex = (currentPhotoIndex - 1 + currentPhotos.length) % currentPhotos.length;
-            renderLightbox();
-        }
+    <!-- MODALE 5 : POSE LONGUE -->
+    <div id="modal5" class="modal" onclick="closeModalOnBackground(event, 'modal5')">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal5')">&times;</span>
+            <div id="gallery-grid-5" class="gallery">
+                <div class="thumbnail" onclick="openSlider(5, 0)"><img src="images/flou1.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(5, 1)"><img src="images/expo1.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(5, 2)"><img src="images/flou9.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(5, 3)"><img src="images/Voitnoire.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(5, 4)"><img src="images/flou7.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(5, 5)"><img src="images/expo2.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(5, 6)"><img src="images/flou3.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(5, 7)"><img src="images/flou10.jpg" loading="lazy" decoding="async"></div>
+            </div>
+            <div id="slider-view-5" class="slider-container">
+                <div class="slider-image-wrapper">
+                    <img id="slider-img-5" src="">
+                </div>
+                <div class="slider-controls">
+                    <button class="slider-btn" onclick="prevSlide(5)"><i class="fas fa-chevron-left"></i> Précédent</button>
+                    <span id="slider-counter-5" class="slider-counter">1 / 8</span>
+                    <button class="slider-btn" onclick="nextSlide(5)">Suivant <i class="fas fa-chevron-right"></i></button>
+                </div>
+                <button class="slider-btn" style="margin-top: 15px; background: transparent; border: 1px solid rgba(255,255,255,0.2);" onclick="backToGrid(5)">Retour à la grille</button>
+            </div>
+        </div>
+    </div>
 
-        // OUVRIR UNE MODALE VIDÉO (AVEC TOUTES LES SECTIONS ET SÉPARATEURS)
-        function openVideoModal(key) {
-            const data = videoGalleries[key];
-            if (!data) return;
-            
-            document.getElementById('modal-title').textContent = data.title;
-            const body = document.getElementById('modal-body');
-            let html = '';
+    <!-- MODALE 6 : NATURE -->
+    <div id="modal6" class="modal" onclick="closeModalOnBackground(event, 'modal6')">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal6')">&times;</span>
+            <div id="gallery-grid-6" class="gallery">
+                <div class="thumbnail" onclick="openSlider(6, 0)"><img src="images/nature2.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(6, 1)"><img src="images/nature11.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(6, 2)"><img src="images/hiver7.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(6, 3)"><img src="images/nature8.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(6, 4)"><img src="images/ciel2.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(6, 5)"><img src="images/nature7.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(6, 6)"><img src="images/nature6.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(6, 7)"><img src="images/nature9.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(6, 8)"><img src="images/nature4.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(6, 9)"><img src="images/nature1.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(6, 10)"><img src="images/ciel1.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(6, 11)"><img src="images/nature3.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(6, 12)"><img src="images/nature5.jpg" loading="lazy" decoding="async"></div>
+                <div class="thumbnail" onclick="openSlider(6, 13)"><img src="images/nature10.jpg" loading="lazy" decoding="async"></div>
+            </div>
+            <div id="slider-view-6" class="slider-container">
+                <div class="slider-image-wrapper">
+                    <img id="slider-img-6" src="">
+                </div>
+                <div class="slider-controls">
+                    <button class="slider-btn" onclick="prevSlide(6)"><i class="fas fa-chevron-left"></i> Précédent</button>
+                    <span id="slider-counter-6" class="slider-counter">1 / 14</span>
+                    <button class="slider-btn" onclick="nextSlide(6)">Suivant <i class="fas fa-chevron-right"></i></button>
+                </div>
+                <button class="slider-btn" style="margin-top: 15px; background: transparent; border: 1px solid rgba(255,255,255,0.2);" onclick="backToGrid(6)">Retour à la grille</button>
+            </div>
+        </div>
+    </div>
 
-            data.sections.forEach(sec => {
-                if (sec.heading) {
-                    html += `<h4 class="video-section-title">${sec.heading}</h4>`;
-                }
-                html += '<div class="video-grid">';
-                sec.videos.forEach(url => {
-                    html += `
-                        <div class="video-card">
-                            <div class="video-wrapper">
-                                <iframe src="${url}?rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                    `;
-                });
-                html += '</div>';
-            });
+    <!-- MODALE VIDÉOS 1 (Courts-métrages & Lycée) -->
+    <div id="modalVideos" class="modal" onclick="closeModalOnBackground(event, 'modalVideos')">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modalVideos')">&times;</span>
+            <div id="galleryVideosContainer">
+                <div class="gallery">
+                    <div class="thumbnail" onclick="showVideo('https://www.youtube.com/embed/1Mja8tMPmmc')"><img src="https://img.youtube.com/vi/1Mja8tMPmmc/hqdefault.jpg" loading="lazy" decoding="async"></div>
+                    <div class="thumbnail" onclick="showVideo('https://www.youtube.com/embed/PgySILbVU0c')"><img src="https://img.youtube.com/vi/PgySILbVU0c/hqdefault.jpg" loading="lazy" decoding="async"></div>
+                    <div class="thumbnail" onclick="showVideo('https://www.youtube.com/embed/r1Cv7a5lTPU')"><img src="https://img.youtube.com/vi/r1Cv7a5lTPU/hqdefault.jpg" loading="lazy" decoding="async"></div>
+                    <div class="thumbnail" onclick="showVideo('https://www.youtube.com/embed/Escy0MCVTmo')"><img src="https://img.youtube.com/vi/Escy0MCVTmo/hqdefault.jpg" loading="lazy" decoding="async"></div>
+                </div>
+                <div class="modal-separator"><span>Projets lycée</span></div>
+                <div class="gallery">
+                    <div class="thumbnail" onclick="showVideo('https://www.youtube.com/embed/838EboJXgMQ')"><img src="https://img.youtube.com/vi/838EboJXgMQ/hqdefault.jpg" loading="lazy" decoding="async"></div>
+                    <div class="thumbnail" onclick="showVideo('https://www.youtube.com/embed/s9DObtl3CgE')"><img src="https://img.youtube.com/vi/s9DObtl3CgE/hqdefault.jpg" loading="lazy" decoding="async"></div>
+                </div>
+            </div>
+            <div id="large-video" class="slider-container" style="display:none;">
+                <iframe id="videoPlayer" width="100%" height="450" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="border-radius:8px;"></iframe>
+                <button class="slider-btn" style="margin-top: 15px;" onclick="backToGalleryVideos()">Revenir à la galerie</button>
+            </div>
+        </div>
+    </div>
 
-            body.innerHTML = html;
-            showModal();
-        }
+    <!-- MODALE VIDÉOS 2 (Montages Variés, Drones & Jeux Vidéo) -->
+    <div id="modalVideos2" class="modal" onclick="closeModalOnBackground(event, 'modalVideos2')">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modalVideos2')">&times;</span>
+            <div id="galleryVideos2Container">
+                <div class="gallery">
+                    <div class="thumbnail" onclick="showVideo2('https://www.youtube.com/embed/dMNVtVzXCAg')"><img src="https://img.youtube.com/vi/dMNVtVzXCAg/hqdefault.jpg" loading="lazy" decoding="async"></div>
+                </div>
+                <div class="modal-separator"><span>Montages drone</span></div>
+                <div class="gallery">
+                    <div class="thumbnail" onclick="showVideo2('https://www.youtube.com/embed/1khe2eo4Kbc')"><img src="https://img.youtube.com/vi/1khe2eo4Kbc/hqdefault.jpg" loading="lazy" decoding="async"></div>
+                    <div class="thumbnail" onclick="showVideo2('https://www.youtube.com/embed/N5z96sImUpc')"><img src="https://img.youtube.com/vi/N5z96sImUpc/hqdefault.jpg" loading="lazy" decoding="async"></div>
+                </div>
+                <div class="modal-separator"><span>Montages jeux vidéo</span></div>
+                <div class="gallery">
+                    <div class="thumbnail" onclick="showVideo2('https://www.youtube.com/embed/Z0JBgfGNSEo')"><img src="https://img.youtube.com/vi/Z0JBgfGNSEo/hqdefault.jpg" loading="lazy" decoding="async"></div>
+                    <div class="thumbnail" onclick="showVideo2('https://www.youtube.com/embed/v4AnSb6EHak')"><img src="https://img.youtube.com/vi/v4AnSb6EHak/hqdefault.jpg" loading="lazy" decoding="async"></div>
+                    <div class="thumbnail" onclick="showVideo2('https://www.youtube.com/embed/yUJhlouEDs4')"><img src="https://img.youtube.com/vi/yUJhlouEDs4/hqdefault.jpg" loading="lazy" decoding="async"></div>
+                </div>
+            </div>
+            <div id="large-video2" class="slider-container" style="display:none;">
+                <iframe id="videoPlayer2" width="100%" height="450" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="border-radius:8px;"></iframe>
+                <button class="slider-btn" style="margin-top: 15px;" onclick="backToGalleryVideos2()">Revenir à la galerie</button>
+            </div>
+        </div>
+    </div>
 
-        // AFFICHAGE ET FERMETURE DE LA MODALE
-        function showModal() {
-            const modal = document.getElementById('modal-overlay');
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+    <!-- SCRIPT GESTION DES MODALES, SLIDERS ET FORMULAIRE -->
+    <script>
+        // Tableaux de sources pour les sliders photo
+        const sliderData = {
+            1: ['images/rue.jpg', 'images/rose.jpg', 'images/noiretblanc.jpg', 'images/expo3.jpg', 'images/oiseaux.jpg', 'images/b&w1.jpg'],
+            2: ['images/hiver2.jpg', 'images/hiver1.jpg', 'images/hiver3.jpg', 'images/hiver4.jpg', 'images/hiver5.jpg', 'images/hiver6.jpg', 'images/drone1.jpg', 'images/drone2.jpg', 'images/drone3.jpg'],
+            3: ['images/portrait1.jpg', 'images/portrait11.jpg', 'images/école3.jpg', 'images/portrait2.jpg', 'images/pompier2.jpg', 'images/portrait3.jpg', 'images/portrait13.jpg', 'images/portrait6.jpg', 'images/portrait7.jpg', 'images/portrait10.jpg', 'images/portrait4.jpg', 'images/portrait12.jpg', 'images/école.jpg', 'images/pompier1.jpg', 'images/portrait15.jpg', 'images/école2.jpg', 'images/portrait5.jpg', 'images/portrait14.jpg'],
+            4: ['images/archi1.jpg', 'images/archi5.jpg', 'images/chateau1.jpg', 'images/chateau2.jpg', 'images/archi4.jpg', 'images/archi3.jpg', 'images/archi2.jpg', 'images/batiment1.jpg', 'images/archi6.jpg', 'images/archi7.jpg', 'images/archi8.jpg', 'images/archi9.jpg'],
+            5: ['images/flou1.jpg', 'images/expo1.jpg', 'images/flou9.jpg', 'images/Voitnoire.jpg', 'images/flou7.jpg', 'images/expo2.jpg', 'images/flou3.jpg', 'images/flou10.jpg'],
+            6: ['images/nature2.jpg', 'images/nature11.jpg', 'images/hiver7.jpg', 'images/nature8.jpg', 'images/ciel2.jpg', 'images/nature7.jpg', 'images/nature6.jpg', 'images/nature9.jpg', 'images/nature4.jpg', 'images/nature1.jpg', 'images/ciel1.jpg', 'images/nature3.jpg', 'images/nature5.jpg', 'images/nature10.jpg']
+        };
 
-        function closeModal() {
-            const modal = document.getElementById('modal-overlay');
-            modal.classList.remove('active');
+        let currentIndices = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 };
+
+        // Fonctions d'ouverture / fermeture modale globale
+        function openModal(id) { document.getElementById(id).style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+        function closeModal(id) { 
+            document.getElementById(id).style.display = 'none'; 
             document.body.style.overflow = 'auto';
-            document.getElementById('modal-body').innerHTML = '';
-            isLightboxView = false;
+            if(id.startsWith('modal') && id !== 'modalVideos' && id !== 'modalVideos2') {
+                let num = id.replace('modal', '') || '1';
+                backToGrid(num);
+            }
+            if(id === 'modalVideos') backToGalleryVideos();
+            if(id === 'modalVideos2') backToGalleryVideos2();
         }
 
-        function handleBackdropClick(e) {
-            if (e.target.id === 'modal-overlay') {
-                closeModal();
+        // Fermer en cliquant sur le fond vide
+        function closeModalOnBackground(event, modalId) {
+            if (event.target.id === modalId) {
+                closeModal(modalId);
             }
         }
 
-        // GESTION DU CLAVIER
-        document.addEventListener('keydown', function(e) {
-            const modal = document.getElementById('modal-overlay');
-            if (!modal.classList.contains('active')) return;
+        // Gestion du Slider Photo
+        function openSlider(galleryId, index) {
+            currentIndices[galleryId] = index;
+            document.getElementById('gallery-grid-' + galleryId).style.display = 'none';
+            document.getElementById('slider-view-' + galleryId).style.display = 'flex';
+            updateSlideImage(galleryId);
+        }
 
-            if (e.key === 'Escape') closeModal();
-            if (isLightboxView) {
-                if (e.key === 'ArrowRight') nextPhoto();
-                if (e.key === 'ArrowLeft') prevPhoto();
+        function backToGrid(galleryId) {
+            document.getElementById('slider-view-' + galleryId).style.display = 'none';
+            document.getElementById('gallery-grid-' + galleryId).style.display = 'grid';
+        }
+
+        function updateSlideImage(galleryId) {
+            const arr = sliderData[galleryId];
+            const idx = currentIndices[galleryId];
+            document.getElementById('slider-img-' + galleryId).src = arr[idx];
+            document.getElementById('slider-counter-' + galleryId).innerText = (idx + 1) + ' / ' + arr.length;
+        }
+
+        function nextSlide(galleryId) {
+            currentIndices[galleryId] = (currentIndices[galleryId] + 1) % sliderData[galleryId].length;
+            updateSlideImage(galleryId);
+        }
+
+        function prevSlide(galleryId) {
+            currentIndices[galleryId] = (currentIndices[galleryId] - 1 + sliderData[galleryId].length) % sliderData[galleryId].length;
+            updateSlideImage(galleryId);
+        }
+
+        // Raccourcis clavier pour les modales (Échap pour fermer, flèches gauche/droite pour slider)
+        window.addEventListener('keydown', function(e) {
+            for (let i = 1; i <= 6; i++) {
+                const sliderView = document.getElementById('slider-view-' + i);
+                if (sliderView && sliderView.style.display === 'flex') {
+                    if (e.key === 'ArrowRight') nextSlide(i);
+                    if (e.key === 'ArrowLeft') prevSlide(i);
+                }
+            }
+            if (e.key === 'Escape') {
+                ['modal', 'modal2', 'modal3', 'modal4', 'modal5', 'modal6', 'modalVideos', 'modalVideos2'].forEach(id => {
+                    closeModal(id);
+                });
             }
         });
 
-        // GESTION DU SWIPE MOBILES POUR LA LIGHTBOX
-        const modalEl = document.getElementById('modal-overlay');
-        modalEl.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
+        // Shortcuts d'ouverture pour chaque carte
+        function openModal() { openModal('modal'); }
+        function openModal2() { openModal('modal2'); }
+        function openModal3() { openModal('modal3'); }
+        function openModal4() { openModal('modal4'); }
+        function openModal5() { openModal('modal5'); }
+        function openModal6() { openModal('modal6'); }
 
-        modalEl.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            if (isLightboxView) {
-                if (touchEndX < touchStartX - 40) nextPhoto();
-                if (touchEndX > touchStartX + 40) prevPhoto();
-            }
-        }, { passive: true });
+        // Gestion des Vidéos
+        function openModalVideos() { openModal('modalVideos'); }
+        function closeModalVideos() { closeModal('modalVideos'); }
+        function showVideo(url) {
+            document.getElementById('galleryVideosContainer').style.display = 'none';
+            const lv = document.getElementById('large-video');
+            lv.style.display = 'flex';
+            document.getElementById('videoPlayer').src = url + '?autoplay=1&rel=0';
+        }
+        function backToGalleryVideos() {
+            document.getElementById('videoPlayer').src = '';
+            document.getElementById('large-video').style.display = 'none';
+            document.getElementById('galleryVideosContainer').style.display = 'block';
+        }
 
-        // FORMULAIRE FORMSPREE
+        function openModalVideos2() { openModal('modalVideos2'); }
+        function closeModalVideos2() { closeModal('modalVideos2'); }
+        function showVideo2(url) {
+            document.getElementById('galleryVideos2Container').style.display = 'none';
+            const lv2 = document.getElementById('large-video2');
+            lv2.style.display = 'flex';
+            document.getElementById('videoPlayer2').src = url + '?autoplay=1&rel=0';
+        }
+        function backToGalleryVideos2() {
+            document.getElementById('videoPlayer2').src = '';
+            document.getElementById('large-video2').style.display = 'none';
+            document.getElementById('galleryVideos2Container').style.display = 'block';
+        }
+
+        // Formulaire Formspree asynchrone
         const form = document.getElementById("contact-form");
         if (form) {
             form.addEventListener("submit", async function(e) {
@@ -1052,10 +962,10 @@
                     headers: { 'Accept': 'application/json' }
                 });
                 if (response.ok) {
-                    alert("Votre message a été envoyé avec succès !");
+                    alert("Message envoyé avec succès !");
                     form.reset();
                 } else {
-                    alert("Une erreur est survenue lors de l'envoi.");
+                    alert("Une erreur est survenue.");
                 }
             });
         }
