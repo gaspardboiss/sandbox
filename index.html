@@ -149,7 +149,7 @@
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
-            gap: 24px; /* Espacement ultra propre et minimaliste */
+            gap: 24px;
         }
 
         .card {
@@ -162,7 +162,6 @@
             transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s;
         }
 
-        /* Agencement symétrique et géométrique sans aucun trou */
         .card.span-12 { grid-column: span 12; aspect-ratio: 21/9; }
         .card.span-6  { grid-column: span 6;  aspect-ratio: 16/10; }
 
@@ -178,20 +177,7 @@
             filter: brightness(0.88);
         }
 
-        /* Numérotation artistique discrète */
-        .card-number {
-            position: absolute;
-            top: 25px;
-            left: 25px;
-            font-size: 0.75rem;
-            letter-spacing: 3px;
-            color: rgba(255, 255, 255, 0.6);
-            font-weight: 600;
-            z-index: 3;
-            text-transform: uppercase;
-        }
-
-        /* Voile sombre épuré */
+        /* Voile épuré avec pointer-events none pour ne pas bloquer les clics */
         .card-overlay {
             position: absolute;
             inset: 0;
@@ -201,6 +187,7 @@
             justify-content: flex-end; 
             padding: 35px;
             transition: background 0.3s;
+            pointer-events: none; 
         }
 
         .card-title {
@@ -234,6 +221,7 @@
             opacity: 0; 
             transform: translateY(10px);
             transition: opacity 0.3s, transform 0.3s;
+            pointer-events: auto;
         }
 
         .card:hover { 
@@ -495,7 +483,6 @@
             <!-- 1. Courts-Métrages (Pleine largeur) -->
             <div class="card span-12" onclick="openVideoModal('courts_metrages')">
                 <div class="card-inner">
-                    <span class="card-number">01 / Cinéma</span>
                     <img class="card-img" src="images/DÖD.png" alt="Courts-métrages" loading="lazy" decoding="async">
                     <div class="card-overlay">
                         <h3 class="card-title">Courts-Métrages</h3>
@@ -508,7 +495,6 @@
             <!-- 2. Portraits (Duo 50/50) -->
             <div class="card span-6" onclick="openPhotoModal('portraits', 'Portraits')">
                 <div class="card-inner">
-                    <span class="card-number">02 / Photographie</span>
                     <img class="card-img" src="images/portrait1.jpg" alt="Portraits" loading="lazy" decoding="async">
                     <div class="card-overlay">
                         <h3 class="card-title">Portraits</h3>
@@ -521,7 +507,6 @@
             <!-- 3. Noir & Blanc (Duo 50/50) -->
             <div class="card span-6" onclick="openPhotoModal('noir_et_blanc', 'Noir & Blanc')">
                 <div class="card-inner">
-                    <span class="card-number">03 / Photographie</span>
                     <img class="card-img" src="images/rose.jpg" alt="Noir & Blanc" loading="lazy" decoding="async">
                     <div class="card-overlay">
                         <h3 class="card-title">Noir & Blanc</h3>
@@ -534,7 +519,6 @@
             <!-- 4. Architecture (Duo 50/50) -->
             <div class="card span-6" onclick="openPhotoModal('architecture', 'Architecture')">
                 <div class="card-inner">
-                    <span class="card-number">04 / Photographie</span>
                     <img class="card-img" src="images/archi6.jpg" alt="Architecture" loading="lazy" decoding="async">
                     <div class="card-overlay">
                         <h3 class="card-title">Architecture</h3>
@@ -547,7 +531,6 @@
             <!-- 5. Pose Longue (Duo 50/50) -->
             <div class="card span-6" onclick="openPhotoModal('pose_longue', 'Pose Longue')">
                 <div class="card-inner">
-                    <span class="card-number">05 / Photographie</span>
                     <img class="card-img" src="images/flou9.jpg" alt="Pose Longue" loading="lazy" decoding="async">
                     <div class="card-overlay">
                         <h3 class="card-title">Pose Longue</h3>
@@ -560,7 +543,6 @@
             <!-- 6. Nature (Duo 50/50) -->
             <div class="card span-6" onclick="openPhotoModal('nature', 'Nature')">
                 <div class="card-inner">
-                    <span class="card-number">06 / Photographie</span>
                     <img class="card-img" src="images/nature1.jpg" alt="Nature" loading="lazy" decoding="async">
                     <div class="card-overlay">
                         <h3 class="card-title">Nature</h3>
@@ -573,7 +555,6 @@
             <!-- 7. Drone (Duo 50/50) -->
             <div class="card span-6" onclick="openPhotoModal('drone', 'Prises de vues Drone')">
                 <div class="card-inner">
-                    <span class="card-number">07 / Aérien</span>
                     <img class="card-img" src="images/hiver2.jpg" alt="Prises de vues drones" loading="lazy" decoding="async">
                     <div class="card-overlay">
                         <h3 class="card-title">Drone</h3>
@@ -583,11 +564,10 @@
                 </div>
             </div>
 
-            <!-- 8. Montages Variés (Pleine largeur) -->
+            <!-- 8. Montages Variés (Pleine largeur avec l'image balade équestre) -->
             <div class="card span-12" onclick="openVideoModal('montages_varies')">
                 <div class="card-inner">
-                    <span class="card-number">08 / Post-Production</span>
-                    <img class="card-img" src="images/hiverdrone.png" alt="Montages variés" loading="lazy" decoding="async">
+                    <img class="card-img" src="images/balade.jpg" alt="Balade équestre et montages" loading="lazy" decoding="async">
                     <div class="card-overlay">
                         <h3 class="card-title">Montages Variés</h3>
                         <p class="card-subtitle">Créations, clips drone & montages jeux vidéo</p>
@@ -694,4 +674,61 @@
                     <button class="lightbox-back-btn" onclick="backToGrid()">Retour à la galerie</button>
                     <div class="lightbox-media-wrapper">
                         <div class="lightbox-arrow prev" onclick="prevPhoto(event)"><i class="fas fa-chevron-left"></i></div>
-                        <img class="lightbox-img-full" src="${src}" alt="
+                        <img class="lightbox-img-full" src="${src}" alt="Grand format ${currentPhotoIndex + 1}" loading="lazy" decoding="async">
+                        <div class="lightbox-arrow next" onclick="nextPhoto(event)"><i class="fas fa-chevron-right"></i></div>
+                    </div>
+                    <div class="lightbox-counter">${currentPhotoIndex + 1} / ${currentPhotos.length}</div>
+                </div>
+            `;
+        }
+
+        function backToGrid() { isLightboxView = false; renderPhotoGrid(); }
+        function nextPhoto(e) { if(e) e.stopPropagation(); if(currentPhotos.length === 0) return; currentPhotoIndex = (currentPhotoIndex + 1) % currentPhotos.length; renderLightbox(); }
+        function prevPhoto(e) { if(e) e.stopPropagation(); if(currentPhotos.length === 0) return; currentPhotoIndex = (currentPhotoIndex - 1 + currentPhotos.length) % currentPhotos.length; renderLightbox(); }
+
+        function openVideoModal(key) {
+            const data = videoGalleries[key]; if(!data) return;
+            document.getElementById('modal-title').textContent = data.title;
+            const body = document.getElementById('modal-body');
+            let html = '';
+            data.sections.forEach(sec => {
+                if(sec.heading) html += `<h4 class="video-section-title">${sec.heading}</h4>`;
+                html += '<div class="video-grid">';
+                sec.videos.forEach(url => {
+                    html += `<div class="video-card"><div class="video-wrapper"><iframe src="${url}?rel=0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div>`;
+                });
+                html += '</div>';
+            });
+            body.innerHTML = html; showModal();
+        }
+
+        function showModal() { document.getElementById('modal-overlay').classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeModal() { document.getElementById('modal-overlay').classList.remove('active'); document.body.style.overflow = 'auto'; document.getElementById('modal-body').innerHTML = ''; isLightboxView = false; }
+        function handleBackdropClick(e) { if(e.target.id === 'modal-overlay') closeModal(); }
+
+        document.addEventListener('keydown', function(e) {
+            const modal = document.getElementById('modal-overlay');
+            if(!modal.classList.contains('active')) return;
+            if(e.key === 'Escape') closeModal();
+            if(isLightboxView) { if(e.key === 'ArrowRight') nextPhoto(); if(e.key === 'ArrowLeft') prevPhoto(); }
+        });
+
+        const modalEl = document.getElementById('modal-overlay');
+        modalEl.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+        modalEl.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            if(isLightboxView) { if(touchEndX < touchStartX - 40) nextPhoto(); if(touchEndX > touchStartX + 40) prevPhoto(); }
+        }, { passive: true });
+
+        const form = document.getElementById("contact-form");
+        if(form) {
+            form.addEventListener("submit", async function(e) {
+                e.preventDefault(); const data = new FormData(form);
+                const response = await fetch(form.action, { method: form.method, body: data, headers: { 'Accept': 'application/json' } });
+                if(response.ok) { alert("Votre message a été envoyé avec succès !"); form.reset(); }
+                else { alert("Une erreur est survenue lors de l'envoi."); }
+            });
+        }
+    </script>
+</body>
+</html>
