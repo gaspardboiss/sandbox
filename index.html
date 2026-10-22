@@ -14,180 +14,221 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<style>
-    body {
-        background-color: #0e0e0e; 
-        color: #fff;
+    /* --- BASE & COULEURS --- */
+    body, #wrapper {
+        background-color: #0d0d0d !important;
+        color: #e0e0e0 !important;
     }
 
-    /* --- 1. EFFET PARALLAXE SUR L'INTRO --- */
+    /* Forcer la couleur blanche sur TOUS les titres et liens */
+    h1, h2, h3, h4, h5, h6, 
+    .posts article h2 a, 
+    #header .logo, 
+    #nav ul.links li a {
+        color: #ffffff !important;
+        border-bottom: none !important;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+
+    /* --- HERO / BANNIÈRE D'ACCUEIL --- */
     #intro {
         position: relative;
-        min-height: 100vh;
-        overflow: hidden;
+        min-height: 85vh;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
+        overflow: hidden;
     }
 
     #intro::before {
         content: '';
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 120%; /* Légèrement plus grand pour la parallaxe */
+        top: 0; left: 0; width: 100%; height: 100%;
         background-image: url('images/Voiture noire.png');
         background-size: cover;
         background-position: center;
-        background-attachment: fixed; /* Effet parallaxe natif fluide */
-        z-index: -1;
-        filter: brightness(0.7); /* Assombrit un peu pour faire ressortir le texte */
-        animation: fadeIn 2s ease-in;
+        background-attachment: fixed;
+        filter: brightness(0.5);
+        z-index: 0;
     }
 
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
+    #intro .intro-content {
+        position: relative;
+        z-index: 2;
     }
 
-    #intro .actions {
-        display: flex;
-        justify-content: center;
-        padding: 0;
-        margin: 0;
+    #intro h1 {
+        font-size: 3.5rem !important;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
     }
 
-    #intro .actions a.button {
+    #intro p {
+        font-size: 1.2rem;
+        color: #cccccc !important;
+        letter-spacing: 2px;
+    }
+
+    /* --- BARRE DE NAVIGATION --- */
+    #nav {
+        background-color: #141414 !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    #nav ul.links li.active a {
+        background-color: #222222 !important;
+        color: #ffffff !important;
+    }
+
+    /* --- CONTENEUR PRINCIPAL --- */
+    #main {
+        background-color: #0d0d0d !important;
+        padding: 40px 20px !important;
+    }
+
+    /* --- ARTICLE EN VEDETTE (COURTS-MÉTRAGES) --- */
+    .post.featured {
+        background: #141414 !important;
+        border: 1px solid rgba(255,255,255,0.08) !important;
+        border-radius: 16px !important;
+        padding: 30px !important;
+        margin-bottom: 50px !important;
         text-align: center;
-        width: 100%;
-        max-width: 300px;
-        transition: all 0.3s ease;
     }
 
-    /* --- 2. DESIGN IMMERSIF DES ARTICLES & IMAGES (EFFET CLICLABLE) --- */
-    .posts article {
-        background: #161616;
+    .post.featured h2 a {
+        font-size: 2rem !important;
+        letter-spacing: 2px;
+    }
+
+    .post.featured .image {
         border-radius: 12px;
         overflow: hidden;
-        transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        margin: 20px 0 !important;
+    }
+
+    .post.featured img {
+        transition: transform 0.5s ease;
+    }
+
+    .post.featured:hover img {
+        transform: scale(1.03);
+    }
+
+    /* --- GRILLE DES PROJETS (POSTS) --- */
+    .posts {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+        gap: 30px !important;
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    .posts article {
+        background: #151515 !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 14px !important;
+        padding: 25px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        text-align: center !important;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
     }
 
     .posts article:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
-        border-color: rgba(255, 255, 255, 0.2);
+        transform: translateY(-8px) !important;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7) !important;
+        border-color: rgba(255, 255, 255, 0.3) !important;
     }
 
-    /* Conteneur d'image avec effet de zoom cinématique */
-    .posts article .image.fit, 
-    .posts article .image.main {
-        overflow: hidden;
-        position: relative;
-        border-radius: 8px;
+    .posts article header h2 {
+        font-size: 1.4rem !important;
+        margin-bottom: 15px !important;
+        letter-spacing: 1px;
     }
 
-    .posts article img {
-        transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.4s ease;
-        will-change: transform;
+    /* Cadre d'image interactif */
+    .posts article .image {
+        width: 100% !important;
+        height: 240px !important;
+        border-radius: 10px !important;
+        overflow: hidden !important;
+        margin: 10px 0 20px 0 !important;
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    .posts article:hover img {
-        transform: scale(1.06); /* Zoom élégant au survol */
-        filter: brightness(1.05);
+    .posts article .image img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important; /* Rempli le cadre proprement sans déformer */
+        transition: transform 0.5s ease, filter 0.3s ease !important;
     }
 
-    /* --- 3. BOUTONS INTERACTIFS MODERNISÉS --- */
+    .posts article:hover .image img {
+        transform: scale(1.08) !important;
+        filter: brightness(1.1) !important;
+    }
+
+    /* Article Pleine Largeur (Montages Variés) */
+    .posts article.full-width {
+        grid-column: 1 / -1 !important;
+    }
+
+    .posts article.full-width .image {
+        height: 380px !important;
+    }
+
+    /* --- BOUTONS INTERACTIFS --- */
     .button {
-        position: relative;
-        overflow: hidden;
+        background-color: transparent !important;
+        color: #ffffff !important;
+        border: 1px solid rgba(255, 255, 255, 0.4) !important;
+        border-radius: 30px !important;
+        padding: 0 30px !important;
+        height: 44px !important;
+        line-height: 42px !important;
+        font-weight: 600 !important;
+        letter-spacing: 1.5px !important;
+        text-transform: uppercase !important;
         transition: all 0.3s ease !important;
-        border-radius: 6px !important;
     }
 
     .button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(255, 255, 255, 0.15);
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        border-color: #ffffff !important;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.4) !important;
+        transform: scale(1.05) !important;
     }
 
-    /* Modal et galerie (conservation de tes fonctionnalités) */
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 99999999 !important;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.85);
-        backdrop-filter: blur(5px); /* Effet de flou moderne en arrière-plan de la modale */
-        justify-content: center;
-        align-items: center;
+    /* --- FOOTER & CONTACT --- */
+    #footer {
+        background-color: #111111 !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+        color: #aaa !important;
     }
 
+    #footer input[type="text"], 
+    #footer input[type="email"], 
+    #footer textarea {
+        background: #1a1a1a !important;
+        border: 1px solid #333 !important;
+        color: #fff !important;
+        border-radius: 6px !important;
+    }
+
+    /* Fix Modale */
     .modal-content {
-        background-color: #1a1a1a;
-        color: #fff;
-        padding: 30px;
-        border-radius: 14px;
-        max-width: 90%;
-        max-height: 90vh;
-        overflow-y: auto;
-        position: relative;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.8);
-    }
-
-    .close {
-        position: absolute;
-        top: 15px;
-        right: 20px;
-        color: #aaa;
-        font-size: 32px;
-        font-weight: bold;
-        cursor: pointer;
-        z-index: 100000001 !important;
-        transition: color 0.2s;
-    }
-
-    .close:hover {
-        color: #fff;
-    }
-
-    .gallery {
-        column-count: 4;
-        column-gap: 12px;
-        margin-top: 20px;
-    }
-
-    .thumbnail {
-        break-inside: avoid;
-        margin-bottom: 12px;
-        cursor: pointer;
-        overflow: hidden;
-        border-radius: 8px;
-    }
-
-    .thumbnail img {
-        width: 100%;
-        height: auto;
-        display: block;
-        transition: transform 0.4s ease, opacity 0.4s ease;
-    }
-
-    .thumbnail:hover img {
-        transform: scale(1.05);
-    }
-
-    body.modal-open {
-        overflow: hidden;
-    }
-
-    @media (max-width: 1000px) {
-        .gallery { column-count: 3; }
-    }
-    @media (max-width: 768px) {
-        .gallery { column-count: 2; }
+        background-color: #181818 !important;
+        color: #ffffff !important;
+        border: 1px solid rgba(255,255,255,0.1);
     }
 </style>
 	</head>
