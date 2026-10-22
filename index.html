@@ -17,11 +17,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- CONSTANTES & THEME LIGHTER DARK --- */
+        /* --- CONSTANTES & THEME SLATE / ANTHRACITE --- */
         :root {
             --bg-main: #111318;
             --bg-card: #181b22;
-            --bg-nav: rgba(17, 19, 24, 0.85);
+            --bg-nav: rgba(17, 19, 24, 0.88);
             --accent-glow: rgba(99, 102, 241, 0.25);
             --text-primary: #f3f4f6;
             --text-muted: #9ca3af;
@@ -78,14 +78,13 @@
             z-index: 1;
         }
 
-        /* Overlay dégradé subtil pour adoucir le bas de l'image */
         .hero::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 150px;
+            height: 160px;
             background: linear-gradient(to top, var(--bg-main), transparent);
             z-index: 2;
         }
@@ -174,7 +173,7 @@
             transform: translateY(-2px);
         }
 
-        /* --- GRILLE & CARTE INTERACTIVE AVEC EFFET GLOW --- */
+        /* --- GRILLE & CARTE INTERACTIVE --- */
         .container {
             max-width: 1300px;
             margin: 0 auto;
@@ -197,7 +196,6 @@
             gap: 35px;
         }
 
-        /* Carte de catégorie */
         .card {
             position: relative;
             border-radius: 20px;
@@ -210,10 +208,9 @@
 
         .card.featured {
             grid-column: 1 / -1;
-            height: 440px;
+            height: 420px;
         }
 
-        /* Glow lumineux arrière-plan au survol */
         .card::before {
             content: '';
             position: absolute;
@@ -246,7 +243,6 @@
             filter: brightness(0.85);
         }
 
-        /* Overlay sombre progressif */
         .card-overlay {
             position: absolute;
             inset: 0;
@@ -289,7 +285,6 @@
             transition: opacity 0.3s, transform 0.3s;
         }
 
-        /* SURVOLS ET ANIMAIONS DES CARTES */
         .card:hover {
             transform: translateY(-8px);
             border-color: var(--border-hover);
@@ -309,7 +304,7 @@
             transform: translateX(6px);
         }
 
-        /* DÉFINITION DE COULEURS DE GLOW PAR CATÉGORIE */
+        /* GLOWS DE COULEURS */
         .card[data-glow="nature"] { --card-glow: linear-gradient(135deg, rgba(34, 197, 94, 0.4), rgba(16, 185, 129, 0.1)); }
         .card[data-glow="cinema"] { --card-glow: linear-gradient(135deg, rgba(239, 68, 68, 0.4), rgba(244, 63, 94, 0.1)); }
         .card[data-glow="portrait"] { --card-glow: linear-gradient(135deg, rgba(168, 85, 247, 0.4), rgba(217, 70, 239, 0.1)); }
@@ -318,7 +313,7 @@
         .card[data-glow="archi"] { --card-glow: linear-gradient(135deg, rgba(245, 158, 11, 0.4), rgba(217, 119, 6, 0.1)); }
         .card[data-glow="motion"] { --card-glow: linear-gradient(135deg, rgba(236, 72, 153, 0.4), rgba(139, 92, 246, 0.1)); }
 
-        /* --- FOOTER & FORMULAIRE --- */
+        /* --- FOOTER & CONTACT --- */
         .footer {
             background: #0b0c0f;
             border-top: 1px solid var(--border-subtle);
@@ -392,61 +387,169 @@
             font-size: 0.88rem;
         }
 
-        /* --- LIGHTBOX & MODAL SYSTEM (SLIDER INTEGRÉ) --- */
-        .lightbox-modal {
+        /* --- MODALE GLOBALE & MULTI-VUES --- */
+        .modal-overlay {
             display: none;
             position: fixed;
             inset: 0;
-            z-index: 999999;
-            background: rgba(10, 12, 16, 0.92);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            justify-content: center;
-            align-items: center;
+            z-index: 99999;
+            background: rgba(10, 12, 16, 0.94);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            overflow-y: auto;
+            padding: 40px 20px;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
 
-        .lightbox-modal.active {
-            display: flex;
+        .modal-overlay.active {
+            display: block;
             opacity: 1;
         }
 
-        /* Bouton fermer */
-        .lightbox-close {
-            position: absolute;
-            top: 25px;
-            right: 30px;
-            color: #94a3b8;
-            font-size: 2.2rem;
-            cursor: pointer;
-            z-index: 100001;
-            transition: color 0.2s, transform 0.2s;
-            line-height: 1;
+        .modal-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
         }
 
-        .lightbox-close:hover {
-            color: #ffffff;
-            transform: scale(1.1);
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 20px;
         }
 
-        /* Navigation Flèches */
-        .lightbox-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.08);
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            width: 54px;
-            height: 54px;
+        .modal-title {
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 800;
+        }
+
+        .modal-close-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid var(--border-subtle);
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             cursor: pointer;
-            z-index: 100001;
+            transition: all 0.3s;
+        }
+
+        .modal-close-btn:hover {
+            background: #ffffff;
+            color: #000;
+            transform: scale(1.1);
+        }
+
+        /* VUE GALERIE PHOTO (GRILLE) */
+        .photo-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-thumb-item {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 14px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid var(--border-subtle);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .gallery-thumb-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-thumb-item:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        .gallery-thumb-item:hover img {
+            transform: scale(1.08);
+        }
+
+        /* VUE SLIDER LIGHTBOX GRAND FORMAT */
+        .lightbox-view {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 70vh;
+            position: relative;
+        }
+
+        .lightbox-back-btn {
+            align-self: flex-start;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-subtle);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .lightbox-back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-4px);
+        }
+
+        .lightbox-media-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-height: 75vh;
+        }
+
+        .lightbox-img-full {
+            max-width: 90vw;
+            max-height: 70vh;
+            border-radius: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+            object-fit: contain;
+            user-select: none;
+        }
+
+        .lightbox-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 10;
             transition: all 0.3s ease;
             user-select: none;
         }
@@ -457,50 +560,48 @@
             transform: translateY(-50%) scale(1.1);
         }
 
-        .lightbox-arrow.prev { left: 30px; }
-        .lightbox-arrow.next { right: 30px; }
+        .lightbox-arrow.prev { left: 10px; }
+        .lightbox-arrow.next { right: 10px; }
 
-        /* Contenu Image / Vidéo */
-        .lightbox-content {
-            position: relative;
-            max-width: 90vw;
-            max-height: 85vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 100000;
-        }
-
-        .lightbox-img {
-            max-width: 90vw;
-            max-height: 80vh;
-            border-radius: 12px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-            object-fit: contain;
-            user-select: none;
-            transition: transform 0.3s ease;
-        }
-
-        .lightbox-caption {
+        .lightbox-counter {
             margin-top: 15px;
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             letter-spacing: 1px;
-            text-align: center;
         }
 
-        /* Container vidéo responsive */
-        .lightbox-video-wrapper {
-            width: 80vw;
-            max-width: 1000px;
-            aspect-ratio: 16/9;
-            border-radius: 12px;
+        /* MODALE VIDÉO ET SECTIONS / SÉPARATEURS */
+        .video-section-title {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #38bdf8;
+            margin: 35px 0 20px 0;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+            gap: 25px;
+        }
+
+        .video-card {
+            background: #161920;
+            border-radius: 14px;
             overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
         }
 
-        .lightbox-video-wrapper iframe {
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+        }
+
+        .video-wrapper iframe {
             width: 100%;
             height: 100%;
             border: none;
@@ -512,9 +613,10 @@
             .navbar { padding: 15px 20px; }
             .nav-brand { display: none; }
             .card.featured { height: 340px; }
-            .lightbox-arrow { width: 44px; height: 44px; font-size: 1rem; }
-            .lightbox-arrow.prev { left: 10px; }
-            .lightbox-arrow.next { right: 10px; }
+            .video-grid { grid-template-columns: 1fr; }
+            .lightbox-arrow { width: 40px; height: 40px; font-size: 1rem; }
+            .lightbox-arrow.prev { left: 5px; }
+            .lightbox-arrow.next { right: 5px; }
         }
     </style>
 </head>
@@ -529,7 +631,7 @@
         </div>
     </section>
 
-    <!-- NAVIGATION -->
+    <!-- NAVIGATION BAR -->
     <nav class="navbar">
         <div class="nav-brand">Gaspard Boissinot</div>
         <ul class="nav-links">
@@ -544,104 +646,104 @@
         </div>
     </nav>
 
-    <!-- GRILLE PORTFOLIO INTERACTIVE -->
+    <!-- GRILLE DU PORTFOLIO -->
     <main class="container">
         <h2 class="section-title">Portfolio</h2>
 
         <div class="portfolio-grid">
 
             <!-- 1. Courts-Métrages -->
-            <div class="card featured" data-glow="cinema" onclick="openVideoCategory('courts_metrages')">
+            <div class="card featured" data-glow="cinema" onclick="openVideoModal('courts_metrages')">
                 <div class="card-inner">
                     <img class="card-img" src="images/DÖD.png" alt="Courts-métrages">
                     <div class="card-overlay">
                         <h3 class="card-title">Courts-Métrages</h3>
-                        <p class="card-subtitle">Projets cinématographiques & fiction</p>
-                        <span class="card-btn">Visionner <i class="fas fa-play" style="font-size:0.7rem;"></i></span>
+                        <p class="card-subtitle">Projets cinématographiques, fictions & projets de lycée</p>
+                        <span class="card-btn">Visionner les projets <i class="fas fa-play" style="font-size:0.7rem;"></i></span>
                     </div>
                 </div>
             </div>
 
             <!-- 2. Portraits -->
-            <div class="card" data-glow="portrait" onclick="openPhotoCategory('portraits')">
+            <div class="card" data-glow="portrait" onclick="openPhotoModal('portraits', 'Portraits')">
                 <div class="card-inner">
                     <img class="card-img" src="images/portrait1.jpg" alt="Portraits">
                     <div class="card-overlay">
                         <h3 class="card-title">Portraits</h3>
                         <p class="card-subtitle">Série photographique humaine</p>
-                        <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
+                        <span class="card-btn">Voir la galerie <i class="fas fa-images"></i></span>
                     </div>
                 </div>
             </div>
 
             <!-- 3. Noir & Blanc -->
-            <div class="card" data-glow="bw" onclick="openPhotoCategory('noir_et_blanc')">
+            <div class="card" data-glow="bw" onclick="openPhotoModal('noir_et_blanc', 'Noir & Blanc')">
                 <div class="card-inner">
                     <img class="card-img" src="images/rose.jpg" alt="Noir & Blanc">
                     <div class="card-overlay">
                         <h3 class="card-title">Noir & Blanc</h3>
                         <p class="card-subtitle">Contrastes & ombres</p>
-                        <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
+                        <span class="card-btn">Voir la galerie <i class="fas fa-images"></i></span>
                     </div>
                 </div>
             </div>
 
             <!-- 4. Architecture -->
-            <div class="card" data-glow="archi" onclick="openPhotoCategory('architecture')">
+            <div class="card" data-glow="archi" onclick="openPhotoModal('architecture', 'Architecture')">
                 <div class="card-inner">
                     <img class="card-img" src="images/archi6.jpg" alt="Architecture">
                     <div class="card-overlay">
                         <h3 class="card-title">Architecture</h3>
                         <p class="card-subtitle">Perspectives & structures</p>
-                        <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
+                        <span class="card-btn">Voir la galerie <i class="fas fa-images"></i></span>
                     </div>
                 </div>
             </div>
 
             <!-- 5. Pose Longue -->
-            <div class="card" data-glow="motion" onclick="openPhotoCategory('pose_longue')">
+            <div class="card" data-glow="motion" onclick="openPhotoModal('pose_longue', 'Pose Longue')">
                 <div class="card-inner">
                     <img class="card-img" src="images/flou9.jpg" alt="Pose Longue">
                     <div class="card-overlay">
                         <h3 class="card-title">Pose Longue</h3>
                         <p class="card-subtitle">Mouvement & lumière</p>
-                        <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
+                        <span class="card-btn">Voir la galerie <i class="fas fa-images"></i></span>
                     </div>
                 </div>
             </div>
 
             <!-- 6. Nature -->
-            <div class="card" data-glow="nature" onclick="openPhotoCategory('nature')">
+            <div class="card" data-glow="nature" onclick="openPhotoModal('nature', 'Nature')">
                 <div class="card-inner">
                     <img class="card-img" src="images/nature1.jpg" alt="Nature">
                     <div class="card-overlay">
                         <h3 class="card-title">Nature</h3>
                         <p class="card-subtitle">Paysages & flore</p>
-                        <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
+                        <span class="card-btn">Voir la galerie <i class="fas fa-images"></i></span>
                     </div>
                 </div>
             </div>
 
             <!-- 7. Prises de vues Drones -->
-            <div class="card" data-glow="drone" onclick="openPhotoCategory('drone')">
+            <div class="card" data-glow="drone" onclick="openPhotoModal('drone', 'Prises de vues Drone')">
                 <div class="card-inner">
                     <img class="card-img" src="images/hiver2.jpg" alt="Prises de vues drones">
                     <div class="card-overlay">
                         <h3 class="card-title">Prises de vues Drone</h3>
                         <p class="card-subtitle">Perspectives aériennes</p>
-                        <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
+                        <span class="card-btn">Voir la galerie <i class="fas fa-images"></i></span>
                     </div>
                 </div>
             </div>
 
             <!-- 8. Montages Variés -->
-            <div class="card featured" data-glow="motion" onclick="openVideoCategory('montages_varies')">
+            <div class="card featured" data-glow="motion" onclick="openVideoModal('montages_varies')">
                 <div class="card-inner">
                     <img class="card-img" src="images/hiverdrone.png" alt="Montages variés">
                     <div class="card-overlay">
                         <h3 class="card-title">Montages Variés</h3>
-                        <p class="card-subtitle">Rythme, étalonnage & créations visuelles</p>
-                        <span class="card-btn">Visionner <i class="fas fa-play" style="font-size:0.7rem;"></i></span>
+                        <p class="card-subtitle">Créations, clips drone & montages jeux vidéo</p>
+                        <span class="card-btn">Visionner les montages <i class="fas fa-play" style="font-size:0.7rem;"></i></span>
                     </div>
                 </div>
             </div>
@@ -649,7 +751,7 @@
         </div>
     </main>
 
-    <!-- FOOTER & CONTACT -->
+    <!-- FOOTER & FORMULAIRE -->
     <footer class="footer">
         <div class="footer-grid">
             <div class="contact-form">
@@ -675,165 +777,270 @@
         </div>
     </footer>
 
-    <!-- LIGHTBOX SLIDER MODAL (PHOTO ET VIDEO) -->
-    <div id="lightbox" class="lightbox-modal" onclick="handleBackdropClick(event)">
-        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-        
-        <div class="lightbox-arrow prev" onclick="prevSlide(event)">
-            <i class="fas fa-chevron-left"></i>
-        </div>
-        
-        <div class="lightbox-content" id="lightbox-content">
-            <!-- Injecté dynamiquement en JS -->
-        </div>
-        
-        <div class="lightbox-arrow next" onclick="nextSlide(event)">
-            <i class="fas fa-chevron-right"></i>
+    <!-- STRUCTURE UNIQUE MODALE POUR PHOTO ET VIDEO -->
+    <div id="modal-overlay" class="modal-overlay" onclick="handleBackdropClick(event)">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title">Galerie</h3>
+                <button class="modal-close-btn" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="modal-body">
+                <!-- Contenu dynamique (Galerie Grille, Lightbox ou Vidéos) -->
+            </div>
         </div>
     </div>
 
-    <!-- JAVASCRIPT SLIDER & INTERACTION -->
+    <!-- JAVASCRIPT SYSTEME DE MODALE COMPLET -->
     <script>
-        // BASE DE DONNÉES DES GALERIES DE PHOTOS & VIDÉOS
-        const galleries = {
-            portraits: [
-                'images/portrait1.jpg', 'images/portrait11.jpg', 'images/école3.jpg', 
-                'images/portrait2.jpg', 'images/pompier2.jpg', 'images/portrait3.jpg', 
-                'images/portrait13.jpg', 'images/portrait6.jpg', 'images/portrait7.jpg', 'images/portrait10.jpg'
-            ],
+        // BASE DE DONNÉES PHOTO
+        const photoGalleries = {
             noir_et_blanc: [
-                'images/rose.jpg', 'images/rue.jpg', 'images/noiretblanc.jpg', 
+                'images/rue.jpg', 'images/rose.jpg', 'images/noiretblanc.jpg', 
                 'images/expo3.jpg', 'images/oiseaux.jpg', 'images/b&w1.jpg'
-            ],
-            architecture: [
-                'images/archi6.jpg', 'images/archi1.jpg', 'images/archi5.jpg', 
-                'images/chateau1.jpg', 'images/chateau2.jpg', 'images/archi4.jpg', 'images/archi3.jpg'
-            ],
-            pose_longue: [
-                'images/flou9.jpg', 'images/flou1.jpg', 'images/expo1.jpg', 
-                'images/Voitnoire.jpg', 'images/flou7.jpg'
-            ],
-            nature: [
-                'images/nature1.jpg', 'images/nature2.jpg', 'images/nature11.jpg', 
-                'images/hiver7.jpg', 'images/nature8.jpg'
             ],
             drone: [
                 'images/hiver2.jpg', 'images/hiver1.jpg', 'images/hiver3.jpg', 
                 'images/hiver4.jpg', 'images/hiver5.jpg', 'images/hiver6.jpg', 
                 'images/drone1.jpg', 'images/drone2.jpg', 'images/drone3.jpg'
             ],
-            courts_metrages: [
-                { type: 'video', url: 'https://www.youtube.com/embed/1Mja8tMPmmc', title: 'Court-Métrage 1' },
-                { type: 'video', url: 'https://www.youtube.com/embed/PgySILbVU0c', title: 'Court-Métrage 2' }
+            portraits: [
+                'images/portrait1.jpg', 'images/portrait11.jpg', 'images/école3.jpg', 
+                'images/portrait2.jpg', 'images/pompier2.jpg', 'images/portrait3.jpg', 
+                'images/portrait13.jpg', 'images/portrait6.jpg', 'images/portrait7.jpg', 
+                'images/portrait10.jpg', 'images/portrait4.jpg', 'images/portrait12.jpg', 
+                'images/école.jpg', 'images/pompier1.jpg', 'images/portrait15.jpg', 
+                'images/école2.jpg', 'images/portrait5.jpg', 'images/portrait14.jpg'
             ],
-            montages_varies: [
-                { type: 'video', url: 'https://www.youtube.com/embed/dMNVtVzXCAg', title: 'Montage 1' },
-                { type: 'video', url: 'https://www.youtube.com/embed/1khe2eo4Kbc', title: 'Montage 2' }
+            architecture: [
+                'images/archi1.jpg', 'images/archi5.jpg', 'images/chateau1.jpg', 
+                'images/chateau2.jpg', 'images/archi4.jpg', 'images/archi3.jpg', 
+                'images/archi2.jpg', 'images/batiment1.jpg', 'images/archi6.jpg', 
+                'images/archi7.jpg', 'images/archi8.jpg', 'images/archi9.jpg'
+            ],
+            pose_longue: [
+                'images/flou1.jpg', 'images/expo1.jpg', 'images/flou9.jpg', 
+                'images/Voitnoire.jpg', 'images/flou7.jpg', 'images/expo2.jpg', 
+                'images/flou3.jpg', 'images/flou10.jpg'
+            ],
+            nature: [
+                'images/nature2.jpg', 'images/nature11.jpg', 'images/hiver7.jpg', 
+                'images/nature8.jpg', 'images/ciel2.jpg', 'images/nature7.jpg', 
+                'images/nature6.jpg', 'images/nature9.jpg', 'images/nature4.jpg', 
+                'images/nature1.jpg', 'images/ciel1.jpg', 'images/nature3.jpg', 
+                'images/nature5.jpg', 'images/nature10.jpg'
             ]
         };
 
-        let currentGallery = [];
-        let currentIndex = 0;
+        // BASE DE DONNÉES VIDÉO AVEC CATÉGORIES ET SÉPARATEURS
+        const videoGalleries = {
+            courts_metrages: {
+                title: "Courts-Métrages",
+                sections: [
+                    {
+                        heading: null,
+                        videos: [
+                            "https://www.youtube.com/embed/1Mja8tMPmmc",
+                            "https://www.youtube.com/embed/PgySILbVU0c",
+                            "https://www.youtube.com/embed/r1Cv7a5lTPU",
+                            "https://www.youtube.com/embed/Escy0MCVTmo"
+                        ]
+                    },
+                    {
+                        heading: "Projets lycée",
+                        videos: [
+                            "https://www.youtube.com/embed/838EboJXgMQ",
+                            "https://www.youtube.com/embed/s9DObtl3CgE"
+                        ]
+                    }
+                ]
+            },
+            montages_varies: {
+                title: "Montages Variés",
+                sections: [
+                    {
+                        heading: null,
+                        videos: [
+                            "https://www.youtube.com/embed/dMNVtVzXCAg"
+                        ]
+                    },
+                    {
+                        heading: "Montages drone",
+                        videos: [
+                            "https://www.youtube.com/embed/1khe2eo4Kbc",
+                            "https://www.youtube.com/embed/N5z96sImUpc"
+                        ]
+                    },
+                    {
+                        heading: "Montages jeux vidéo",
+                        videos: [
+                            "https://www.youtube.com/embed/Z0JBgfGNSEo",
+                            "https://www.youtube.com/embed/v4AnSb6EHak",
+                            "https://www.youtube.com/embed/yUJhlouEDs4"
+                        ]
+                    }
+                ]
+            }
+        };
+
+        let currentActiveKey = null;
+        let currentPhotos = [];
+        let currentPhotoIndex = 0;
+        let isLightboxView = false;
         let touchStartX = 0;
         let touchEndX = 0;
 
-        // OUVRIR GALERIE PHOTO
-        function openPhotoCategory(catKey) {
-            currentGallery = galleries[catKey] || [];
-            currentIndex = 0;
-            if (currentGallery.length > 0) {
-                renderSlide();
-                document.getElementById('lightbox').classList.add('active');
-            }
+        // OUVRIR UNE GALERIE PHOTO (VUE GRILLE D'ABORD)
+        function openPhotoModal(key, title) {
+            currentActiveKey = key;
+            currentPhotos = photoGalleries[key] || [];
+            document.getElementById('modal-title').textContent = title;
+            isLightboxView = false;
+            renderPhotoGrid();
+            showModal();
         }
 
-        // OUVRIR GALERIE VIDÉO
-        function openVideoCategory(catKey) {
-            currentGallery = galleries[catKey] || [];
-            currentIndex = 0;
-            if (currentGallery.length > 0) {
-                renderSlide();
-                document.getElementById('lightbox').classList.add('active');
-            }
-        }
-
-        // AFFICHER LE SLIDE ACTUEL
-        function renderSlide() {
-            const container = document.getElementById('lightbox-content');
-            const item = currentGallery[currentIndex];
-
-            if (typeof item === 'object' && item.type === 'video') {
-                container.innerHTML = `
-                    <div class="lightbox-video-wrapper">
-                        <iframe src="${item.url}?autoplay=1&rel=0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        // AFFICHER LA GRILLE D'IMAGES DANS LA MODALE
+        function renderPhotoGrid() {
+            const body = document.getElementById('modal-body');
+            let html = '<div class="photo-gallery-grid">';
+            currentPhotos.forEach((src, idx) => {
+                html += `
+                    <div class="gallery-thumb-item" onclick="openLightbox(${idx})">
+                        <img src="${src}" alt="Photo ${idx + 1}" loading="lazy">
                     </div>
-                    <div class="lightbox-caption">${currentIndex + 1} / ${currentGallery.length} — ${item.title || ''}</div>
                 `;
-            } else {
-                container.innerHTML = `
-                    <img class="lightbox-img" src="${item}" alt="Photo ${currentIndex + 1}">
-                    <div class="lightbox-caption">${currentIndex + 1} / ${currentGallery.length}</div>
-                `;
-            }
+            });
+            html += '</div>';
+            body.innerHTML = html;
         }
 
-        // NAVIGATION PRECEDENT / SUIVANT
-        function nextSlide(e) {
+        // AFFICHER LE GRAND FORMAT (SLIDER LIGHTBOX)
+        function openLightbox(index) {
+            isLightboxView = true;
+            currentPhotoIndex = index;
+            renderLightbox();
+        }
+
+        function renderLightbox() {
+            const body = document.getElementById('modal-body');
+            const src = currentPhotos[currentPhotoIndex];
+            
+            body.innerHTML = `
+                <div class="lightbox-view">
+                    <button class="lightbox-back-btn" onclick="backToGrid()">
+                        <i class="fas fa-th"></i> Retour à la galerie
+                    </button>
+                    <div class="lightbox-media-wrapper">
+                        <div class="lightbox-arrow prev" onclick="prevPhoto(event)">
+                            <i class="fas fa-chevron-left"></i>
+                        </div>
+                        <img class="lightbox-img-full" src="${src}" alt="Grand format ${currentPhotoIndex + 1}">
+                        <div class="lightbox-arrow next" onclick="nextPhoto(event)">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    <div class="lightbox-counter">${currentPhotoIndex + 1} / ${currentPhotos.length}</div>
+                </div>
+            `;
+        }
+
+        function backToGrid() {
+            isLightboxView = false;
+            renderPhotoGrid();
+        }
+
+        function nextPhoto(e) {
             if (e) e.stopPropagation();
-            if (currentGallery.length === 0) return;
-            currentIndex = (currentIndex + 1) % currentGallery.length;
-            renderSlide();
+            if (currentPhotos.length === 0) return;
+            currentPhotoIndex = (currentPhotoIndex + 1) % currentPhotos.length;
+            renderLightbox();
         }
 
-        function prevSlide(e) {
+        function prevPhoto(e) {
             if (e) e.stopPropagation();
-            if (currentGallery.length === 0) return;
-            currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
-            renderSlide();
+            if (currentPhotos.length === 0) return;
+            currentPhotoIndex = (currentPhotoIndex - 1 + currentPhotos.length) % currentPhotos.length;
+            renderLightbox();
         }
 
-        // FERMER LA LIGHTBOX
-        function closeLightbox() {
-            const lightbox = document.getElementById('lightbox');
-            lightbox.classList.remove('active');
-            // Stopper la vidéo lors de la fermeture
-            document.getElementById('lightbox-content').innerHTML = '';
+        // OUVRIR UNE MODALE VIDÉO (AVEC TOUTES LES SECTIONS ET SÉPARATEURS)
+        function openVideoModal(key) {
+            const data = videoGalleries[key];
+            if (!data) return;
+            
+            document.getElementById('modal-title').textContent = data.title;
+            const body = document.getElementById('modal-body');
+            let html = '';
+
+            data.sections.forEach(sec => {
+                if (sec.heading) {
+                    html += `<h4 class="video-section-title">${sec.heading}</h4>`;
+                }
+                html += '<div class="video-grid">';
+                sec.videos.forEach(url => {
+                    html += `
+                        <div class="video-card">
+                            <div class="video-wrapper">
+                                <iframe src="${url}?rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+            });
+
+            body.innerHTML = html;
+            showModal();
         }
 
-        // CLIC A COTE (VIDE) FERME LA MODAL
+        // AFFICHAGE ET FERMETURE DE LA MODALE
+        function showModal() {
+            const modal = document.getElementById('modal-overlay');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal-overlay');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            document.getElementById('modal-body').innerHTML = '';
+            isLightboxView = false;
+        }
+
         function handleBackdropClick(e) {
-            if (e.target.id === 'lightbox' || e.target.classList.contains('lightbox-content')) {
-                closeLightbox();
+            if (e.target.id === 'modal-overlay') {
+                closeModal();
             }
         }
 
-        // CLAVIER (FLECHES GAUCHE/DROITE ET ECHAP)
+        // GESTION DU CLAVIER
         document.addEventListener('keydown', function(e) {
-            const lightbox = document.getElementById('lightbox');
-            if (!lightbox.classList.contains('active')) return;
+            const modal = document.getElementById('modal-overlay');
+            if (!modal.classList.contains('active')) return;
 
-            if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowRight') nextSlide();
-            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'Escape') closeModal();
+            if (isLightboxView) {
+                if (e.key === 'ArrowRight') nextPhoto();
+                if (e.key === 'ArrowLeft') prevPhoto();
+            }
         });
 
-        // GESTION DU SWIPE MOBILES (GLISSER LE DOIGT)
-        const lightboxEl = document.getElementById('lightbox');
-        lightboxEl.addEventListener('touchstart', e => {
+        // GESTION DU SWIPE MOBILES POUR LA LIGHTBOX
+        const modalEl = document.getElementById('modal-overlay');
+        modalEl.addEventListener('touchstart', e => {
             touchStartX = e.changedTouches[0].screenX;
         }, { passive: true });
 
-        lightboxEl.addEventListener('touchend', e => {
+        modalEl.addEventListener('touchend', e => {
             touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
+            if (isLightboxView) {
+                if (touchEndX < touchStartX - 40) nextPhoto();
+                if (touchEndX > touchStartX + 40) prevPhoto();
+            }
         }, { passive: true });
 
-        function handleSwipe() {
-            if (touchEndX < touchStartX - 40) nextSlide();
-            if (touchEndX > touchStartX + 40) prevSlide();
-        }
-
-        // ENVOI DU FORMULAIRE FORMSPREE
+        // FORMULAIRE FORMSPREE
         const form = document.getElementById("contact-form");
         if (form) {
             form.addEventListener("submit", async function(e) {
