@@ -17,27 +17,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- CONSTANTES & THEME SLATE / ANTHRACITE --- */
+        /* --- CONSTANTES & THEME MINIMALISTE --- */
         :root {
-            --bg-main: #111318;
-            --bg-card: #181b22;
-            --bg-nav: rgba(17, 19, 24, 0.88);
-            --accent-glow: rgba(99, 102, 241, 0.25);
-            --text-primary: #f3f4f6;
-            --text-muted: #9ca3af;
+            --bg-main: #0c0d11;
+            --bg-card: #13151a;
+            --bg-nav: rgba(12, 13, 17, 0.9);
+            --text-primary: #ffffff;
+            --text-muted: #8b949e;
             --border-subtle: rgba(255, 255, 255, 0.08);
             --border-hover: rgba(255, 255, 255, 0.25);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
 
         body {
             background-color: var(--bg-main);
@@ -45,46 +37,40 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
+        a { color: inherit; text-decoration: none; }
 
         /* --- HERO SECTION PARALLAXE --- */
         .hero {
             position: relative;
-            height: 85vh;
+            height: 80vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             overflow: hidden;
+            transform: translateZ(0);
         }
 
         .hero-bg {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 120%;
+            top: 0; left: 0; width: 100%; height: 120%;
             background-image: url('images/Voiture noire.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            filter: brightness(0.55) contrast(1.1);
+            filter: brightness(0.4) contrast(1.1);
             z-index: 1;
+            will-change: transform;
         }
 
         .hero::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 160px;
+            bottom: 0; left: 0; width: 100%; height: 160px;
             background: linear-gradient(to top, var(--bg-main), transparent);
             z-index: 2;
         }
@@ -96,22 +82,19 @@
         }
 
         .hero-title {
-            font-size: 3.8rem;
+            font-size: 3.5rem;
             font-weight: 800;
-            letter-spacing: 5px;
+            letter-spacing: 6px;
             text-transform: uppercase;
             margin-bottom: 12px;
-            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            color: #ffffff;
         }
 
         .hero-subtitle {
-            font-size: 1.15rem;
-            color: #94a3b8;
-            letter-spacing: 3px;
-            font-weight: 500;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            letter-spacing: 4px;
+            font-weight: 400;
             text-transform: uppercase;
         }
 
@@ -120,516 +103,202 @@
             position: sticky;
             top: 0;
             background: var(--bg-nav);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             z-index: 1000;
             border-bottom: 1px solid var(--border-subtle);
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 18px 5%;
+            transform: translateZ(0);
+            will-change: transform;
         }
 
         .nav-brand {
-            font-weight: 700;
+            font-weight: 600;
             letter-spacing: 2px;
-            font-size: 1rem;
+            font-size: 0.95rem;
             text-transform: uppercase;
             color: var(--text-primary);
         }
 
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
+        .nav-links { display: flex; gap: 35px; list-style: none; }
+        .nav-links a { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); transition: color 0.3s; font-weight: 500; }
+        .nav-links a.active, .nav-links a:hover { color: #ffffff; }
 
-        .nav-links a {
-            font-size: 0.88rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--text-muted);
-            transition: color 0.3s;
-            font-weight: 600;
-        }
+        .nav-socials { display: flex; gap: 22px; }
+        .nav-socials a { color: var(--text-muted); font-size: 1.1rem; transition: transform 0.3s, color 0.3s; }
+        .nav-socials a:hover { color: #ffffff; transform: translateY(-2px); }
 
-        .nav-links a.active, .nav-links a:hover {
-            color: #ffffff;
-        }
-
-        .nav-socials {
-            display: flex;
-            gap: 20px;
-        }
-
-        .nav-socials a {
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            transition: transform 0.3s, color 0.3s;
-        }
-
-        .nav-socials a:hover {
-            color: #ffffff;
-            transform: translateY(-2px);
-        }
-
-        /* --- GRILLE & CARTE INTERACTIVE --- */
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.2rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 50px;
-            font-weight: 800;
-            color: #ffffff;
+        /* --- GRILLE & CARTE INTERACTIVE MINIMALISTE --- */
+        .container { max-width: 1350px; margin: 0 auto; padding: 80px 20px; }
+        
+        .section-title { 
+            text-align: center; 
+            font-size: 1.8rem; 
+            letter-spacing: 4px; 
+            text-transform: uppercase; 
+            margin-bottom: 70px; 
+            font-weight: 700; 
+            color: #ffffff; 
         }
 
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 35px;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 50px 40px; /* Plus respirable */
         }
 
         .card {
             position: relative;
-            border-radius: 20px;
+            border-radius: 8px; /* Moins arrondi */
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
             cursor: pointer;
-            height: 340px;
+            aspect-ratio: 3/2; /* Respecte le format photo, ne rogne plus violemment */
+            height: auto;
             transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s;
+            will-change: transform;
+            transform: translateZ(0);
         }
 
-        .card.featured {
-            grid-column: 1 / -1;
-            height: 420px;
+        .card.featured { 
+            grid-column: 1 / -1; 
+            aspect-ratio: 16/9; /* Affiche le poster en entier */
+            max-height: 550px;
         }
 
+        /* Halo Blanc Universel et Discret */
         .card::before {
             content: '';
             position: absolute;
-            inset: -2px;
-            border-radius: 22px;
-            background: var(--card-glow, linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.05)));
+            inset: -1px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.12); /* Halo blanc discret */
             z-index: -1;
             opacity: 0;
-            filter: blur(20px);
-            transition: opacity 0.5s ease;
+            filter: blur(12px); /* Moins étalé */
+            transition: opacity 0.4s ease;
+            will-change: opacity;
         }
 
-        .card:hover::before {
-            opacity: 1;
-        }
+        .card:hover::before { opacity: 1; }
 
         .card-inner {
-            width: 100%;
-            height: 100%;
-            border-radius: 20px;
+            width: 100%; height: 100%;
+            border-radius: 8px; /* Moins arrondi */
             overflow: hidden;
             position: relative;
         }
 
         .card-img {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             object-fit: cover;
             transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), filter 0.5s ease;
-            filter: brightness(0.85);
+            will-change: transform;
         }
 
+        /* Voile minimaliste (juste en bas) */
         .card-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(17,19,24,0.05) 20%, rgba(17,19,24,0.88) 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 35px;
-            transition: background 0.4s;
+            background: linear-gradient(180deg, transparent 40%, rgba(12,13,17,0.95) 100%);
+            display: flex; flex-direction: column; justify-content: flex-end; padding: 30px;
+            transition: opacity 0.4s;
         }
 
         .card-title {
-            font-size: 1.6rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #ffffff;
-            transform: translateY(6px);
-            transition: transform 0.4s ease;
+            font-size: 1.4rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #ffffff;
+            transform: translateY(4px); transition: transform 0.4s ease;
         }
 
-        .card-subtitle {
-            font-size: 0.85rem;
-            color: #94a3b8;
-            margin-top: 4px;
-            letter-spacing: 1px;
-        }
+        .card-subtitle { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; letter-spacing: 1px; }
 
         .card-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 15px;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #ffffff;
-            font-weight: 600;
-            opacity: 0.8;
-            transition: opacity 0.3s, transform 0.3s;
+            display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #ffffff; font-weight: 600;
+            opacity: 0; transition: opacity 0.3s, transform 0.3s; transform: translateX(-10px);
         }
 
-        .card:hover {
-            transform: translateY(-8px);
-            border-color: var(--border-hover);
-        }
+        .card:hover { transform: translateY(-6px); border-color: rgba(255, 255, 255, 0.25); }
+        .card:hover .card-img { transform: scale(1.05); } /* Zoom plus léger */
+        .card:hover .card-title { transform: translateY(0); }
+        .card:hover .card-btn { opacity: 1; transform: translateX(0); }
 
-        .card:hover .card-img {
-            transform: scale(1.08);
-            filter: brightness(1);
-        }
+        /* --- FOOTER --- */
+        .footer { background: #08090b; border-top: 1px solid var(--border-subtle); padding: 80px 20px 40px; margin-top: 60px; }
+        .footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+        .contact-form input, .contact-form textarea { width: 100%; background: #111217; border: 1px solid var(--border-subtle); padding: 14px 18px; color: #fff; border-radius: 6px; margin-bottom: 18px; font-family: inherit; transition: border-color 0.3s; }
+        .contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: #ffffff; }
+        .submit-btn { background: #ffffff; color: #000000; border: none; padding: 14px 32px; border-radius: 4px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: background 0.3s; }
+        .submit-btn:hover { background: #cccccc; }
+        .contact-info p { margin-bottom: 22px; color: var(--text-muted); font-size: 0.95rem; }
+        .contact-info a { color: #ffffff; transition: color 0.3s; }
+        .contact-info a:hover { color: #8b949e; }
+        .copyright { text-align: center; margin-top: 60px; color: #555; font-size: 0.85rem; }
 
-        .card:hover .card-title {
-            transform: translateY(0);
-        }
-
-        .card:hover .card-btn {
-            opacity: 1;
-            transform: translateX(6px);
-        }
-
-        /* GLOWS DE COULEURS */
-        .card[data-glow="nature"] { --card-glow: linear-gradient(135deg, rgba(34, 197, 94, 0.4), rgba(16, 185, 129, 0.1)); }
-        .card[data-glow="cinema"] { --card-glow: linear-gradient(135deg, rgba(239, 68, 68, 0.4), rgba(244, 63, 94, 0.1)); }
-        .card[data-glow="portrait"] { --card-glow: linear-gradient(135deg, rgba(168, 85, 247, 0.4), rgba(217, 70, 239, 0.1)); }
-        .card[data-glow="drone"] { --card-glow: linear-gradient(135deg, rgba(56, 189, 248, 0.4), rgba(59, 130, 246, 0.1)); }
-        .card[data-glow="bw"] { --card-glow: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(148, 163, 184, 0.1)); }
-        .card[data-glow="archi"] { --card-glow: linear-gradient(135deg, rgba(245, 158, 11, 0.4), rgba(217, 119, 6, 0.1)); }
-        .card[data-glow="motion"] { --card-glow: linear-gradient(135deg, rgba(236, 72, 153, 0.4), rgba(139, 92, 246, 0.1)); }
-
-        /* --- FOOTER & CONTACT --- */
-        .footer {
-            background: #0b0c0f;
-            border-top: 1px solid var(--border-subtle);
-            padding: 80px 20px 40px;
-            margin-top: 80px;
-        }
-
-        .footer-grid {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-        }
-
-        .contact-form input, .contact-form textarea {
-            width: 100%;
-            background: #161920;
-            border: 1px solid var(--border-subtle);
-            padding: 16px 20px;
-            color: #fff;
-            border-radius: 12px;
-            margin-bottom: 18px;
-            font-family: inherit;
-            transition: border-color 0.3s;
-        }
-
-        .contact-form input:focus, .contact-form textarea:focus {
-            outline: none;
-            border-color: #ffffff;
-        }
-
-        .submit-btn {
-            background: #ffffff;
-            color: #000000;
-            border: none;
-            padding: 16px 36px;
-            border-radius: 30px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .submit-btn:hover {
-            background: #e2e8f0;
-            transform: scale(1.03);
-            box-shadow: 0 0 20px rgba(255,255,255,0.2);
-        }
-
-        .contact-info p {
-            margin-bottom: 22px;
-            color: var(--text-muted);
-            font-size: 1.05rem;
-        }
-
-        .contact-info a {
-            color: #ffffff;
-            transition: color 0.3s;
-        }
-
-        .contact-info a:hover {
-            color: #38bdf8;
-        }
-
-        .copyright {
-            text-align: center;
-            margin-top: 60px;
-            color: #64748b;
-            font-size: 0.88rem;
-        }
-
-        /* --- MODALE GLOBALE & MULTI-VUES --- */
+        /* --- MODALE GLOBALE --- */
         .modal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 99999;
-            background: rgba(10, 12, 16, 0.94);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            overflow-y: auto;
-            padding: 40px 20px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            display: none; position: fixed; inset: 0; z-index: 99999; background: rgba(8, 9, 11, 0.96);
+            overflow-y: auto; padding: 40px 20px; opacity: 0; transition: opacity 0.3s ease; transform: translateZ(0); will-change: opacity;
         }
+        .modal-overlay.active { display: block; opacity: 1; }
+        .modal-container { max-width: 1300px; margin: 0 auto; position: relative; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 20px; }
+        .modal-title { font-size: 1.5rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
+        .modal-close-btn { background: transparent; color: #fff; border: 1px solid var(--border-subtle); width: 40px; height: 40px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; transition: all 0.3s; }
+        .modal-close-btn:hover { background: #ffffff; color: #000; }
 
-        .modal-overlay.active {
-            display: block;
-            opacity: 1;
-        }
-
-        .modal-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            border-bottom: 1px solid var(--border-subtle);
-            padding-bottom: 20px;
-        }
-
-        .modal-title {
-            font-size: 1.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 800;
-        }
-
-        .modal-close-btn {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            border: 1px solid var(--border-subtle);
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .modal-close-btn:hover {
-            background: #ffffff;
-            color: #000;
-            transform: scale(1.1);
-        }
-
-        /* VUE GALERIE PHOTO (GRILLE MASONRY / PINTEREST) */
-        .photo-gallery-grid {
-            column-count: 3;
-            column-gap: 20px;
-        }
-
+        /* VUE GALERIE PHOTO (MASONRY IMBRIQUÉ) */
+        .photo-gallery-grid { column-count: 3; column-gap: 20px; width: 100%; }
         .gallery-thumb-item {
-            position: relative;
-            break-inside: avoid; /* Empêche l'image d'être coupée sur 2 colonnes */
-            margin-bottom: 20px;
-            border-radius: 14px;
-            overflow: hidden;
-            cursor: pointer;
-            border: 1px solid var(--border-subtle);
-            transition: transform 0.3s, border-color 0.3s;
-            display: inline-block;
-            width: 100%;
+            break-inside: avoid; margin-bottom: 20px; position: relative; border-radius: 6px; overflow: hidden; cursor: pointer;
+            border: 1px solid var(--border-subtle); transition: transform 0.3s, border-color 0.3s; will-change: transform;
         }
+        .gallery-thumb-item img { width: 100%; height: auto; display: block; object-fit: cover; transition: transform 0.5s ease; }
+        .gallery-thumb-item:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.3); }
+        .gallery-thumb-item:hover img { transform: scale(1.05); }
 
-        .gallery-thumb-item img {
-            width: 100%;
-            height: auto; /* Respecte le format original (vertical/horizontal) sans rogner */
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .gallery-thumb-item:hover {
-            transform: translateY(-4px);
-            border-color: rgba(255,255,255,0.4);
-        }
-
-        .gallery-thumb-item:hover img {
-            transform: scale(1.08);
-        }
-
-        /* VUE SLIDER LIGHTBOX GRAND FORMAT */
-        .lightbox-view {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 70vh;
-            position: relative;
-        }
-
-        .lightbox-back-btn {
-            align-self: flex-start;
-            margin-bottom: 20px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid var(--border-subtle);
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s;
-        }
-
-        .lightbox-back-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateX(-4px);
-        }
-
-        .lightbox-media-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            max-height: 75vh;
-        }
-
-        .lightbox-img-full {
-            max-width: 90vw;
-            max-height: 70vh;
-            border-radius: 12px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
-            object-fit: contain;
-            user-select: none;
-        }
-
-        .lightbox-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            cursor: pointer;
-            z-index: 10;
-            transition: all 0.3s ease;
-            user-select: none;
-        }
-
-        .lightbox-arrow:hover {
-            background: #ffffff;
-            color: #000000;
-            transform: translateY(-50%) scale(1.1);
-        }
-
+        /* VUE SLIDER LIGHTBOX */
+        .lightbox-view { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 70vh; position: relative; }
+        .lightbox-back-btn { align-self: flex-start; margin-bottom: 20px; background: transparent; border: 1px solid var(--border-subtle); color: #fff; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; transition: all 0.3s; }
+        .lightbox-back-btn:hover { background: rgba(255, 255, 255, 0.1); }
+        .lightbox-media-wrapper { position: relative; display: flex; align-items: center; justify-content: center; width: 100%; max-height: 75vh; }
+        .lightbox-img-full { max-width: 90vw; max-height: 75vh; border-radius: 6px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); object-fit: contain; user-select: none; }
+        .lightbox-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0, 0, 0, 0.5); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.2); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; cursor: pointer; z-index: 10; transition: all 0.3s ease; user-select: none; }
+        .lightbox-arrow:hover { background: #ffffff; color: #000000; }
         .lightbox-arrow.prev { left: 10px; }
         .lightbox-arrow.next { right: 10px; }
+        .lightbox-counter { margin-top: 15px; color: var(--text-muted); font-size: 0.85rem; letter-spacing: 1px; }
 
-        .lightbox-counter {
-            margin-top: 15px;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            letter-spacing: 1px;
+        /* MODALE VIDÉO */
+        .video-section-title { font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; color: #fff; margin: 30px 0 15px 0; padding-bottom: 8px; border-bottom: 1px solid var(--border-subtle); }
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 30px; }
+        .video-card { background: #161920; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-subtle); box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+        .video-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; }
+        .video-wrapper iframe { width: 100%; height: 100%; border: none; }
+
+        @media (max-width: 1024px) {
+            .photo-gallery-grid { column-count: 2; }
         }
-
-        /* MODALE VIDÉO ET SECTIONS / SÉPARATEURS */
-        .video-section-title {
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #38bdf8;
-            margin: 35px 0 20px 0;
-            padding-bottom: 8px;
-            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
-        }
-
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-            gap: 25px;
-        }
-
-        .video-card {
-            background: #161920;
-            border-radius: 14px;
-            overflow: hidden;
-            border: 1px solid var(--border-subtle);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-        }
-
-        .video-wrapper {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16/9;
-        }
-
-        .video-wrapper iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
         @media (max-width: 768px) {
-            .hero-title { font-size: 2.4rem; }
+            .hero-title { font-size: 2.2rem; }
             .footer-grid { grid-template-columns: 1fr; gap: 40px; }
             .navbar { padding: 15px 20px; }
             .nav-brand { display: none; }
-            .card.featured { height: 340px; }
+            .portfolio-grid { gap: 30px; }
+            .card.featured { max-height: none; }
+            .photo-gallery-grid { column-count: 2; gap: 15px; }
+            .gallery-thumb-item { margin-bottom: 15px; }
             .video-grid { grid-template-columns: 1fr; }
-            .lightbox-arrow { width: 40px; height: 40px; font-size: 1rem; }
-            .lightbox-arrow.prev { left: 5px; }
-            .lightbox-arrow.next { right: 5px; }
-            .photo-gallery-grid { column-count: 2; } /* 2 colonnes sur tablette/téléphone */
         }
-        
         @media (max-width: 480px) {
-            .photo-gallery-grid { column-count: 1; } /* 1 seule colonne sur très petits écrans */
+            .photo-gallery-grid { column-count: 1; }
         }
     </style>
 </head>
 <body>
 
-    <!-- HERO SECTION -->
     <section class="hero">
         <div class="hero-bg"></div>
         <div class="hero-content">
@@ -638,7 +307,6 @@
         </div>
     </section>
 
-    <!-- NAVIGATION BAR -->
     <nav class="navbar">
         <div class="nav-brand">Gaspard Boissinot</div>
         <ul class="nav-links">
@@ -653,116 +321,104 @@
         </div>
     </nav>
 
-    <!-- GRILLE DU PORTFOLIO -->
     <main class="container">
         <h2 class="section-title">Portfolio</h2>
-
         <div class="portfolio-grid">
-
-            <!-- 1. Courts-Métrages -->
-            <div class="card featured" data-glow="cinema" onclick="openVideoModal('courts_metrages')">
+            <!-- Courts-Métrages -->
+            <div class="card featured" onclick="openVideoModal('courts_metrages')">
                 <div class="card-inner">
-                    <img class="card-img" src="images/DÖD.png" alt="Courts-métrages">
+                    <img class="card-img" src="images/DÖD.png" alt="Courts-métrages" loading="lazy" decoding="async">
                     <div class="card-overlay">
                         <h3 class="card-title">Courts-Métrages</h3>
-                        <p class="card-subtitle">Projets cinématographiques, fictions & projets de lycée</p>
-                        <span class="card-btn">Visionner les projets <i class="fas fa-play" style="font-size:0.7rem;"></i></span>
+                        <p class="card-subtitle">Projets cinématographiques & fictions</p>
+                        <span class="card-btn">Visionner <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
             </div>
-
-            <!-- 2. Portraits -->
-            <div class="card" data-glow="portrait" onclick="openPhotoModal('portraits', 'Portraits')">
+            <!-- Portraits -->
+            <div class="card" onclick="openPhotoModal('portraits', 'Portraits')">
                 <div class="card-inner">
-                    <img class="card-img" src="images/portrait1.jpg" alt="Portraits">
+                    <img class="card-img" src="images/portrait1.jpg" alt="Portraits" loading="lazy" decoding="async">
                     <div class="card-overlay">
                         <h3 class="card-title">Portraits</h3>
                         <p class="card-subtitle">Série photographique humaine</p>
-                        <span class="card-btn">Voir la galerie <i class="fas fa-images"></i></span>
+                        <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
             </div>
-
-            <!-- 3. Noir & Blanc -->
-            <div class="card" data-glow="bw" onclick="openPhotoModal('noir_et_blanc', 'Noir & Blanc')">
+            <!-- Noir & Blanc -->
+            <div class="card" onclick="openPhotoModal('noir_et_blanc', 'Noir & Blanc')">
                 <div class="card-inner">
-                    <img class="card-img" src="images/rose.jpg" alt="Noir & Blanc">
+                    <img class="card-img" src="images/rose.jpg" alt="Noir & Blanc" loading="lazy" decoding="async">
                     <div class="card-overlay">
                         <h3 class="card-title">Noir & Blanc</h3>
                         <p class="card-subtitle">Contrastes & ombres</p>
-                        <span class="card-btn">Voir la galerie <i class="fas fa-images"></i></span>
+                        <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
             </div>
-
-            <!-- 4. Architecture -->
-            <div class="card" data-glow="archi" onclick="openPhotoModal('architecture', 'Architecture')">
+            <!-- Architecture -->
+            <div class="card" onclick="openPhotoModal('architecture', 'Architecture')">
                 <div class="card-inner">
-                    <img class="card-img" src="images/archi6.jpg" alt="Architecture">
+                    <img class="card-img" src="images/archi6.jpg" alt="Architecture" loading="lazy" decoding="async">
                     <div class="card-overlay">
                         <h3 class="card-title">Architecture</h3>
                         <p class="card-subtitle">Perspectives & structures</p>
-                        <span class="card-btn">Voir la galerie <i class="fas fa-images"></i></span>
+                        <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
             </div>
-
-            <!-- 5. Pose Longue -->
-            <div class="card" data-glow="motion" onclick="openPhotoModal('pose_longue', 'Pose Longue')">
+            <!-- Pose Longue -->
+            <div class="card" onclick="openPhotoModal('pose_longue', 'Pose Longue')">
                 <div class="card-inner">
-                    <img class="card-img" src="images/flou9.jpg" alt="Pose Longue">
+                    <img class="card-img" src="images/flou9.jpg" alt="Pose Longue" loading="lazy" decoding="async">
                     <div class="card-overlay">
                         <h3 class="card-title">Pose Longue</h3>
                         <p class="card-subtitle">Mouvement & lumière</p>
-                        <span class="card-btn">Voir la galerie <i class="fas fa-images"></i></span>
+                        <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
             </div>
-
-            <!-- 6. Nature -->
-            <div class="card" data-glow="nature" onclick="openPhotoModal('nature', 'Nature')">
+            <!-- Nature -->
+            <div class="card" onclick="openPhotoModal('nature', 'Nature')">
                 <div class="card-inner">
-                    <img class="card-img" src="images/nature1.jpg" alt="Nature">
+                    <img class="card-img" src="images/nature1.jpg" alt="Nature" loading="lazy" decoding="async">
                     <div class="card-overlay">
                         <h3 class="card-title">Nature</h3>
                         <p class="card-subtitle">Paysages & flore</p>
-                        <span class="card-btn">Voir la galerie <i class="fas fa-images"></i></span>
+                        <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
             </div>
-
-            <!-- 7. Prises de vues Drones -->
-            <div class="card" data-glow="drone" onclick="openPhotoModal('drone', 'Prises de vues Drone')">
+            <!-- Drone -->
+            <div class="card" onclick="openPhotoModal('drone', 'Prises de vues Drone')">
                 <div class="card-inner">
-                    <img class="card-img" src="images/hiver2.jpg" alt="Prises de vues drones">
+                    <img class="card-img" src="images/hiver2.jpg" alt="Prises de vues drones" loading="lazy" decoding="async">
                     <div class="card-overlay">
-                        <h3 class="card-title">Prises de vues Drone</h3>
+                        <h3 class="card-title">Drone</h3>
                         <p class="card-subtitle">Perspectives aériennes</p>
-                        <span class="card-btn">Voir la galerie <i class="fas fa-images"></i></span>
+                        <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
             </div>
-
-            <!-- 8. Montages Variés -->
-            <div class="card featured" data-glow="motion" onclick="openVideoModal('montages_varies')">
+            <!-- Montages Variés -->
+            <div class="card featured" onclick="openVideoModal('montages_varies')">
                 <div class="card-inner">
-                    <img class="card-img" src="images/hiverdrone.png" alt="Montages variés">
+                    <img class="card-img" src="images/hiverdrone.png" alt="Montages variés" loading="lazy" decoding="async">
                     <div class="card-overlay">
                         <h3 class="card-title">Montages Variés</h3>
                         <p class="card-subtitle">Créations, clips drone & montages jeux vidéo</p>
-                        <span class="card-btn">Visionner les montages <i class="fas fa-play" style="font-size:0.7rem;"></i></span>
+                        <span class="card-btn">Visionner <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
             </div>
-
         </div>
     </main>
 
-    <!-- FOOTER & FORMULAIRE -->
     <footer class="footer">
         <div class="footer-grid">
             <div class="contact-form">
-                <h3 style="margin-bottom: 20px; font-size: 1.5rem;">Me Contacter</h3>
+                <h3 style="margin-bottom: 20px; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px;">Me Contacter</h3>
                 <form id="contact-form" action="https://formspree.io/f/mgolaapb" method="POST">
                     <input type="text" name="name" placeholder="Votre nom" required />
                     <input type="email" name="email" placeholder="Votre adresse email" required />
@@ -773,7 +429,7 @@
                 </form>
             </div>
             <div class="contact-info">
-                <h3 style="margin-bottom: 20px; font-size: 1.5rem;">Coordonnées</h3>
+                <h3 style="margin-bottom: 20px; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px;">Coordonnées</h3>
                 <p><strong>Adresse :</strong><br>Rue Pellart, Roubaix 59100</p>
                 <p><strong>Téléphone :</strong><br><a href="tel:+33624146473">+33 6 24 14 64 73</a></p>
                 <p><strong>Email :</strong><br><a href="mailto:gaspboiss@gmail.com">gaspboiss@gmail.com</a></p>
@@ -784,286 +440,127 @@
         </div>
     </footer>
 
-    <!-- STRUCTURE UNIQUE MODALE POUR PHOTO ET VIDEO -->
     <div id="modal-overlay" class="modal-overlay" onclick="handleBackdropClick(event)">
         <div class="modal-container">
             <div class="modal-header">
                 <h3 class="modal-title" id="modal-title">Galerie</h3>
                 <button class="modal-close-btn" onclick="closeModal()"><i class="fas fa-times"></i></button>
             </div>
-            <div id="modal-body">
-                <!-- Contenu dynamique (Galerie Grille, Lightbox ou Vidéos) -->
-            </div>
+            <div id="modal-body"></div>
         </div>
     </div>
 
-    <!-- JAVASCRIPT SYSTEME DE MODALE COMPLET -->
     <script>
-        // BASE DE DONNÉES PHOTO
         const photoGalleries = {
-            noir_et_blanc: [
-                'images/rue.jpg', 'images/rose.jpg', 'images/noiretblanc.jpg', 
-                'images/expo3.jpg', 'images/oiseaux.jpg', 'images/b&w1.jpg'
-            ],
-            drone: [
-                'images/hiver2.jpg', 'images/hiver1.jpg', 'images/hiver3.jpg', 
-                'images/hiver4.jpg', 'images/hiver5.jpg', 'images/hiver6.jpg', 
-                'images/drone1.jpg', 'images/drone2.jpg', 'images/drone3.jpg'
-            ],
-            portraits: [
-                'images/portrait1.jpg', 'images/portrait11.jpg', 'images/école3.jpg', 
-                'images/portrait2.jpg', 'images/pompier2.jpg', 'images/portrait3.jpg', 
-                'images/portrait13.jpg', 'images/portrait6.jpg', 'images/portrait7.jpg', 
-                'images/portrait10.jpg', 'images/portrait4.jpg', 'images/portrait12.jpg', 
-                'images/école.jpg', 'images/pompier1.jpg', 'images/portrait15.jpg', 
-                'images/école2.jpg', 'images/portrait5.jpg', 'images/portrait14.jpg'
-            ],
-            architecture: [
-                'images/archi1.jpg', 'images/archi5.jpg', 'images/chateau1.jpg', 
-                'images/chateau2.jpg', 'images/archi4.jpg', 'images/archi3.jpg', 
-                'images/archi2.jpg', 'images/batiment1.jpg', 'images/archi6.jpg', 
-                'images/archi7.jpg', 'images/archi8.jpg', 'images/archi9.jpg'
-            ],
-            pose_longue: [
-                'images/flou1.jpg', 'images/expo1.jpg', 'images/flou9.jpg', 
-                'images/Voitnoire.jpg', 'images/flou7.jpg', 'images/expo2.jpg', 
-                'images/flou3.jpg', 'images/flou10.jpg'
-            ],
-            nature: [
-                'images/nature2.jpg', 'images/nature11.jpg', 'images/hiver7.jpg', 
-                'images/nature8.jpg', 'images/ciel2.jpg', 'images/nature7.jpg', 
-                'images/nature6.jpg', 'images/nature9.jpg', 'images/nature4.jpg', 
-                'images/nature1.jpg', 'images/ciel1.jpg', 'images/nature3.jpg', 
-                'images/nature5.jpg', 'images/nature10.jpg'
-            ]
+            noir_et_blanc: ['images/rue.jpg', 'images/rose.jpg', 'images/noiretblanc.jpg', 'images/expo3.jpg', 'images/oiseaux.jpg', 'images/b&w1.jpg'],
+            drone: ['images/hiver2.jpg', 'images/hiver1.jpg', 'images/hiver3.jpg', 'images/hiver4.jpg', 'images/hiver5.jpg', 'images/hiver6.jpg', 'images/drone1.jpg', 'images/drone2.jpg', 'images/drone3.jpg'],
+            portraits: ['images/portrait1.jpg', 'images/portrait11.jpg', 'images/école3.jpg', 'images/portrait2.jpg', 'images/pompier2.jpg', 'images/portrait3.jpg', 'images/portrait13.jpg', 'images/portrait6.jpg', 'images/portrait7.jpg', 'images/portrait10.jpg', 'images/portrait4.jpg', 'images/portrait12.jpg', 'images/école.jpg', 'images/pompier1.jpg', 'images/portrait15.jpg', 'images/école2.jpg', 'images/portrait5.jpg', 'images/portrait14.jpg'],
+            architecture: ['images/archi1.jpg', 'images/archi5.jpg', 'images/chateau1.jpg', 'images/chateau2.jpg', 'images/archi4.jpg', 'images/archi3.jpg', 'images/archi2.jpg', 'images/batiment1.jpg', 'images/archi6.jpg', 'images/archi7.jpg', 'images/archi8.jpg', 'images/archi9.jpg'],
+            pose_longue: ['images/flou1.jpg', 'images/expo1.jpg', 'images/flou9.jpg', 'images/Voitnoire.jpg', 'images/flou7.jpg', 'images/expo2.jpg', 'images/flou3.jpg', 'images/flou10.jpg'],
+            nature: ['images/nature2.jpg', 'images/nature11.jpg', 'images/hiver7.jpg', 'images/nature8.jpg', 'images/ciel2.jpg', 'images/nature7.jpg', 'images/nature6.jpg', 'images/nature9.jpg', 'images/nature4.jpg', 'images/nature1.jpg', 'images/ciel1.jpg', 'images/nature3.jpg', 'images/nature5.jpg', 'images/nature10.jpg']
         };
 
-        // BASE DE DONNÉES VIDÉO AVEC CATÉGORIES ET SÉPARATEURS
         const videoGalleries = {
             courts_metrages: {
                 title: "Courts-Métrages",
                 sections: [
-                    {
-                        heading: null,
-                        videos: [
-                            "https://www.youtube.com/embed/1Mja8tMPmmc",
-                            "https://www.youtube.com/embed/PgySILbVU0c",
-                            "https://www.youtube.com/embed/r1Cv7a5lTPU",
-                            "https://www.youtube.com/embed/Escy0MCVTmo"
-                        ]
-                    },
-                    {
-                        heading: "Projets lycée",
-                        videos: [
-                            "https://www.youtube.com/embed/838EboJXgMQ",
-                            "https://www.youtube.com/embed/s9DObtl3CgE"
-                        ]
-                    }
+                    { heading: null, videos: ["https://www.youtube.com/embed/1Mja8tMPmmc", "https://www.youtube.com/embed/PgySILbVU0c", "https://www.youtube.com/embed/r1Cv7a5lTPU", "https://www.youtube.com/embed/Escy0MCVTmo"] },
+                    { heading: "Projets lycée", videos: ["https://www.youtube.com/embed/838EboJXgMQ", "https://www.youtube.com/embed/s9DObtl3CgE"] }
                 ]
             },
             montages_varies: {
                 title: "Montages Variés",
                 sections: [
-                    {
-                        heading: null,
-                        videos: [
-                            "https://www.youtube.com/embed/dMNVtVzXCAg"
-                        ]
-                    },
-                    {
-                        heading: "Montages drone",
-                        videos: [
-                            "https://www.youtube.com/embed/1khe2eo4Kbc",
-                            "https://www.youtube.com/embed/N5z96sImUpc"
-                        ]
-                    },
-                    {
-                        heading: "Montages jeux vidéo",
-                        videos: [
-                            "https://www.youtube.com/embed/Z0JBgfGNSEo",
-                            "https://www.youtube.com/embed/v4AnSb6EHak",
-                            "https://www.youtube.com/embed/yUJhlouEDs4"
-                        ]
-                    }
+                    { heading: null, videos: ["https://www.youtube.com/embed/dMNVtVzXCAg"] },
+                    { heading: "Montages drone", videos: ["https://www.youtube.com/embed/1khe2eo4Kbc", "https://www.youtube.com/embed/N5z96sImUpc"] },
+                    { heading: "Montages jeux vidéo", videos: ["https://www.youtube.com/embed/Z0JBgfGNSEo", "https://www.youtube.com/embed/v4AnSb6EHak", "https://www.youtube.com/embed/yUJhlouEDs4"] }
                 ]
             }
         };
 
-        let currentActiveKey = null;
-        let currentPhotos = [];
-        let currentPhotoIndex = 0;
-        let isLightboxView = false;
-        let touchStartX = 0;
-        let touchEndX = 0;
+        let currentActiveKey = null, currentPhotos = [], currentPhotoIndex = 0, isLightboxView = false, touchStartX = 0, touchEndX = 0;
 
-        // OUVRIR UNE GALERIE PHOTO (VUE GRILLE D'ABORD)
         function openPhotoModal(key, title) {
-            currentActiveKey = key;
-            currentPhotos = photoGalleries[key] || [];
+            currentActiveKey = key; currentPhotos = photoGalleries[key] || [];
             document.getElementById('modal-title').textContent = title;
-            isLightboxView = false;
-            renderPhotoGrid();
-            showModal();
+            isLightboxView = false; renderPhotoGrid(); showModal();
         }
 
-        // AFFICHER LA GRILLE D'IMAGES DANS LA MODALE
         function renderPhotoGrid() {
             const body = document.getElementById('modal-body');
             let html = '<div class="photo-gallery-grid">';
             currentPhotos.forEach((src, idx) => {
-                html += `
-                    <div class="gallery-thumb-item" onclick="openLightbox(${idx})">
-                        <img src="${src}" alt="Photo ${idx + 1}" loading="lazy">
-                    </div>
-                `;
+                html += `<div class="gallery-thumb-item" onclick="openLightbox(${idx})"><img src="${src}" alt="Photo ${idx + 1}" loading="lazy" decoding="async"></div>`;
             });
             html += '</div>';
             body.innerHTML = html;
         }
 
-        // AFFICHER LE GRAND FORMAT (SLIDER LIGHTBOX)
         function openLightbox(index) {
-            isLightboxView = true;
-            currentPhotoIndex = index;
-            renderLightbox();
+            isLightboxView = true; currentPhotoIndex = index; renderLightbox();
         }
 
         function renderLightbox() {
             const body = document.getElementById('modal-body');
             const src = currentPhotos[currentPhotoIndex];
-            
             body.innerHTML = `
                 <div class="lightbox-view">
-                    <button class="lightbox-back-btn" onclick="backToGrid()">
-                        <i class="fas fa-th"></i> Retour à la galerie
-                    </button>
+                    <button class="lightbox-back-btn" onclick="backToGrid()">Retour à la galerie</button>
                     <div class="lightbox-media-wrapper">
-                        <div class="lightbox-arrow prev" onclick="prevPhoto(event)">
-                            <i class="fas fa-chevron-left"></i>
-                        </div>
-                        <img class="lightbox-img-full" src="${src}" alt="Grand format ${currentPhotoIndex + 1}">
-                        <div class="lightbox-arrow next" onclick="nextPhoto(event)">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
+                        <div class="lightbox-arrow prev" onclick="prevPhoto(event)"><i class="fas fa-chevron-left"></i></div>
+                        <img class="lightbox-img-full" src="${src}" alt="Grand format ${currentPhotoIndex + 1}" loading="lazy" decoding="async">
+                        <div class="lightbox-arrow next" onclick="nextPhoto(event)"><i class="fas fa-chevron-right"></i></div>
                     </div>
                     <div class="lightbox-counter">${currentPhotoIndex + 1} / ${currentPhotos.length}</div>
                 </div>
             `;
         }
 
-        function backToGrid() {
-            isLightboxView = false;
-            renderPhotoGrid();
-        }
+        function backToGrid() { isLightboxView = false; renderPhotoGrid(); }
+        function nextPhoto(e) { if(e) e.stopPropagation(); if(currentPhotos.length === 0) return; currentPhotoIndex = (currentPhotoIndex + 1) % currentPhotos.length; renderLightbox(); }
+        function prevPhoto(e) { if(e) e.stopPropagation(); if(currentPhotos.length === 0) return; currentPhotoIndex = (currentPhotoIndex - 1 + currentPhotos.length) % currentPhotos.length; renderLightbox(); }
 
-        function nextPhoto(e) {
-            if (e) e.stopPropagation();
-            if (currentPhotos.length === 0) return;
-            currentPhotoIndex = (currentPhotoIndex + 1) % currentPhotos.length;
-            renderLightbox();
-        }
-
-        function prevPhoto(e) {
-            if (e) e.stopPropagation();
-            if (currentPhotos.length === 0) return;
-            currentPhotoIndex = (currentPhotoIndex - 1 + currentPhotos.length) % currentPhotos.length;
-            renderLightbox();
-        }
-
-        // OUVRIR UNE MODALE VIDÉO (AVEC TOUTES LES SECTIONS ET SÉPARATEURS)
         function openVideoModal(key) {
-            const data = videoGalleries[key];
-            if (!data) return;
-            
+            const data = videoGalleries[key]; if(!data) return;
             document.getElementById('modal-title').textContent = data.title;
             const body = document.getElementById('modal-body');
             let html = '';
-
             data.sections.forEach(sec => {
-                if (sec.heading) {
-                    html += `<h4 class="video-section-title">${sec.heading}</h4>`;
-                }
+                if(sec.heading) html += `<h4 class="video-section-title">${sec.heading}</h4>`;
                 html += '<div class="video-grid">';
                 sec.videos.forEach(url => {
-                    html += `
-                        <div class="video-card">
-                            <div class="video-wrapper">
-                                <iframe src="${url}?rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                    `;
+                    html += `<div class="video-card"><div class="video-wrapper"><iframe src="${url}?rel=0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div>`;
                 });
                 html += '</div>';
             });
-
-            body.innerHTML = html;
-            showModal();
+            body.innerHTML = html; showModal();
         }
 
-        // AFFICHAGE ET FERMETURE DE LA MODALE
-        function showModal() {
-            const modal = document.getElementById('modal-overlay');
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+        function showModal() { document.getElementById('modal-overlay').classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeModal() { document.getElementById('modal-overlay').classList.remove('active'); document.body.style.overflow = 'auto'; document.getElementById('modal-body').innerHTML = ''; isLightboxView = false; }
+        function handleBackdropClick(e) { if(e.target.id === 'modal-overlay') closeModal(); }
 
-        function closeModal() {
-            const modal = document.getElementById('modal-overlay');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-            document.getElementById('modal-body').innerHTML = '';
-            isLightboxView = false;
-        }
-
-        function handleBackdropClick(e) {
-            if (e.target.id === 'modal-overlay') {
-                closeModal();
-            }
-        }
-
-        // GESTION DU CLAVIER
         document.addEventListener('keydown', function(e) {
             const modal = document.getElementById('modal-overlay');
-            if (!modal.classList.contains('active')) return;
-
-            if (e.key === 'Escape') closeModal();
-            if (isLightboxView) {
-                if (e.key === 'ArrowRight') nextPhoto();
-                if (e.key === 'ArrowLeft') prevPhoto();
-            }
+            if(!modal.classList.contains('active')) return;
+            if(e.key === 'Escape') closeModal();
+            if(isLightboxView) { if(e.key === 'ArrowRight') nextPhoto(); if(e.key === 'ArrowLeft') prevPhoto(); }
         });
 
-        // GESTION DU SWIPE MOBILES POUR LA LIGHTBOX
         const modalEl = document.getElementById('modal-overlay');
-        modalEl.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-
+        modalEl.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
         modalEl.addEventListener('touchend', e => {
             touchEndX = e.changedTouches[0].screenX;
-            if (isLightboxView) {
-                if (touchEndX < touchStartX - 40) nextPhoto();
-                if (touchEndX > touchStartX + 40) prevPhoto();
-            }
+            if(isLightboxView) { if(touchEndX < touchStartX - 40) nextPhoto(); if(touchEndX > touchStartX + 40) prevPhoto(); }
         }, { passive: true });
 
-        // FORMULAIRE FORMSPREE
         const form = document.getElementById("contact-form");
-        if (form) {
+        if(form) {
             form.addEventListener("submit", async function(e) {
-                e.preventDefault();
-                const data = new FormData(form);
-                const response = await fetch(form.action, {
-                    method: form.method,
-                    body: data,
-                    headers: { 'Accept': 'application/json' }
-                });
-                if (response.ok) {
-                    alert("Votre message a été envoyé avec succès !");
-                    form.reset();
-                } else {
-                    alert("Une erreur est survenue lors de l'envoi.");
-                }
+                e.preventDefault(); const data = new FormData(form);
+                const response = await fetch(form.action, { method: form.method, body: data, headers: { 'Accept': 'application/json' } });
+                if(response.ok) { alert("Votre message a été envoyé avec succès !"); form.reset(); }
+                else { alert("Une erreur est survenue lors de l'envoi."); }
             });
         }
     </script>
