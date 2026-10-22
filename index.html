@@ -98,6 +98,13 @@
             text-transform: uppercase;
         }
 
+        .hero-subtitle .dot {
+            font-size: 0.5rem;
+            vertical-align: middle;
+            margin: 0 8px;
+            opacity: 0.6;
+        }
+
         /* --- NAVBAR FLUIDE --- */
         .navbar {
             position: sticky;
@@ -456,7 +463,7 @@
     <section class="hero">
         <div class="hero-content">
             <h1 class="hero-title">Gaspard Boissinot</h1>
-            <p class="hero-subtitle">Audiovisuel &bull; Réalisation &bull; Photographie</p>
+            <p class="hero-subtitle">Audiovisuel <span class="dot">&bull;</span> Réalisation <span class="dot">&bull;</span> Photographie</p>
         </div>
     </section>
 
@@ -477,7 +484,7 @@
 
     <!-- GRILLE PORTFOLIO MODULAIRE SANS TROUS -->
     <main class="container">
-        <h2 class="section-title">Portfolio Sélection</h2>
+        <h2 class="section-title">Portfolio</h2>
         <div class="portfolio-grid">
             
             <!-- 1. Courts-Métrages (Pleine largeur) -->
@@ -499,7 +506,7 @@
                     <div class="card-overlay">
                         <h3 class="card-title">Portraits</h3>
                         <p class="card-subtitle">Série photographique humaine</p>
-                        <span class="card-btn">Explorer <i class="fas fa-arrow-right"></i></span>
+                        <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
             </div>
@@ -511,7 +518,7 @@
                     <div class="card-overlay">
                         <h3 class="card-title">Noir & Blanc</h3>
                         <p class="card-subtitle">Contrastes & ombres</p>
-                        <span class="card-btn">Explorer <i class="fas fa-arrow-right"></i></span>
+                        <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
             </div>
@@ -523,7 +530,7 @@
                     <div class="card-overlay">
                         <h3 class="card-title">Architecture</h3>
                         <p class="card-subtitle">Perspectives & structures</p>
-                        <span class="card-btn">Explorer <i class="fas fa-arrow-right"></i></span>
+                        <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
             </div>
@@ -535,7 +542,7 @@
                     <div class="card-overlay">
                         <h3 class="card-title">Pose Longue</h3>
                         <p class="card-subtitle">Mouvement & lumière</p>
-                        <span class="card-btn">Explorer <i class="fas fa-arrow-right"></i></span>
+                        <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
             </div>
@@ -547,7 +554,7 @@
                     <div class="card-overlay">
                         <h3 class="card-title">Nature</h3>
                         <p class="card-subtitle">Paysages & flore</p>
-                        <span class="card-btn">Explorer <i class="fas fa-arrow-right"></i></span>
+                        <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
             </div>
@@ -559,15 +566,15 @@
                     <div class="card-overlay">
                         <h3 class="card-title">Drone</h3>
                         <p class="card-subtitle">Perspectives aériennes</p>
-                        <span class="card-btn">Explorer <i class="fas fa-arrow-right"></i></span>
+                        <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
             </div>
 
-            <!-- 8. Montages Variés (Pleine largeur avec l'image balade équestre) -->
+            <!-- 8. Montages Variés (Pleine largeur avec miniature YouTube de la vidéo balade équestre) -->
             <div class="card span-12" onclick="openVideoModal('montages_varies')">
                 <div class="card-inner">
-                    <img class="card-img" src="images/balade.jpg" alt="Balade équestre et montages" loading="lazy" decoding="async">
+                    <img class="card-img" src="https://img.youtube.com/vi/dMNVtVzXCAg/maxresdefault.jpg" alt="Montages variés - Balade équestre" loading="lazy" decoding="async">
                     <div class="card-overlay">
                         <h3 class="card-title">Montages Variés</h3>
                         <p class="card-subtitle">Créations, clips drone & montages jeux vidéo</p>
