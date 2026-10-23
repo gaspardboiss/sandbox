@@ -3,24 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Contemporain</title>
+    <title>Gaspard Boissinot — Portfolio</title>
+    
+    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         :root {
-            /* Couleurs douces qui ne fatiguent pas les yeux */
             --bg-color: #f4f3ef;
             --text-main: #2a2a2a;
             --text-muted: #6b6b6b;
             --accent: #d8d3c8;
+            --border-color: rgba(42, 42, 42, 0.1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
             background-color: var(--bg-color);
@@ -31,16 +32,61 @@
             background-size: 40px 40px;
         }
 
+        a { color: inherit; text-decoration: none; }
+
+        /* --- NAVIGATION --- */
+        .navbar {
+            position: fixed;
+            top: 0; width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 3vw;
+            background: rgba(244, 243, 239, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            transition: color 0.3s;
+        }
+
+        .nav-links a.active, .nav-links a:hover { color: var(--text-main); }
+
+        .nav-socials { display: flex; gap: 1.5rem; }
+        .nav-socials a { font-size: 1.1rem; color: var(--text-muted); transition: color 0.3s, transform 0.3s; }
+        .nav-socials a:hover { color: var(--text-main); transform: translateY(-2px); }
+
         /* --- HEADER & HERO --- */
         header {
-            min-height: 100vh;
+            min-height: 90vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             padding: 2rem;
-            position: relative;
         }
 
         .hero-title {
@@ -49,35 +95,30 @@
             font-weight: 400;
             letter-spacing: -0.02em;
             line-height: 1.1;
-            transform: translateY(50px);
+            transform: translateY(30px);
             opacity: 0;
-            animation: fadeUp 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+            animation: fadeUp 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
         }
 
-        .hero-title i {
-            font-style: italic;
-            color: var(--text-muted);
-        }
+        .hero-title i { font-style: italic; color: var(--text-muted); }
 
         .hero-subtitle {
             margin-top: 1.5rem;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 300;
             letter-spacing: 0.2em;
             text-transform: uppercase;
             opacity: 0;
-            animation: fadeUp 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) 0.3s forwards;
+            animation: fadeUp 1s cubic-bezier(0.165, 0.84, 0.44, 1) 0.2s forwards;
         }
 
-        @keyframes fadeUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
-        /* --- GRILLE ASYMÉTRIQUE & DYNAMIQUE --- */
+        /* --- GRILLE ASYMÉTRIQUE --- */
         .portfolio-container {
             max-width: 1600px;
             margin: 0 auto;
-            padding: 5vw;
+            padding: 2vw 5vw 10vw;
             display: grid;
             grid-template-columns: repeat(12, 1fr);
             gap: 3vw;
@@ -85,20 +126,16 @@
 
         .card {
             position: relative;
-            border-radius: 12px;
+            border-radius: 8px;
             overflow: hidden;
             cursor: pointer;
-            transform: translateY(100px);
+            transform: translateY(80px);
             opacity: 0;
             transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        .card.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .card.is-visible { opacity: 1; transform: translateY(0); }
 
-        /* Variations de la grille pour briser l'uniformité */
         .card:nth-child(1) { grid-column: 1 / -1; aspect-ratio: 21/9; }
         .card:nth-child(2) { grid-column: 1 / 7; aspect-ratio: 4/5; }
         .card:nth-child(3) { grid-column: 7 / -1; aspect-ratio: 1/1; margin-top: 10vw; }
@@ -109,67 +146,164 @@
         .card:nth-child(8) { grid-column: 1 / 9; aspect-ratio: 16/9; }
         .card:nth-child(9) { grid-column: 9 / -1; aspect-ratio: 3/4; }
 
-        .card-img-wrapper {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            position: relative;
-        }
-
+        .card-img-wrapper { width: 100%; height: 100%; overflow: hidden; position: relative; }
         .card-img {
-            width: 120%;
-            height: 120%;
-            object-fit: cover;
-            position: absolute;
-            top: -10%;
-            left: -10%;
+            width: 120%; height: 120%;
+            object-fit: cover; position: absolute;
+            top: -10%; left: -10%;
             transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-            will-change: transform;
         }
 
-        /* Voile clair pour le contraste du texte */
         .card-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(244, 243, 239, 0.9) 0%, rgba(244, 243, 239, 0) 50%);
-            display: flex;
-            align-items: flex-end;
-            padding: 2.5rem;
-            opacity: 0;
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(244, 243, 239, 0.95) 0%, rgba(244, 243, 239, 0) 60%);
+            display: flex; align-items: flex-end;
+            padding: 2.5rem; opacity: 0;
             transition: opacity 0.5s ease;
         }
 
         .card-title {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: var(--text-main);
+            font-size: 2rem; color: var(--text-main);
             transform: translateY(20px);
             transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        /* --- EFFETS DE SURVOL (HOVER) --- */
-        .card:hover .card-img {
-            transform: scale(1.05) translate(2%, 2%);
+        .card:hover .card-img { transform: scale(1.05) translate(2%, 2%); }
+        .card:hover .card-overlay { opacity: 1; }
+        .card:hover .card-title { transform: translateY(0); }
+
+        /* --- CONTACT & FOOTER --- */
+        .footer {
+            border-top: 1px solid var(--border-color);
+            padding: 8vw 5vw 3vw;
+            background: #ebeae5;
+        }
+        
+        .footer-grid {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 5vw;
         }
 
-        .card:hover .card-overlay {
-            opacity: 1;
+        .footer h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem; margin-bottom: 2rem; font-weight: 400;
         }
 
-        .card:hover .card-title {
-            transform: translateY(0);
+        .contact-form input, .contact-form textarea {
+            width: 100%; background: transparent;
+            border: none; border-bottom: 1px solid var(--text-muted);
+            padding: 1rem 0; margin-bottom: 2rem;
+            font-family: inherit; font-size: 1rem; color: var(--text-main);
+            transition: border-color 0.3s;
         }
+        
+        .contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: var(--text-main); }
 
-        /* --- RESPONSIVE MOBILE --- */
+        .submit-btn {
+            background: var(--text-main); color: var(--bg-color);
+            border: none; padding: 1rem 2.5rem; border-radius: 30px;
+            font-weight: 500; text-transform: uppercase; letter-spacing: 1px;
+            cursor: pointer; transition: background 0.3s;
+        }
+        .submit-btn:hover { background: #000; }
+
+        .contact-info p { margin-bottom: 1.5rem; color: var(--text-muted); line-height: 1.8; }
+        .contact-info strong { color: var(--text-main); font-weight: 500; }
+
+        .copyright { text-align: center; margin-top: 6vw; color: var(--text-muted); font-size: 0.85rem; }
+
+        /* --- MODALE ET GALERIES --- */
+        .modal-overlay {
+            display: none; position: fixed; inset: 0; z-index: 99999;
+            background: rgba(244, 243, 239, 0.98); backdrop-filter: blur(15px);
+            overflow-y: auto; padding: 40px 5vw; opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .modal-overlay.active { display: block; opacity: 1; }
+        .modal-container { max-width: 1400px; margin: 0 auto; }
+        
+        .modal-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 3rem; padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .modal-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 400; }
+        
+        .modal-close-btn {
+            background: transparent; color: var(--text-main); border: none;
+            font-size: 2rem; cursor: pointer; transition: transform 0.3s;
+        }
+        .modal-close-btn:hover { transform: rotate(90deg); }
+
+        .photo-gallery-grid { column-count: 3; column-gap: 20px; width: 100%; }
+        .gallery-thumb-item {
+            break-inside: avoid; margin-bottom: 20px;
+            border-radius: 6px; overflow: hidden; cursor: pointer;
+        }
+        .gallery-thumb-item img { width: 100%; height: auto; display: block; transition: transform 0.5s; }
+        .gallery-thumb-item:hover img { transform: scale(1.03); }
+
+        /* Lightbox */
+        .lightbox-view { display: flex; flex-direction: column; align-items: center; min-height: 80vh; }
+        .lightbox-back-btn {
+            align-self: flex-start; margin-bottom: 2rem; background: transparent;
+            border: 1px solid var(--border-color); padding: 10px 20px; border-radius: 30px;
+            cursor: pointer; font-family: inherit; font-size: 0.85rem; text-transform: uppercase;
+            letter-spacing: 1px; transition: background 0.3s;
+        }
+        .lightbox-back-btn:hover { background: rgba(0,0,0,0.05); }
+        
+        .lightbox-media-wrapper { position: relative; display: flex; align-items: center; justify-content: center; width: 100%; }
+        .lightbox-img-full { max-width: 90vw; max-height: 75vh; border-radius: 4px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        
+        .lightbox-arrow {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: rgba(255,255,255,0.8); color: var(--text-main);
+            border: none; width: 50px; height: 50px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; cursor: pointer; transition: background 0.3s;
+        }
+        .lightbox-arrow:hover { background: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .lightbox-arrow.prev { left: 20px; }
+        .lightbox-arrow.next { right: 20px; }
+
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem; }
+        .video-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 8px; overflow: hidden; }
+        .video-wrapper iframe { width: 100%; height: 100%; border: none; }
+        .section-heading { font-family: 'Outfit', sans-serif; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin: 3rem 0 1.5rem; }
+
+        /* --- RESPONSIVE --- */
         @media (max-width: 900px) {
+            .nav-links { display: none; }
             .portfolio-container { display: flex; flex-direction: column; gap: 5vw; }
             .card { aspect-ratio: 4/3 !important; margin-top: 0 !important; }
             .card-overlay { opacity: 1; background: linear-gradient(to top, rgba(244, 243, 239, 0.95) 0%, rgba(244, 243, 239, 0) 70%); }
             .card-title { transform: translateY(0); font-size: 1.5rem; }
+            .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .photo-gallery-grid { column-count: 1; }
+            .video-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <div class="nav-brand">Gaspard Boissinot</div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Audiovisuel</a></li>
+            <li><a href="generic.html">À propos</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="nav-socials">
+            <a href="https://www.linkedin.com/in/gaspard-boissinot-57aab1403/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.youtube.com/@ormission" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/gaspard._b" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+    </nav>
 
     <header>
         <h1 class="hero-title">Selected <i>Works</i></h1>
@@ -177,107 +311,231 @@
     </header>
 
     <main class="portfolio-container">
-        <!-- Les catégories et images exactes du document source -->
-        
-        <div class="card">
+        <!-- 1. Courts-Métrages -->
+        <div class="card" onclick="openVideoModal('courts_metrages')">
             <div class="card-img-wrapper">
                 <img class="card-img parallax-img" src="images/DÖD.jpg" alt="Courts-Métrages">
             </div>
             <div class="card-overlay"><h2 class="card-title">Courts-Métrages</h2></div>
         </div>
 
-        <div class="card">
+        <!-- 2. Portraits -->
+        <div class="card" onclick="openPhotoModal('portraits', 'Portraits')">
             <div class="card-img-wrapper">
                 <img class="card-img parallax-img" src="images/portrait1.jpg" alt="Portraits">
             </div>
             <div class="card-overlay"><h2 class="card-title">Portraits</h2></div>
         </div>
 
-        <div class="card">
+        <!-- 3. Noir & Blanc -->
+        <div class="card" onclick="openPhotoModal('nb', 'Noir & Blanc')">
             <div class="card-img-wrapper">
                 <img class="card-img parallax-img" src="images/nb3.jpg" alt="Noir & Blanc">
             </div>
             <div class="card-overlay"><h2 class="card-title">Noir & Blanc</h2></div>
         </div>
 
-        <div class="card">
+        <!-- 4. Architecture -->
+        <div class="card" onclick="openPhotoModal('architecture', 'Architecture')">
             <div class="card-img-wrapper">
                 <img class="card-img parallax-img" src="images/archi4.jpg" alt="Architecture">
             </div>
             <div class="card-overlay"><h2 class="card-title">Architecture</h2></div>
         </div>
 
-        <div class="card">
+        <!-- 5. Street & Reportage -->
+        <div class="card" onclick="openPhotoModal('street_reportage', 'Street & Reportage')">
             <div class="card-img-wrapper">
                 <img class="card-img parallax-img" src="images/street1.jpg" alt="Street & Reportage">
             </div>
             <div class="card-overlay"><h2 class="card-title">Street & Reportage</h2></div>
         </div>
 
-        <div class="card">
+        <!-- 6. Pose Longue -->
+        <div class="card" onclick="openPhotoModal('pose_longue', 'Pose Longue')">
             <div class="card-img-wrapper">
                 <img class="card-img parallax-img" src="images/flou8.jpg" alt="Pose Longue">
             </div>
             <div class="card-overlay"><h2 class="card-title">Pose Longue</h2></div>
         </div>
 
-        <div class="card">
+        <!-- 7. Nature & Urbex -->
+        <div class="card" onclick="openPhotoModal('nature_urbex', 'Nature & Urbex')">
             <div class="card-img-wrapper">
                 <img class="card-img parallax-img" src="images/nature9.jpg" alt="Nature & Urbex">
             </div>
             <div class="card-overlay"><h2 class="card-title">Nature & Urbex</h2></div>
         </div>
 
-        <div class="card">
+        <!-- 8. Drone -->
+        <div class="card" onclick="openPhotoModal('drone', 'Prises de vues Drone')">
             <div class="card-img-wrapper">
                 <img class="card-img parallax-img" src="images/drone1.jpg" alt="Drone">
             </div>
             <div class="card-overlay"><h2 class="card-title">Drone</h2></div>
         </div>
 
-        <div class="card">
+        <!-- 9. Montages Variés -->
+        <div class="card" onclick="openVideoModal('montages_varies')">
             <div class="card-img-wrapper">
                 <img class="card-img parallax-img" src="https://img.youtube.com/vi/N5z96sImUpc/maxresdefault.jpg" alt="Montages Variés">
             </div>
             <div class="card-overlay"><h2 class="card-title">Montages Variés</h2></div>
         </div>
-
     </main>
 
+    <!-- FOOTER & CONTACT -->
+    <footer class="footer" id="contact">
+        <div class="footer-grid">
+            <div class="contact-info">
+                <h3>Collaborons ensemble</h3>
+                <p><strong>Adresse :</strong><br>Rue Pellart, Roubaix 59100</p>
+                <p><strong>Téléphone :</strong><br><a href="tel:+33624146473">+33 6 24 14 64 73</a></p>
+                <p><strong>Email :</strong><br><a href="mailto:gaspboiss@gmail.com">gaspboiss@gmail.com</a></p>
+            </div>
+            <div class="contact-form">
+                <form id="contact-form" action="https://formspree.io/f/mgolaapb" method="POST">
+                    <input type="text" name="name" placeholder="Votre nom" required />
+                    <input type="email" name="email" placeholder="Votre adresse email" required />
+                    <textarea name="message" rows="3" placeholder="Votre message..." required></textarea>
+                    <button type="submit" class="submit-btn">Envoyer</button>
+                    <input type="hidden" name="_subject" value="Nouveau message depuis ton portfolio !" />
+                    <input type="hidden" name="_captcha" value="false">
+                </form>
+            </div>
+        </div>
+        <div class="copyright">&copy; Gaspard Boissinot &mdash; Tous droits réservés</div>
+    </footer>
+
+    <!-- MODALE -->
+    <div id="modal-overlay" class="modal-overlay" onclick="handleBackdropClick(event)">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title">Galerie</h3>
+                <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
     <script>
-        // Effet d'apparition au défilement (Scroll Reveal)
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.15
+        // --- 1. DONNÉES DES GALERIES ---
+        const photoGalleries = {
+            portraits: { title: "Portraits", sections: [{ heading: null, images: ['images/portrait1.jpg', 'images/portrait2.jpg', 'images/portrait3.jpg', 'images/portrait4.jpg', 'images/portrait5.jpg', 'images/portrait6.jpg', 'images/portrait7.jpg', 'images/portrait8.jpg', 'images/portrait9.jpg', 'images/portrait10.jpg', 'images/portrait11.jpg'] }] },
+            nb: { title: "Noir & Blanc", sections: [{ heading: null, images: ['images/nb1.jpg', 'images/nb2.jpg', 'images/nb3.jpg', 'images/nb4.jpg'] }] },
+            architecture: { title: "Architecture", sections: [{ heading: null, images: ['images/archi1.jpg', 'images/archi4.jpg', 'images/archi5.jpg', 'images/archi6.jpg', 'images/archi7.jpg', 'images/archi8.jpg'] }] },
+            street_reportage: { title: "Street & Reportage", sections: [{ heading: "Street", images: ['images/street1.jpg'] }, { heading: "Mouvements sociaux", images: ['images/street2.jpg', 'images/street3.jpg', 'images/street4.jpg'] }] },
+            pose_longue: { title: "Pose Longue", sections: [{ heading: null, images: ['images/flou1.jpg','images/flou3.jpg', 'images/flou4.jpg', 'images/flou5.jpg', 'images/flou6.jpg', 'images/flou7.jpg', 'images/flou8.jpg'] }] },
+            nature_urbex: { title: "Nature & Urbex", sections: [{ heading: "Nature", images: ['images/nature1.jpg', 'images/nature2.jpg', 'images/nature3.jpg', 'images/nature4.jpg', 'images/nature5.jpg', 'images/nature6.jpg', 'images/nature7.jpg', 'images/nature8.jpg'] }, { heading: "Urbex", images: ['images/nature9.jpg'] }] },
+            drone: { title: "Prises de vues Drone", sections: [{ heading: null, images: ['images/drone1.jpg', 'images/drone2.jpg', 'images/drone3.jpg', 'images/drone4.jpg', 'images/drone5.jpg', 'images/drone6.jpg', 'images/drone7.jpg', 'images/drone8.jpg'] }] }
         };
 
-        const observer = new IntersectionObserver((entries, observer) => {
+        const videoGalleries = {
+            courts_metrages: { title: "Courts-Métrages", sections: [{ heading: null, videos: ["https://www.youtube.com/embed/1Mja8tMPmmc", "https://www.youtube.com/embed/PgySILbVU0c", "https://www.youtube.com/embed/r1Cv7a5lTPU", "https://www.youtube.com/embed/Escy0MCVTmo"] }, { heading: "Projets lycée", videos: ["https://www.youtube.com/embed/838EboJXgMQ", "https://www.youtube.com/embed/s9DObtl3CgE"] }] },
+            montages_varies: { title: "Montages Variés", sections: [{ heading: null, videos: ["https://www.youtube.com/embed/dMNVtVzXCAg"] }, { heading: "Montages drone", videos: ["https://www.youtube.com/embed/1khe2eo4Kbc", "https://www.youtube.com/embed/N5z96sImUpc"] }, { heading: "Montages jeux vidéo", videos: ["https://www.youtube.com/embed/Z0JBgfGNSEo", "https://www.youtube.com/embed/v4AnSb6EHak", "https://www.youtube.com/embed/yUJhlouEDs4"] }] }
+        };
+
+        // --- 2. LOGIQUE MODALE & LIGHTBOX ---
+        let currentActiveKey = null, flatPhotos = [], currentPhotoIndex = 0, isLightboxView = false;
+
+        function openPhotoModal(key, title) {
+            currentActiveKey = key; 
+            const data = photoGalleries[key];
+            if(!data) return;
+            
+            flatPhotos = [];
+            data.sections.forEach(sec => sec.images.forEach(img => flatPhotos.push(img)));
+
+            document.getElementById('modal-title').textContent = title;
+            isLightboxView = false; 
+            renderPhotoGrid(); 
+            showModal();
+        }
+
+        function renderPhotoGrid() {
+            const body = document.getElementById('modal-body');
+            const data = photoGalleries[currentActiveKey];
+            let html = '';
+            let globalIndex = 0;
+            
+            data.sections.forEach(sec => {
+                if(sec.heading) html += `<h4 class="section-heading">${sec.heading}</h4>`;
+                html += '<div class="photo-gallery-grid">';
+                sec.images.forEach((src) => {
+                    const idx = globalIndex++;
+                    html += `<div class="gallery-thumb-item" onclick="openLightbox(${idx})"><img src="${src}" alt="Photo" loading="lazy"></div>`;
+                });
+                html += '</div>';
+            });
+            body.innerHTML = html;
+        }
+
+        function openLightbox(index) { isLightboxView = true; currentPhotoIndex = index; renderLightbox(); }
+
+        function renderLightbox() {
+            const body = document.getElementById('modal-body');
+            const src = flatPhotos[currentPhotoIndex];
+            body.innerHTML = `
+                <div class="lightbox-view">
+                    <button class="lightbox-back-btn" onclick="backToGrid()"><i class="fas fa-arrow-left"></i> Retour à la galerie</button>
+                    <div class="lightbox-media-wrapper">
+                        <button class="lightbox-arrow prev" onclick="prevPhoto(event)"><i class="fas fa-chevron-left"></i></button>
+                        <img class="lightbox-img-full" src="${src}" alt="Zoom">
+                        <button class="lightbox-arrow next" onclick="nextPhoto(event)"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function backToGrid() { isLightboxView = false; renderPhotoGrid(); }
+        function nextPhoto(e) { if(e) e.stopPropagation(); currentPhotoIndex = (currentPhotoIndex + 1) % flatPhotos.length; renderLightbox(); }
+        function prevPhoto(e) { if(e) e.stopPropagation(); currentPhotoIndex = (currentPhotoIndex - 1 + flatPhotos.length) % flatPhotos.length; renderLightbox(); }
+
+        function openVideoModal(key) {
+            const data = videoGalleries[key]; if(!data) return;
+            document.getElementById('modal-title').textContent = data.title;
+            const body = document.getElementById('modal-body');
+            let html = '';
+            
+            data.sections.forEach(sec => {
+                if(sec.heading) html += `<h4 class="section-heading">${sec.heading}</h4>`;
+                html += '<div class="video-grid">';
+                sec.videos.forEach(url => {
+                    html += `<div class="video-wrapper"><iframe src="${url}?rel=0" allowfullscreen></iframe></div>`;
+                });
+                html += '</div>';
+            });
+            body.innerHTML = html; showModal();
+        }
+
+        function showModal() { document.getElementById('modal-overlay').classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeModal() { document.getElementById('modal-overlay').classList.remove('active'); document.body.style.overflow = 'auto'; document.getElementById('modal-body').innerHTML = ''; isLightboxView = false; }
+        function handleBackdropClick(e) { if(e.target.id === 'modal-overlay') closeModal(); }
+
+        document.addEventListener('keydown', e => {
+            if(!document.getElementById('modal-overlay').classList.contains('active')) return;
+            if(e.key === 'Escape') closeModal();
+            if(isLightboxView) { if(e.key === 'ArrowRight') nextPhoto(); if(e.key === 'ArrowLeft') prevPhoto(); }
+        });
+
+        // --- 3. EFFETS VISUELS & SCROLL ---
+        const observer = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
+                    obs.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.15 });
 
-        document.querySelectorAll('.card').forEach(card => {
-            observer.observe(card);
-        });
+        document.querySelectorAll('.card').forEach(card => observer.observe(card));
 
-        // Effet de parallaxe sur les images au scroll
         window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallaxImages = document.querySelectorAll('.parallax-img');
-            
-            parallaxImages.forEach(img => {
-                const speed = 0.05;
+            document.querySelectorAll('.parallax-img').forEach(img => {
                 const rect = img.parentElement.getBoundingClientRect();
-                
-                // Active le parallaxe uniquement si l'image est dans le viewport
                 if(rect.top < window.innerHeight && rect.bottom > 0) {
-                    const yPos = -(rect.top * speed);
-                    img.style.transform = `translate3d(0, ${yPos}px, 0)`;
+                    img.style.transform = `translate3d(0, ${-(rect.top * 0.05)}px, 0)`;
                 }
             });
         });
