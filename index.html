@@ -52,7 +52,7 @@
             align-items: center;
             text-align: center;
             overflow: hidden;
-            background-image: url('images/Voiture noire.png');
+            background-image: url('images/Voiture noire.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -207,7 +207,7 @@
             transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s;
         }
 
-        .card.span-12 { grid-column: span 12; aspect-ratio: 16/9; } /* Hauteur agrandie pour voir entièrement DÖD */
+        .card.span-12 { grid-column: span 12; aspect-ratio: 16/9; }
         .card.span-6  { grid-column: span 6;  aspect-ratio: 16/10; }
 
         .card-inner {
@@ -223,7 +223,7 @@
             filter: brightness(0.88);
         }
 
-        /* Ajustement spécifique pour suréleverarchi4 (élément principal abaissé) */
+        /* Ajustement spécifique pour surélever archi4 */
         .card-img.adjust-archi4 {
             object-position: center 30%; 
         }
@@ -551,10 +551,10 @@
         <h2 class="section-title">Portfolio</h2>
         <div class="portfolio-grid">
             
-            <!-- 1. Courts-Métrages (Pleine largeur - Hauteur optimisée pour afficher tout DÖD) -->
+            <!-- 1. Courts-Métrages (Pleine largeur - DÖD.jpg) -->
             <div class="card span-12" onclick="openVideoModal('courts_metrages')">
                 <div class="card-inner">
-                    <img class="card-img" src="images/DÖD.png" alt="Courts-métrages" loading="lazy" decoding="async">
+                    <img class="card-img" src="images/DÖD.jpg" alt="Courts-métrages" loading="lazy" decoding="async">
                     <div class="card-overlay">
                         <h3 class="card-title">Courts-Métrages</h3>
                         <p class="card-subtitle">Projets cinématographiques & fictions</p>
@@ -635,7 +635,7 @@
                 </div>
             </div>
 
-            <!-- 8. Drone (Duo 50/50 - Remis en duo) -->
+            <!-- 8. Drone (Duo 50/50) -->
             <div class="card span-6" onclick="openPhotoModal('drone', 'Prises de vues Drone')">
                 <div class="card-inner">
                     <img class="card-img" src="images/drone1.jpg" alt="Prises de vues drones" loading="lazy" decoding="async">
@@ -647,7 +647,7 @@
                 </div>
             </div>
 
-            <!-- 9. Montages Variés (Duo 50/50 - Équilibre parfaitement la grille avec Drone en dessous) -->
+            <!-- 9. Montages Variés (Duo 50/50) -->
             <div class="card span-6" onclick="openVideoModal('montages_varies')">
                 <div class="card-inner">
                     <img class="card-img cropped-thumbnail" src="https://img.youtube.com/vi/N5z96sImUpc/maxresdefault.jpg" alt="Montages variés - Balade équestre" loading="lazy" decoding="async">
@@ -706,7 +706,7 @@
             architecture: ['images/archi1.jpg', 'images/archi2.jpg', 'images/archi3.jpg', 'images/archi4.jpg', 'images/archi5.jpg', 'images/archi6.jpg', 'images/archi7.jpg', 'images/archi8.jpg'],
             street_reportage: ['images/street1.jpg', 'images/street2.jpg', 'images/street3.jpg', 'images/street4.jpg'],
             pose_longue: ['images/flou1.jpg', 'images/flou2.jpg', 'images/flou3.jpg', 'images/flou4.jpg', 'images/flou5.jpg', 'images/flou6.jpg', 'images/flou7.jpg', 'images/flou8.jpg'],
-            nature_urbex: ['images/nature1.jpg', 'images/nature2.jpg', 'images/nature3.jpg', 'images/nature4.jpg', 'images/nature5.jpg', 'images/nature6.jpg', 'images/nature7.jpg', 'images/nature8.jpg', 'images/nature9.jpg'], // nature9 = urbex
+            nature_urbex: ['images/nature1.jpg', 'images/nature2.jpg', 'images/nature3.jpg', 'images/nature4.jpg', 'images/nature5.jpg', 'images/nature6.jpg', 'images/nature7.jpg', 'images/nature8.jpg', 'images/nature9.jpg'],
             drone: ['images/drone1.jpg', 'images/drone2.jpg', 'images/drone3.jpg', 'images/drone4.jpg', 'images/drone5.jpg', 'images/drone6.jpg', 'images/drone7.jpg', 'images/drone8.jpg']
         };
 
