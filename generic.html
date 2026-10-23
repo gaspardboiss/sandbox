@@ -238,6 +238,45 @@
             filter: brightness(1);
         }
 
+        /* --- SECTION TOURNAGE (AJOUTÉE) --- */
+        .about-tournage {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 4px;
+            padding: 50px;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .tournage-img-box {
+            max-width: 700px;
+            margin: 0 auto 20px auto;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+            aspect-ratio: 16/9;
+        }
+
+        .tournage-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.9);
+            transition: transform 0.6s ease;
+        }
+
+        .tournage-img-box:hover img {
+            transform: scale(1.03);
+            filter: brightness(1);
+        }
+
+        .tournage-caption {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
         .about-full-card {
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
@@ -339,7 +378,7 @@
             .navbar { padding: 15px 20px; display: flex; justify-content: space-between; }
             .nav-brand { display: none; }
             .nav-links { position: static; transform: none; gap: 20px; }
-            .about-full-card { padding: 40px 25px; }
+            .about-full-card, .about-tournage { padding: 40px 25px; }
         }
     </style>
 </head>
@@ -392,6 +431,14 @@
             <div class="story-img-box">
                 <img src="images/portraitgasp2.jpg" alt="Gaspard en tournage" loading="lazy">
             </div>
+        </div>
+
+        <!-- Bloc Tournage (Ajouté avec tournage1.jpg et la légende) -->
+        <div class="about-tournage">
+            <div class="tournage-img-box">
+                <img src="images/tournage1.jpg" alt="Tournage du court-métrage PAUL" loading="lazy">
+            </div>
+            <p class="tournage-caption">L'équipe du 48h de Lille 2026 — Tournage du court-métrage "PAUL"</p>
         </div>
 
         <!-- Bloc Parcours -->
