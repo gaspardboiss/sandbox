@@ -1,748 +1,286 @@
-<!DOCTYPE HTML>
-<html lang="fr" class="scroll-smooth">
+<!DOCTYPE html>
+<html lang="fr">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <meta name="description" content="Portfolio audiovisuel de Gaspard Boissinot : vidéo, montage, photographie, drone et post-production." />
-    <title>Gaspard Boissinot — Portfolio Audiovisuel & Photographie</title>
-    <link rel="icon" type="image/png" sizes="64x64" href="images/favicon.png">
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#f7f4ee">
-    <link rel="apple-touch-icon" href="images/icon-192.png">
-
-    <!-- Fonts & Icons -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Contemporain</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Tailwind CSS Script -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        canvas: '#f7f4ee',
-                        cardbg: '#ffffff',
-                        subtle: '#e8e2d5',
-                        terracotta: '#d97757',
-                        amber: '#e69f43',
-                        sage: '#6b8e7b',
-                        petrol: '#3a6073',
-                        darktext: '#171615',
-                        mutedtext: '#706c64'
-                    },
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                        serif: ['"Playfair Display"', 'serif']
-                    }
-                }
-            }
-        }
-    </script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
     <style>
-        /* Custom scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f7f4ee; }
-        ::-webkit-scrollbar-thumb { background: #d3cbb7; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #b5ab93; }
-        
-        .modal-scroll::-webkit-scrollbar { width: 6px; }
-        .modal-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.03); }
-        .modal-scroll::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 3px; }
-
-        /* Custom Artistic Cursor */
-        .cursor-dot, .cursor-ring {
-            pointer-events: none;
-            position: fixed;
-            top: 0; left: 0;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            z-index: 99999;
-            transition: opacity 0.3s ease;
-        }
-        .cursor-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #d97757;
-        }
-        .cursor-ring {
-            width: 36px;
-            height: 36px;
-            border: 1px solid rgba(217, 119, 87, 0.5);
-            transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s;
+        :root {
+            /* Couleurs douces qui ne fatiguent pas les yeux */
+            --bg-color: #f4f3ef;
+            --text-main: #2a2a2a;
+            --text-muted: #6b6b6b;
+            --accent: #d8d3c8;
         }
 
-        body:hover .cursor-dot, body:hover .cursor-ring { opacity: 1; }
-        @media (max-width: 768px) {
-            .cursor-dot, .cursor-ring { display: none !important; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        /* Organic border radius shapes for asymmetric contemporary art grid */
-        .shape-organic-1 { border-radius: 32px 120px 24px 90px / 90px 24px 120px 32px; }
-        .shape-organic-2 { border-radius: 100px 30px 90px 40px / 40px 90px 30px 100px; }
-        .shape-organic-3 { border-radius: 40px 110px 40px 110px / 110px 40px 110px 40px; }
-        .shape-organic-4 { border-radius: 80px 50px 120px 40px / 60px 100px 40px 90px; }
-        .shape-organic-5 { border-radius: 60px 120px 50px 90px / 90px 50px 120px 60px; }
-
-        /* Floating animation */
-        @keyframes floatSlow {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-8px) rotate(1deg); }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+            background-image: radial-gradient(var(--accent) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
-        .animate-float { animation: floatSlow 6s ease-in-out infinite; }
 
-        /* Glow animation */
-        @keyframes pulseGlow {
-            0%, 100% { opacity: 0.4; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.05); }
+        /* --- HEADER & HERO --- */
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
         }
-        .animate-glow { animation: pulseGlow 4s ease-in-out infinite; }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            transform: translateY(50px);
+            opacity: 0;
+            animation: fadeUp 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+        }
+
+        .hero-title i {
+            font-style: italic;
+            color: var(--text-muted);
+        }
+
+        .hero-subtitle {
+            margin-top: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeUp 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) 0.3s forwards;
+        }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- GRILLE ASYMÉTRIQUE & DYNAMIQUE --- */
+        .portfolio-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 5vw;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 3vw;
+        }
+
+        .card {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .card.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Variations de la grille pour briser l'uniformité */
+        .card:nth-child(1) { grid-column: 1 / -1; aspect-ratio: 21/9; }
+        .card:nth-child(2) { grid-column: 1 / 7; aspect-ratio: 4/5; }
+        .card:nth-child(3) { grid-column: 7 / -1; aspect-ratio: 1/1; margin-top: 10vw; }
+        .card:nth-child(4) { grid-column: 1 / 5; aspect-ratio: 3/4; }
+        .card:nth-child(5) { grid-column: 5 / -1; aspect-ratio: 16/9; }
+        .card:nth-child(6) { grid-column: 2 / 8; aspect-ratio: 1/1; }
+        .card:nth-child(7) { grid-column: 8 / -1; aspect-ratio: 4/5; margin-top: -5vw; }
+        .card:nth-child(8) { grid-column: 1 / 9; aspect-ratio: 16/9; }
+        .card:nth-child(9) { grid-column: 9 / -1; aspect-ratio: 3/4; }
+
+        .card-img-wrapper {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-img {
+            width: 120%;
+            height: 120%;
+            object-fit: cover;
+            position: absolute;
+            top: -10%;
+            left: -10%;
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            will-change: transform;
+        }
+
+        /* Voile clair pour le contraste du texte */
+        .card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(244, 243, 239, 0.9) 0%, rgba(244, 243, 239, 0) 50%);
+            display: flex;
+            align-items: flex-end;
+            padding: 2.5rem;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--text-main);
+            transform: translateY(20px);
+            transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        /* --- EFFETS DE SURVOL (HOVER) --- */
+        .card:hover .card-img {
+            transform: scale(1.05) translate(2%, 2%);
+        }
+
+        .card:hover .card-overlay {
+            opacity: 1;
+        }
+
+        .card:hover .card-title {
+            transform: translateY(0);
+        }
+
+        /* --- RESPONSIVE MOBILE --- */
+        @media (max-width: 900px) {
+            .portfolio-container { display: flex; flex-direction: column; gap: 5vw; }
+            .card { aspect-ratio: 4/3 !important; margin-top: 0 !important; }
+            .card-overlay { opacity: 1; background: linear-gradient(to top, rgba(244, 243, 239, 0.95) 0%, rgba(244, 243, 239, 0) 70%); }
+            .card-title { transform: translateY(0); font-size: 1.5rem; }
+        }
     </style>
 </head>
-<body class="bg-canvas text-darktext font-sans antialiased overflow-x-hidden">
+<body>
 
-    <!-- Custom Cursor Elements -->
-    <div class="cursor-dot" id="cursor-dot"></div>
-    <div class="cursor-ring" id="cursor-ring"></div>
+    <header>
+        <h1 class="hero-title">Selected <i>Works</i></h1>
+        <p class="hero-subtitle">Exploration Visuelle</p>
+    </header>
 
-    <!-- LUMINOUS ARTISTIC HERO SECTION -->
-    <section class="relative h-[85vh] min-h-[580px] flex flex-col justify-center items-center text-center overflow-hidden bg-cover bg-center" style="background-image: url('images/Voiture noire.jpg');">
-        <!-- Multi-layered warm glowing gradient overlay -->
-        <div class="absolute inset-0 bg-gradient-to-tr from-[#171615]/80 via-[#171615]/40 to-[#d97757]/20 z-10"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-canvas via-transparent to-transparent z-10"></div>
+    <main class="portfolio-container">
+        <!-- Les catégories et images exactes du document source -->
         
-        <!-- Floating decorative glowing color blobs -->
-        <div class="absolute w-96 h-96 rounded-full bg-amber/20 blur-3xl -top-20 -left-20 z-10 animate-glow pointer-events-none"></div>
-        <div class="absolute w-96 h-96 rounded-full bg-terracotta/20 blur-3xl -bottom-20 -right-20 z-10 animate-glow pointer-events-none" style="animation-delay: 2s;"></div>
-
-        <div class="relative z-20 px-6 max-w-4xl mx-auto mt-12">
-            <span class="inline-block py-2 px-5 rounded-full bg-white/15 backdrop-blur-md text-white text-xs uppercase tracking-[0.35em] font-medium mb-6 border border-white/25 shadow-lg animate-float">
-                Galerie d'Art Contemporain & Audiovisuel
-            </span>
-            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-normal tracking-tight text-white mb-6 drop-shadow-md">
-                Gaspard Boissinot
-            </h1>
-            <p class="text-white/90 font-light text-xs md:text-sm uppercase tracking-[0.4em] flex flex-wrap items-center justify-center gap-3">
-                <span class="hover:text-amber transition-colors cursor-default">Audiovisuel</span>
-                <span class="w-2 h-2 rounded-full bg-amber inline-block"></span>
-                <span class="hover:text-terracotta transition-colors cursor-default">Réalisation</span>
-                <span class="w-2 h-2 rounded-full bg-terracotta inline-block"></span>
-                <span class="hover:text-sage transition-colors cursor-default">Photographie</span>
-            </p>
-        </div>
-        
-        <div class="absolute bottom-10 z-20 animate-bounce text-white/80 cursor-pointer" onclick="window.scrollTo({top: window.innerHeight * 0.8, behavior: 'smooth'})">
-            <i class="fas fa-chevron-down text-sm"></i>
-        </div>
-    </section>
-
-    <!-- CLEAN ARTISTIC NAVBAR -->
-    <nav class="sticky top-0 bg-canvas/90 backdrop-blur-xl z-50 border-b border-subtle/85 transition-all duration-300 px-6 lg:px-12 py-5 flex justify-between items-center shadow-xs">
-        <div class="font-serif font-semibold tracking-wider text-sm md:text-base text-darktext uppercase hover:text-terracotta transition-colors cursor-pointer" onclick="window.scrollTo({top:0, behavior:'smooth'})">
-            Gaspard Boissinot
-        </div>
-        
-        <ul class="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center gap-10 list-none">
-            <li><a href="index.html" class="text-xs uppercase tracking-[0.2em] font-bold text-terracotta transition-all hover:tracking-[0.25em]">Audiovisuel</a></li>
-            <li><a href="generic.html" class="text-xs uppercase tracking-[0.2em] font-medium text-mutedtext hover:text-darktext transition-all hover:tracking-[0.25em]">À propos</a></li>
-            <li><a href="elements.html" class="text-xs uppercase tracking-[0.2em] font-medium text-mutedtext hover:text-darktext transition-all hover:tracking-[0.25em]">Contact</a></li>
-        </ul>
-
-        <div class="flex items-center gap-5">
-            <a href="https://www.linkedin.com/in/gaspard-boissinot-57aab1403/" target="_blank" class="w-9 h-9 rounded-full bg-cardbg border border-subtle flex items-center justify-center text-mutedtext hover:text-terracotta hover:border-terracotta transition-all" title="LinkedIn"><i class="fab fa-linkedin text-sm"></i></a>
-            <a href="https://www.youtube.com/@ormission" target="_blank" class="w-9 h-9 rounded-full bg-cardbg border border-subtle flex items-center justify-center text-mutedtext hover:text-terracotta hover:border-terracotta transition-all" title="YouTube"><i class="fab fa-youtube text-sm"></i></a>
-            <a href="https://www.instagram.com/gaspard._b" target="_blank" class="w-9 h-9 rounded-full bg-cardbg border border-subtle flex items-center justify-center text-mutedtext hover:text-terracotta hover:border-terracotta transition-all" title="Instagram"><i class="fab fa-instagram text-sm"></i></a>
-        </div>
-    </nav>
-    
-    <!-- MOBILE SUB-NAV -->
-    <div class="md:hidden bg-cardbg border-b border-subtle py-3 px-6 flex justify-center gap-8">
-        <a href="index.html" class="text-[0.7rem] uppercase tracking-[0.15em] font-bold text-terracotta">Audiovisuel</a>
-        <a href="generic.html" class="text-[0.7rem] uppercase tracking-[0.15em] font-medium text-mutedtext">À propos</a>
-        <a href="elements.html" class="text-[0.7rem] uppercase tracking-[0.15em] font-medium text-mutedtext">Contact</a>
-    </div>
-
-    <!-- ASYMMETRIC ORGANIC PORTFOLIO GRID -->
-    <main class="max-w-7xl mx-auto px-6 lg:px-12 py-24">
-        <div class="text-center mb-20">
-            <span class="text-terracotta text-xs uppercase tracking-[0.3em] font-semibold block mb-3">Portfolio Créatif</span>
-            <h2 class="font-serif text-3xl md:text-5xl font-normal tracking-wide text-darktext mb-4">Sélection Asymétrique</h2>
-            <div class="w-16 h-0.5 bg-terracotta mx-auto rounded-full"></div>
+        <div class="card">
+            <div class="card-img-wrapper">
+                <img class="card-img parallax-img" src="images/DÖD.jpg" alt="Courts-Métrages">
+            </div>
+            <div class="card-overlay"><h2 class="card-title">Courts-Métrages</h2></div>
         </div>
 
-        <!-- Dynamic Staggered Masonry-style Asymmetric Grid with Organic Shapes -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-10">
-            
-            <!-- 1. Courts-Métrages (Full width 12 cols, Shape 1) -->
-            <div class="md:col-span-12 group relative bg-cardbg shape-organic-1 overflow-hidden border border-subtle shadow-md cursor-pointer transition-all duration-700 hover:shadow-2xl hover:border-terracotta/60 aspect-[16/9] hover:-translate-y-1.5" onclick="openVideoModal('courts_metrages')">
-                <div class="w-full h-full relative overflow-hidden">
-                    <img class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-108 brightness-95 group-hover:brightness-105" src="images/DÖD.jpg" alt="Courts-métrages" loading="lazy" decoding="async">
-                    <div class="absolute inset-0 bg-gradient-to-t from-darktext/85 via-darktext/25 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-95"></div>
-                    <div class="absolute inset-0 bg-terracotta/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 mix-blend-color"></div>
-                    
-                    <div class="absolute inset-0 p-8 md:p-14 flex flex-col justify-end">
-                        <span class="text-amber text-xs uppercase tracking-[0.3em] font-bold mb-2 transform -translate-y-2 group-hover:translate-y-0 transition-transform duration-500">Cinéma & Fiction</span>
-                        <h3 class="font-serif text-3xl md:text-5xl text-white font-normal tracking-wide mb-3 transform -translate-y-1 group-hover:translate-x-2 transition-transform duration-500">Courts-Métrages</h3>
-                        <p class="text-white/80 text-sm font-light tracking-wide max-w-xl mb-8 transform translate-y-2 opacity-90 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">Projets cinématographiques & fictions narratives</p>
-                        
-                        <div class="inline-flex items-center gap-3 text-darktext text-xs uppercase tracking-[0.2em] font-bold bg-white px-7 py-3.5 rounded-full w-max shadow-lg transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 hover:bg-amber hover:text-white">
-                            <span>Visionner</span>
-                            <i class="fas fa-arrow-right text-[10px] transition-transform duration-300 group-hover:translate-x-1.5"></i>
-                        </div>
-                    </div>
-                </div>
+        <div class="card">
+            <div class="card-img-wrapper">
+                <img class="card-img parallax-img" src="images/portrait1.jpg" alt="Portraits">
             </div>
-
-            <!-- 2. Portraits (7 cols, Shape 2) -->
-            <div class="md:col-span-7 group relative bg-cardbg shape-organic-2 overflow-hidden border border-subtle shadow-md cursor-pointer transition-all duration-700 hover:shadow-2xl hover:border-amber/60 aspect-[16/11] hover:-translate-y-1.5" onclick="openPhotoModal('portraits', 'Portraits')">
-                <div class="w-full h-full relative overflow-hidden">
-                    <img class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-108 brightness-95 group-hover:brightness-105" src="images/portrait1.jpg" alt="Portraits" loading="lazy" decoding="async">
-                    <div class="absolute inset-0 bg-gradient-to-t from-darktext/85 via-darktext/25 to-transparent opacity-90"></div>
-                    <div class="absolute inset-0 bg-amber/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 mix-blend-color"></div>
-                    
-                    <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-end">
-                        <span class="text-amber text-xs uppercase tracking-[0.3em] font-bold mb-2 transform -translate-y-2 group-hover:translate-y-0 transition-transform duration-500">Photographie</span>
-                        <h3 class="font-serif text-2xl md:text-3xl text-white font-normal tracking-wide mb-2 transform -translate-y-1 group-hover:translate-x-2 transition-transform duration-500">Portraits</h3>
-                        <p class="text-white/80 text-xs md:text-sm font-light tracking-wide mb-6 transform translate-y-2 opacity-90 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">Série photographique humaine & expressive</p>
-                        
-                        <div class="inline-flex items-center gap-3 text-darktext text-xs uppercase tracking-[0.2em] font-bold bg-white px-6 py-3 rounded-full w-max shadow-lg transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 hover:bg-amber hover:text-white">
-                            <span>Voir la galerie</span>
-                            <i class="fas fa-arrow-right text-[10px]"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 3. Noir & Blanc (5 cols, Shape 3) -->
-            <div class="md:col-span-5 group relative bg-cardbg shape-organic-3 overflow-hidden border border-subtle shadow-md cursor-pointer transition-all duration-700 hover:shadow-2xl hover:border-sage/60 aspect-[1/1] hover:-translate-y-1.5" onclick="openPhotoModal('nb', 'Noir & Blanc')">
-                <div class="w-full h-full relative overflow-hidden">
-                    <img class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-108 brightness-90 group-hover:brightness-100" src="images/nb3.jpg" alt="Noir & Blanc" loading="lazy" decoding="async">
-                    <div class="absolute inset-0 bg-gradient-to-t from-darktext/85 via-darktext/25 to-transparent opacity-90"></div>
-                    <div class="absolute inset-0 bg-sage/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 mix-blend-color"></div>
-                    
-                    <div class="absolute inset-0 p-8 flex flex-col justify-end">
-                        <span class="text-sage text-xs uppercase tracking-[0.3em] font-bold mb-2 transform -translate-y-2 group-hover:translate-y-0 transition-transform duration-500">Intemporalité</span>
-                        <h3 class="font-serif text-2xl md:text-3xl text-white font-normal tracking-wide mb-2 transform -translate-y-1 group-hover:translate-x-2 transition-transform duration-500">Noir & Blanc</h3>
-                        <p class="text-white/80 text-xs font-light tracking-wide mb-6 transform translate-y-2 opacity-90 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">Jeux de contrastes & ombres</p>
-                        
-                        <div class="inline-flex items-center gap-3 text-darktext text-xs uppercase tracking-[0.2em] font-bold bg-white px-6 py-3 rounded-full w-max shadow-lg transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 hover:bg-sage hover:text-white">
-                            <span>Voir la galerie</span>
-                            <i class="fas fa-arrow-right text-[10px]"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 4. Architecture (5 cols, Shape 4) -->
-            <div class="md:col-span-5 group relative bg-cardbg shape-organic-4 overflow-hidden border border-subtle shadow-md cursor-pointer transition-all duration-700 hover:shadow-2xl hover:border-petrol/60 aspect-[1/1] hover:-translate-y-1.5" onclick="openPhotoModal('architecture', 'Architecture')">
-                <div class="w-full h-full relative overflow-hidden">
-                    <img class="w-full h-full object-cover object-[center_79%] transition-transform duration-1000 ease-out group-hover:scale-108 brightness-95 group-hover:brightness-105" src="images/archi4.jpg" alt="Architecture" loading="lazy" decoding="async">
-                    <div class="absolute inset-0 bg-gradient-to-t from-darktext/85 via-darktext/25 to-transparent opacity-90"></div>
-                    <div class="absolute inset-0 bg-petrol/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 mix-blend-color"></div>
-                    
-                    <div class="absolute inset-0 p-8 flex flex-col justify-end">
-                        <span class="text-petrol text-xs uppercase tracking-[0.3em] font-bold mb-2 transform -translate-y-2 group-hover:translate-y-0 transition-transform duration-500">Structures</span>
-                        <h3 class="font-serif text-2xl md:text-3xl text-white font-normal tracking-wide mb-2 transform -translate-y-1 group-hover:translate-x-2 transition-transform duration-500">Architecture</h3>
-                        <p class="text-white/80 text-xs font-light tracking-wide mb-6 transform translate-y-2 opacity-90 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">Lignes & Perspectives urbaines</p>
-                        
-                        <div class="inline-flex items-center gap-3 text-darktext text-xs uppercase tracking-[0.2em] font-bold bg-white px-6 py-3 rounded-full w-max shadow-lg transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 hover:bg-petrol hover:text-white">
-                            <span>Voir la galerie</span>
-                            <i class="fas fa-arrow-right text-[10px]"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 5. Street & Reportage (7 cols, Shape 5) -->
-            <div class="md:col-span-7 group relative bg-cardbg shape-organic-5 overflow-hidden border border-subtle shadow-md cursor-pointer transition-all duration-700 hover:shadow-2xl hover:border-terracotta/60 aspect-[16/11] hover:-translate-y-1.5" onclick="openPhotoModal('street_reportage', 'Street & Reportage')">
-                <div class="w-full h-full relative overflow-hidden">
-                    <img class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-108 brightness-95 group-hover:brightness-105" src="images/street1.jpg" alt="Street et Reportage" loading="lazy" decoding="async">
-                    <div class="absolute inset-0 bg-gradient-to-t from-darktext/85 via-darktext/25 to-transparent opacity-90"></div>
-                    <div class="absolute inset-0 bg-terracotta/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 mix-blend-color"></div>
-                    
-                    <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-end">
-                        <span class="text-terracotta text-xs uppercase tracking-[0.3em] font-bold mb-2 transform -translate-y-2 group-hover:translate-y-0 transition-transform duration-500">Réalité Urbaine</span>
-                        <h3 class="font-serif text-2xl md:text-3xl text-white font-normal tracking-wide mb-2 transform -translate-y-1 group-hover:translate-x-2 transition-transform duration-500">Street & Reportage</h3>
-                        <p class="text-white/80 text-xs md:text-sm font-light tracking-wide mb-6 transform translate-y-2 opacity-90 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">Mouvements sociaux, manifs & vie urbaine</p>
-                        
-                        <div class="inline-flex items-center gap-3 text-darktext text-xs uppercase tracking-[0.2em] font-bold bg-white px-6 py-3 rounded-full w-max shadow-lg transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 hover:bg-terracotta hover:text-white">
-                            <span>Voir la galerie</span>
-                            <i class="fas fa-arrow-right text-[10px]"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 6. Pose Longue (4 cols, Shape 1) -->
-            <div class="md:col-span-4 group relative bg-cardbg shape-organic-1 overflow-hidden border border-subtle shadow-md cursor-pointer transition-all duration-700 hover:shadow-2xl hover:border-amber/60 aspect-[4/5] hover:-translate-y-1.5" onclick="openPhotoModal('pose_longue', 'Pose Longue')">
-                <div class="w-full h-full relative overflow-hidden">
-                    <img class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-108 brightness-95 group-hover:brightness-105" src="images/flou8.jpg" alt="Pose Longue" loading="lazy" decoding="async">
-                    <div class="absolute inset-0 bg-gradient-to-t from-darktext/85 via-darktext/25 to-transparent opacity-90"></div>
-                    
-                    <div class="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
-                        <span class="text-amber text-[11px] uppercase tracking-[0.3em] font-bold mb-1.5 transform -translate-y-2 group-hover:translate-y-0 transition-transform duration-500">Expérimentation</span>
-                        <h3 class="font-serif text-xl md:text-2xl text-white font-normal tracking-wide mb-2 transform -translate-y-1 group-hover:translate-x-2 transition-transform duration-500">Pose Longue</h3>
-                        <p class="text-white/80 text-xs font-light tracking-wide mb-4 transform translate-y-2 opacity-90 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">Mouvement & lumière éthérée</p>
-                        
-                        <div class="inline-flex items-center gap-2 text-darktext text-[11px] uppercase tracking-[0.2em] font-bold bg-white px-5 py-2.5 rounded-full w-max shadow-lg transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 hover:bg-amber hover:text-white">
-                            <span>Galerie</span>
-                            <i class="fas fa-arrow-right text-[9px]"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 7. Nature & Urbex (4 cols, Shape 2) -->
-            <div class="md:col-span-4 group relative bg-cardbg shape-organic-2 overflow-hidden border border-subtle shadow-md cursor-pointer transition-all duration-700 hover:shadow-2xl hover:border-sage/60 aspect-[4/5] hover:-translate-y-1.5" onclick="openPhotoModal('nature_urbex', 'Nature & Urbex')">
-                <div class="w-full h-full relative overflow-hidden">
-                    <img class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-108 brightness-95 group-hover:brightness-105" src="images/nature9.jpg" alt="Nature et Urbex" loading="lazy" decoding="async">
-                    <div class="absolute inset-0 bg-gradient-to-t from-darktext/85 via-darktext/25 to-transparent opacity-90"></div>
-                    
-                    <div class="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
-                        <span class="text-sage text-[11px] uppercase tracking-[0.3em] font-bold mb-1.5 transform -translate-y-2 group-hover:translate-y-0 transition-transform duration-500">Évasion</span>
-                        <h3 class="font-serif text-xl md:text-2xl text-white font-normal tracking-wide mb-2 transform -translate-y-1 group-hover:translate-x-2 transition-transform duration-500">Nature & Urbex</h3>
-                        <p class="text-white/80 text-xs font-light tracking-wide mb-4 transform translate-y-2 opacity-90 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">Paysages & vestiges abandonnés</p>
-                        
-                        <div class="inline-flex items-center gap-2 text-darktext text-[11px] uppercase tracking-[0.2em] font-bold bg-white px-5 py-2.5 rounded-full w-max shadow-lg transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 hover:bg-sage hover:text-white">
-                            <span>Galerie</span>
-                            <i class="fas fa-arrow-right text-[9px]"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 8. Drone (4 cols, Shape 3) -->
-            <div class="md:col-span-4 group relative bg-cardbg shape-organic-3 overflow-hidden border border-subtle shadow-md cursor-pointer transition-all duration-700 hover:shadow-2xl hover:border-petrol/60 aspect-[4/5] hover:-translate-y-1.5" onclick="openPhotoModal('drone', 'Prises de vues Drone')">
-                <div class="w-full h-full relative overflow-hidden">
-                    <img class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-108 brightness-95 group-hover:brightness-105" src="images/drone1.jpg" alt="Prises de vues drones" loading="lazy" decoding="async">
-                    <div class="absolute inset-0 bg-gradient-to-t from-darktext/85 via-darktext/25 to-transparent opacity-90"></div>
-                    
-                    <div class="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
-                        <span class="text-petrol text-[11px] uppercase tracking-[0.3em] font-bold mb-1.5 transform -translate-y-2 group-hover:translate-y-0 transition-transform duration-500">Vue Céleste</span>
-                        <h3 class="font-serif text-xl md:text-2xl text-white font-normal tracking-wide mb-2 transform -translate-y-1 group-hover:translate-x-2 transition-transform duration-500">Drone</h3>
-                        <p class="text-white/80 text-xs font-light tracking-wide mb-4 transform translate-y-2 opacity-90 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">Perspectives aériennes saisissantes</p>
-                        
-                        <div class="inline-flex items-center gap-2 text-darktext text-[11px] uppercase tracking-[0.2em] font-bold bg-white px-5 py-2.5 rounded-full w-max shadow-lg transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 hover:bg-petrol hover:text-white">
-                            <span>Galerie</span>
-                            <i class="fas fa-arrow-right text-[9px]"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 9. Montages Variés (Full Width 12 cols, Shape 4) -->
-            <div class="md:col-span-12 group relative bg-cardbg shape-organic-4 overflow-hidden border border-subtle shadow-md cursor-pointer transition-all duration-700 hover:shadow-2xl hover:border-amber/60 aspect-[16/9] hover:-translate-y-1.5" onclick="openVideoModal('montages_varies')">
-                <div class="w-full h-full relative overflow-hidden">
-                    <img class="w-full h-full object-cover scale-110 group-hover:scale-115 transition-transform duration-1000 ease-out brightness-95 group-hover:brightness-105" src="https://img.youtube.com/vi/N5z96sImUpc/maxresdefault.jpg" alt="Montages variés - Balade équestre" loading="lazy" decoding="async">
-                    <div class="absolute inset-0 bg-gradient-to-t from-darktext/85 via-darktext/25 to-transparent opacity-90"></div>
-                    <div class="absolute inset-0 bg-amber/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 mix-blend-color"></div>
-                    
-                    <div class="absolute inset-0 p-8 md:p-14 flex flex-col justify-end">
-                        <span class="text-amber text-xs uppercase tracking-[0.3em] font-bold mb-2 transform -translate-y-2 group-hover:translate-y-0 transition-transform duration-500">Post-Production</span>
-                        <h3 class="font-serif text-3xl md:text-5xl text-white font-normal tracking-wide mb-3 transform -translate-y-1 group-hover:translate-x-2 transition-transform duration-500">Montages Variés</h3>
-                        <p class="text-white/80 text-sm font-light tracking-wide max-w-xl mb-8 transform translate-y-2 opacity-90 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">Clips drone, balades & montages jeux vidéo</p>
-                        
-                        <div class="inline-flex items-center gap-3 text-darktext text-xs uppercase tracking-[0.2em] font-bold bg-white px-7 py-3.5 rounded-full w-max shadow-lg transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 hover:bg-amber hover:text-white">
-                            <span>Visionner</span>
-                            <i class="fas fa-arrow-right text-[10px] transition-transform duration-300 group-hover:translate-x-1.5"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            <div class="card-overlay"><h2 class="card-title">Portraits</h2></div>
         </div>
+
+        <div class="card">
+            <div class="card-img-wrapper">
+                <img class="card-img parallax-img" src="images/nb3.jpg" alt="Noir & Blanc">
+            </div>
+            <div class="card-overlay"><h2 class="card-title">Noir & Blanc</h2></div>
+        </div>
+
+        <div class="card">
+            <div class="card-img-wrapper">
+                <img class="card-img parallax-img" src="images/archi4.jpg" alt="Architecture">
+            </div>
+            <div class="card-overlay"><h2 class="card-title">Architecture</h2></div>
+        </div>
+
+        <div class="card">
+            <div class="card-img-wrapper">
+                <img class="card-img parallax-img" src="images/street1.jpg" alt="Street & Reportage">
+            </div>
+            <div class="card-overlay"><h2 class="card-title">Street & Reportage</h2></div>
+        </div>
+
+        <div class="card">
+            <div class="card-img-wrapper">
+                <img class="card-img parallax-img" src="images/flou8.jpg" alt="Pose Longue">
+            </div>
+            <div class="card-overlay"><h2 class="card-title">Pose Longue</h2></div>
+        </div>
+
+        <div class="card">
+            <div class="card-img-wrapper">
+                <img class="card-img parallax-img" src="images/nature9.jpg" alt="Nature & Urbex">
+            </div>
+            <div class="card-overlay"><h2 class="card-title">Nature & Urbex</h2></div>
+        </div>
+
+        <div class="card">
+            <div class="card-img-wrapper">
+                <img class="card-img parallax-img" src="images/drone1.jpg" alt="Drone">
+            </div>
+            <div class="card-overlay"><h2 class="card-title">Drone</h2></div>
+        </div>
+
+        <div class="card">
+            <div class="card-img-wrapper">
+                <img class="card-img parallax-img" src="https://img.youtube.com/vi/N5z96sImUpc/maxresdefault.jpg" alt="Montages Variés">
+            </div>
+            <div class="card-overlay"><h2 class="card-title">Montages Variés</h2></div>
+        </div>
+
     </main>
 
-    <!-- LUMINOUS MINIMALIST FOOTER -->
-    <footer class="bg-[#eee8dd] border-t border-subtle pt-24 pb-12 px-6 lg:px-12 mt-24 relative overflow-hidden">
-        <div class="absolute w-72 h-72 rounded-full bg-terracotta/10 blur-3xl bottom-0 right-0 pointer-events-none"></div>
-        
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 relative z-10">
-            
-            <!-- Contact Form -->
-            <div class="bg-cardbg p-8 md:p-12 rounded-3xl border border-subtle shadow-md">
-                <h3 class="font-serif text-3xl text-darktext mb-2">Me Contacter</h3>
-                <p class="text-terracotta text-xs uppercase tracking-[0.25em] font-semibold mb-8">Discutons de votre projet</p>
-                
-                <form id="contact-form" action="https://formspree.io/f/mgolaapb" method="POST" class="space-y-5">
-                    <div>
-                        <input type="text" name="name" placeholder="Votre nom" required class="w-full bg-canvas border border-subtle rounded-xl px-5 py-4 text-sm text-darktext placeholder-mutedtext/70 focus:outline-none focus:border-terracotta transition-colors shadow-xs" />
-                    </div>
-                    <div>
-                        <input type="email" name="email" placeholder="Votre adresse email" required class="w-full bg-canvas border border-subtle rounded-xl px-5 py-4 text-sm text-darktext placeholder-mutedtext/70 focus:outline-none focus:border-terracotta transition-colors shadow-xs" />
-                    </div>
-                    <div>
-                        <textarea name="message" rows="4" placeholder="Votre message..." required class="w-full bg-canvas border border-subtle rounded-xl px-5 py-4 text-sm text-darktext placeholder-mutedtext/70 focus:outline-none focus:border-terracotta transition-colors resize-none shadow-xs"></textarea>
-                    </div>
-                    <button type="submit" class="w-full bg-terracotta hover:bg-[#c26545] text-white font-semibold text-xs uppercase tracking-[0.25em] py-4 rounded-xl transition-all shadow-md hover:shadow-lg cursor-pointer">
-                        Envoyer le message
-                    </button>
-                    <input type="hidden" name="_subject" value="Nouveau message depuis ton portfolio !" />
-                    <input type="hidden" name="_captcha" value="false">
-                </form>
-            </div>
-
-            <!-- Contact Information -->
-            <div class="flex flex-col justify-between py-4">
-                <div>
-                    <h3 class="font-serif text-3xl text-darktext mb-2">Coordonnées</h3>
-                    <p class="text-terracotta text-xs uppercase tracking-[0.25em] font-semibold mb-10">Informations & Localisation</p>
-                    
-                    <div class="space-y-6 text-sm text-mutedtext">
-                        <div class="flex items-start gap-4 group">
-                            <div class="w-12 h-12 rounded-2xl bg-cardbg border border-subtle flex items-center justify-center text-terracotta shrink-0 transition-all group-hover:bg-terracotta group-hover:text-white shadow-xs">
-                                <i class="fas fa-map-marker-alt text-base"></i>
-                            </div>
-                            <div>
-                                <strong class="block text-darktext font-medium mb-0.5">Adresse</strong>
-                                <span>Rue Pellart, Roubaix 59100</span>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-4 group">
-                            <div class="w-12 h-12 rounded-2xl bg-cardbg border border-subtle flex items-center justify-center text-terracotta shrink-0 transition-all group-hover:bg-terracotta group-hover:text-white shadow-xs">
-                                <i class="fas fa-phone-alt text-base"></i>
-                            </div>
-                            <div>
-                                <strong class="block text-darktext font-medium mb-0.5">Téléphone</strong>
-                                <a href="tel:+33624146473" class="hover:text-terracotta transition-colors">+33 6 24 14 64 73</a>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-4 group">
-                            <div class="w-12 h-12 rounded-2xl bg-cardbg border border-subtle flex items-center justify-center text-terracotta shrink-0 transition-all group-hover:bg-terracotta group-hover:text-white shadow-xs">
-                                <i class="fas fa-envelope text-base"></i>
-                            </div>
-                            <div>
-                                <strong class="block text-darktext font-medium mb-0.5">Email</strong>
-                                <a href="mailto:gaspboiss@gmail.com" class="hover:text-terracotta transition-colors">gaspboiss@gmail.com</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pt-8 mt-12 border-t border-subtle text-xs text-mutedtext tracking-wider uppercase flex justify-between items-center">
-                    <span>&copy; Gaspard Boissinot &mdash; Tous droits réservés</span>
-                    <a href="#" class="text-terracotta hover:underline font-medium">Haut de page</a>
-                </div>
-            </div>
-
-        </div>
-    </footer>
-
-    <!-- INTERACTIVE MODAL & LIGHTBOX OVERLAY -->
-    <div id="modal-overlay" class="fixed inset-0 z-[9999] bg-[#171615]/85 backdrop-blur-md hidden opacity-0 transition-opacity duration-300 overflow-y-auto modal-scroll p-4 md:p-8 flex items-center justify-center" onclick="handleBackdropClick(event)">
-        <div class="bg-cardbg w-full max-w-6xl rounded-3xl border border-subtle shadow-2xl relative my-auto overflow-hidden flex flex-col max-h-[90vh]">
-            
-            <!-- Modal Header -->
-            <div class="px-6 md:px-10 py-5 border-b border-subtle flex justify-between items-center bg-cardbg sticky top-0 z-30">
-                <h3 id="modal-title" class="font-serif text-xl md:text-2xl text-darktext font-normal tracking-wide">Galerie</h3>
-                <button class="w-10 h-10 rounded-full bg-canvas border border-subtle flex items-center justify-center text-darktext hover:bg-terracotta hover:text-white transition-colors cursor-pointer" onclick="closeModal()">
-                    <i class="fas fa-times text-sm"></i>
-                </button>
-            </div>
-
-            <!-- Modal Body Container -->
-            <div id="modal-body" class="p-6 md:p-10 overflow-y-auto modal-scroll flex-1">
-                <!-- Content dynamically populated -->
-            </div>
-        </div>
-    </div>
-
-    <!-- CLIENT SCRIPT LOGIC -->
     <script>
-        // Custom Cursor follower logic
-        const cursorDot = document.getElementById('cursor-dot');
-        const cursorRing = document.getElementById('cursor-ring');
-        let mouseX = 0, mouseY = 0;
-        let ringX = 0, ringY = 0;
-
-        window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
-        });
-
-        function renderCursor() {
-            ringX += (mouseX - ringX) * 0.15;
-            ringY += (mouseY - ringY) * 0.15;
-            cursorRing.style.transform = `translate(${ringX}px, ${ringY}px)`;
-            requestAnimationFrame(renderCursor);
-        }
-        requestAnimationFrame(renderCursor);
-
-        // Add interactive hover effects to clickable elements
-        document.querySelectorAll('a, button, .group').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursorRing.style.width = '55px';
-                cursorRing.style.height = '55px';
-                cursorRing.style.backgroundColor = 'rgba(217, 119, 87, 0.08)';
-                cursorRing.style.borderColor = '#d97757';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursorRing.style.width = '36px';
-                cursorRing.style.height = '36px';
-                cursorRing.style.backgroundColor = 'transparent';
-                cursorRing.style.borderColor = 'rgba(217, 119, 87, 0.5)';
-            });
-        });
-
-        // Galleries data
-        const photoGalleries = {
-            portraits: {
-                title: "Portraits",
-                sections: [
-                    { heading: null, images: ['images/portrait1.jpg', 'images/portrait2.jpg', 'images/portrait3.jpg', 'images/portrait4.jpg', 'images/portrait5.jpg', 'images/portrait6.jpg', 'images/portrait7.jpg', 'images/portrait8.jpg', 'images/portrait9.jpg', 'images/portrait10.jpg', 'images/portrait11.jpg'] }
-                ]
-            },
-            nb: {
-                title: "Noir & Blanc",
-                sections: [
-                    { heading: null, images: ['images/nb1.jpg', 'images/nb2.jpg', 'images/nb3.jpg', 'images/nb4.jpg'] }
-                ]
-            },
-            architecture: {
-                title: "Architecture",
-                sections: [
-                    { heading: null, images: ['images/archi1.jpg', 'images/archi4.jpg', 'images/archi5.jpg', 'images/archi6.jpg', 'images/archi7.jpg', 'images/archi8.jpg'] }
-                ]
-            },
-            street_reportage: {
-                title: "Street & Reportage",
-                sections: [
-                    { heading: "Street", images: ['images/street1.jpg'] },
-                    { heading: "Mouvements sociaux / Reportage", images: ['images/street2.jpg', 'images/street3.jpg', 'images/street4.jpg'] }
-                ]
-            },
-            pose_longue: {
-                title: "Pose Longue",
-                sections: [
-                    { heading: null, images: ['images/flou1.jpg','images/flou3.jpg', 'images/flou4.jpg', 'images/flou5.jpg', 'images/flou6.jpg', 'images/flou7.jpg', 'images/flou8.jpg'] }
-                ]
-            },
-            nature_urbex: {
-                title: "Nature & Urbex",
-                sections: [
-                    { heading: "Nature", images: ['images/nature1.jpg', 'images/nature2.jpg', 'images/nature3.jpg', 'images/nature4.jpg', 'images/nature5.jpg', 'images/nature6.jpg', 'images/nature7.jpg', 'images/nature8.jpg'] },
-                    { heading: "Urbex", images: ['images/nature9.jpg'] }
-                ]
-            },
-            drone: {
-                title: "Prises de vues Drone",
-                sections: [
-                    { heading: null, images: ['images/drone1.jpg', 'images/drone2.jpg', 'images/drone3.jpg', 'images/drone4.jpg', 'images/drone5.jpg', 'images/drone6.jpg', 'images/drone7.jpg', 'images/drone8.jpg'] }
-                ]
-            }
+        // Effet d'apparition au défilement (Scroll Reveal)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
         };
 
-        const videoGalleries = {
-            courts_metrages: {
-                title: "Courts-Métrages",
-                sections: [
-                    { heading: null, videos: ["https://www.youtube.com/embed/1Mja8tMPmmc", "https://www.youtube.com/embed/PgySILbVU0c", "https://www.youtube.com/embed/r1Cv7a5lTPU", "https://www.youtube.com/embed/Escy0MCVTmo"] },
-                    { heading: "Projets lycée", videos: ["https://www.youtube.com/embed/838EboJXgMQ", "https://www.youtube.com/embed/s9DObtl3CgE"] }
-                ]
-            },
-            montages_varies: {
-                title: "Montages Variés",
-                sections: [
-                    { heading: null, videos: ["https://www.youtube.com/embed/dMNVtVzXCAg"] },
-                    { heading: "Montages drone", videos: ["https://www.youtube.com/embed/1khe2eo4Kbc", "https://www.youtube.com/embed/N5z96sImUpc"] },
-                    { heading: "Montages jeux vidéo", videos: ["https://www.youtube.com/embed/Z0JBgfGNSEo", "https://www.youtube.com/embed/v4AnSb6EHak", "https://www.youtube.com/embed/yUJhlouEDs4"] }
-                ]
-            }
-        };
-
-        let currentActiveKey = null, flatPhotos = [], currentPhotoIndex = 0, isLightboxView = false, touchStartX = 0, touchEndX = 0;
-
-        function openPhotoModal(key, title) {
-            currentActiveKey = key; 
-            const data = photoGalleries[key];
-            if(!data) return;
-            
-            flatPhotos = [];
-            data.sections.forEach(sec => {
-                sec.images.forEach(img => flatPhotos.push(img));
-            });
-
-            document.getElementById('modal-title').textContent = title;
-            isLightboxView = false; 
-            renderPhotoGrid(); 
-            showModal();
-        }
-
-        function renderPhotoGrid() {
-            const body = document.getElementById('modal-body');
-            const data = photoGalleries[currentActiveKey];
-            let html = '';
-            
-            let globalIndexCounter = 0;
-            data.sections.forEach(sec => {
-                if(sec.heading) {
-                    html += `<h4 class="font-serif text-lg text-darktext mt-8 mb-4 pb-2 border-b border-subtle first:mt-0">${sec.heading}</h4>`;
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
                 }
-                html += '<div class="columns-1 sm:columns-2 lg:columns-3 gap-5 space-y-5">';
-                sec.images.forEach((src) => {
-                    const currentIndex = globalIndexCounter;
-                    html += `
-                        <div class="break-inside-avoid relative rounded-2xl overflow-hidden border border-subtle bg-canvas cursor-pointer group shadow-xs hover:shadow-xl transition-all duration-500 hover:-translate-y-1" onclick="openLightbox(${currentIndex})">
-                            <img src="${src}" alt="Photo ${currentIndex + 1}" loading="lazy" decoding="async" class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-108">
-                            <div class="absolute inset-0 bg-darktext/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                <span class="bg-white/95 backdrop-blur-md text-darktext text-[10px] font-bold uppercase tracking-[0.25em] px-4 py-2.5 rounded-full shadow-lg transform translate-y-3 group-hover:translate-y-0 transition-transform duration-300">Agrandir</span>
-                            </div>
-                        </div>
-                    `;
-                    globalIndexCounter++;
-                });
-                html += '</div>';
             });
-            body.innerHTML = html;
-        }
+        }, observerOptions);
 
-        function openLightbox(index) {
-            isLightboxView = true; 
-            currentPhotoIndex = index; 
-            renderLightbox();
-        }
-
-        function renderLightbox() {
-            const body = document.getElementById('modal-body');
-            const src = flatPhotos[currentPhotoIndex];
-            body.innerHTML = `
-                <div class="flex flex-col items-center justify-center min-h-[60vh] relative py-4">
-                    <button class="self-start mb-6 bg-canvas border border-subtle text-darktext px-5 py-2.5 rounded-xl text-xs uppercase tracking-[0.15em] font-bold flex items-center gap-2 hover:bg-terracotta hover:text-white transition-colors cursor-pointer shadow-xs" onclick="backToGrid()">
-                        <i class="fas fa-arrow-left text-[10px]"></i> Retour à la galerie
-                    </button>
-                    
-                    <div class="relative flex items-center justify-center w-full max-h-[68vh] my-auto">
-                        <div class="absolute left-2 z-20 bg-white/90 hover:bg-white text-darktext border border-subtle w-12 h-12 rounded-full flex items-center justify-center cursor-pointer shadow-lg transition-all hover:scale-110" onclick="prevPhoto(event)">
-                            <i class="fas fa-chevron-left text-xs"></i>
-                        </div>
-                        
-                        <img class="max-w-full max-h-[65vh] rounded-2xl shadow-2xl object-contain select-none" src="${src}" alt="Grand format ${currentPhotoIndex + 1}" loading="lazy" decoding="async">
-                        
-                        <div class="absolute right-2 z-20 bg-white/90 hover:bg-white text-darktext border border-subtle w-12 h-12 rounded-full flex items-center justify-center cursor-pointer shadow-lg transition-all hover:scale-110" onclick="nextPhoto(event)">
-                            <i class="fas fa-chevron-right text-xs"></i>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-6 text-terracotta text-xs uppercase tracking-[0.25em] font-bold">
-                        ${currentPhotoIndex + 1} / ${flatPhotos.length}
-                    </div>
-                </div>
-            `;
-        }
-
-        function backToGrid() { 
-            isLightboxView = false; 
-            renderPhotoGrid(); 
-        }
-
-        function nextPhoto(e) { 
-            if(e) e.stopPropagation(); 
-            if(flatPhotos.length === 0) return; 
-            currentPhotoIndex = (currentPhotoIndex + 1) % flatPhotos.length; 
-            renderLightbox(); 
-        }
-
-        function prevPhoto(e) { 
-            if(e) e.stopPropagation(); 
-            if(flatPhotos.length === 0) return; 
-            currentPhotoIndex = (currentPhotoIndex - 1 + flatPhotos.length) % flatPhotos.length; 
-            renderLightbox(); 
-        }
-
-        function openVideoModal(key) {
-            const data = videoGalleries[key]; 
-            if(!data) return;
-            document.getElementById('modal-title').textContent = data.title;
-            const body = document.getElementById('modal-body');
-            let html = '';
-            data.sections.forEach(sec => {
-                if(sec.heading) {
-                    html += `<h4 class="font-serif text-lg text-darktext mt-8 mb-4 pb-2 border-b border-subtle first:mt-0">${sec.heading}</h4>`;
-                }
-                html += '<div class="grid grid-cols-1 md:grid-cols-2 gap-6">';
-                sec.videos.forEach(url => {
-                    html += `
-                        <div class="bg-canvas rounded-2xl overflow-hidden border border-subtle shadow-md">
-                            <div class="relative w-full aspect-video">
-                                <iframe src="${url}?rel=0" class="w-full h-full border-0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                    `;
-                });
-                html += '</div>';
-            });
-            body.innerHTML = html; 
-            showModal();
-        }
-
-        function showModal() { 
-            const overlay = document.getElementById('modal-overlay');
-            overlay.classList.remove('hidden');
-            setTimeout(() => { overlay.classList.remove('opacity-0'); }, 10);
-            document.body.style.overflow = 'hidden'; 
-        }
-
-        function closeModal() { 
-            const overlay = document.getElementById('modal-overlay');
-            overlay.classList.add('opacity-0');
-            setTimeout(() => {
-                overlay.classList.add('hidden');
-                document.body.style.overflow = 'auto'; 
-                document.getElementById('modal-body').innerHTML = ''; 
-                isLightboxView = false;
-            }, 300);
-        }
-
-        function handleBackdropClick(e) { 
-            if(e.target.id === 'modal-overlay') closeModal(); 
-        }
-
-        document.addEventListener('keydown', function(e) {
-            const modal = document.getElementById('modal-overlay');
-            if(modal.classList.contains('hidden')) return;
-            if(e.key === 'Escape') closeModal();
-            if(isLightboxView) { 
-                if(e.key === 'ArrowRight') nextPhoto(); 
-                if(e.key === 'ArrowLeft') prevPhoto(); 
-            }
+        document.querySelectorAll('.card').forEach(card => {
+            observer.observe(card);
         });
 
-        const modalEl = document.getElementById('modal-overlay');
-        modalEl.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
-        modalEl.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            if(isLightboxView) { 
-                if(touchEndX < touchStartX - 40) nextPhoto(); 
-                if(touchEndX > touchStartX + 40) prevPhoto(); 
-            }
-        }, { passive: true });
-
-        const form = document.getElementById("contact-form");
-        if(form) {
-            form.addEventListener("submit", async function(e) {
-                e.preventDefault(); 
-                const data = new FormData(form);
-                const response = await fetch(form.action, { method: form.method, body: data, headers: { 'Accept': 'application/json' } });
+        // Effet de parallaxe sur les images au scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxImages = document.querySelectorAll('.parallax-img');
+            
+            parallaxImages.forEach(img => {
+                const speed = 0.05;
+                const rect = img.parentElement.getBoundingClientRect();
                 
-                const notification = document.createElement('div');
-                notification.className = 'fixed bottom-8 right-8 z-[10000] bg-darktext text-white px-6 py-4 rounded-2xl shadow-2xl text-xs uppercase tracking-[0.2em] font-bold transition-all duration-300 animate-bounce border border-white/20';
-                
-                if(response.ok) {
-                    notification.textContent = "Votre message a été envoyé avec succès !";
-                    form.reset();
-                } else {
-                    notification.textContent = "Une erreur est survenue lors de l'envoi.";
+                // Active le parallaxe uniquement si l'image est dans le viewport
+                if(rect.top < window.innerHeight && rect.bottom > 0) {
+                    const yPos = -(rect.top * speed);
+                    img.style.transform = `translate3d(0, ${yPos}px, 0)`;
                 }
-                document.body.appendChild(notification);
-                setTimeout(() => { notification.remove(); }, 4000);
             });
-        }
+        });
     </script>
 </body>
 </html>
