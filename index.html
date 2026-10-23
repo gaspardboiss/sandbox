@@ -55,7 +55,7 @@
             background-image: url('images/Voiture noire.png');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* L'image reste parfaitement attachée au fond */
+            background-attachment: fixed;
         }
 
         /* Voile assombrissant cinématique */
@@ -96,13 +96,17 @@
             letter-spacing: 5px;
             font-weight: 400;
             text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
         }
 
         .hero-subtitle .dot {
-            font-size: 0.5rem;
-            vertical-align: middle;
-            margin: 0 8px;
+            font-size: 0.4rem;
             opacity: 0.6;
+            display: inline-block;
+            vertical-align: middle;
         }
 
         /* --- NAVBAR CENTRAGE ABSOLU IMPARABLE --- */
@@ -494,6 +498,8 @@
 
         @media (max-width: 768px) {
             .hero-title { font-size: 2.4rem; }
+            .hero-subtitle { flex-direction: column; gap: 8px; }
+            .hero-subtitle .dot { display: none; }
             .footer-grid { grid-template-columns: 1fr; gap: 40px; }
             .navbar { padding: 15px 20px; display: flex; justify-content: space-between; }
             .nav-brand { display: none; }
@@ -510,7 +516,13 @@
     <section class="hero">
         <div class="hero-content">
             <h1 class="hero-title">Gaspard Boissinot</h1>
-            <p class="hero-subtitle">Audiovisuel <span class="dot">&bull;</span> Réalisation <span class="dot">&bull;</span> Photographie</p>
+            <p class="hero-subtitle">
+                Audiovisuel 
+                <span class="dot">&bull;</span> 
+                Réalisation 
+                <span class="dot">&bull;</span> 
+                Photographie
+            </p>
         </div>
     </section>
 
@@ -552,7 +564,7 @@
                     <img class="card-img" src="images/portrait1.jpg" alt="Portraits" loading="lazy" decoding="async">
                     <div class="card-overlay">
                         <h3 class="card-title">Portraits</h3>
-                        <p class="card-subtitle">Série photographique humaine</p>
+                        <p class="card-subtitle">Série photographique humaine & expressive</p>
                         <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
@@ -564,7 +576,7 @@
                     <img class="card-img" src="images/rose.jpg" alt="Noir & Blanc" loading="lazy" decoding="async">
                     <div class="card-overlay">
                         <h3 class="card-title">Noir & Blanc</h3>
-                        <p class="card-subtitle">Contrastes & ombres</p>
+                        <p class="card-subtitle">Jeux de contrastes & intemporalité</p>
                         <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
@@ -576,55 +588,67 @@
                     <img class="card-img" src="images/archi6.jpg" alt="Architecture" loading="lazy" decoding="async">
                     <div class="card-overlay">
                         <h3 class="card-title">Architecture</h3>
-                        <p class="card-subtitle">Perspectives & structures</p>
+                        <p class="card-subtitle">Lignes, structures & géométries urbaines</p>
                         <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
             </div>
 
-            <!-- 5. Pose Longue (Duo 50/50) -->
+            <!-- 5. Street & Reportage (NOUVEAU - Duo 50/50) -->
+            <div class="card span-6" onclick="openPhotoModal('street_reportage', 'Street & Reportage')">
+                <div class="card-inner">
+                    <img class="card-img" src="images/rue.jpg" alt="Street et Reportage" loading="lazy" decoding="async">
+                    <div class="card-overlay">
+                        <h3 class="card-title">Street & Reportage</h3>
+                        <p class="card-subtitle">Mouvements sociaux, manifs & vie urbaine</p>
+                        <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Pose Longue (Duo 50/50) -->
             <div class="card span-6" onclick="openPhotoModal('pose_longue', 'Pose Longue')">
                 <div class="card-inner">
                     <img class="card-img" src="images/flou9.jpg" alt="Pose Longue" loading="lazy" decoding="async">
                     <div class="card-overlay">
                         <h3 class="card-title">Pose Longue</h3>
-                        <p class="card-subtitle">Mouvement & lumière</p>
+                        <p class="card-subtitle">Captation du temps & traînées lumineuses</p>
                         <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
             </div>
 
-            <!-- 6. Nature (Duo 50/50) -->
-            <div class="card span-6" onclick="openPhotoModal('nature', 'Nature')">
+            <!-- 7. Nature & Urbex (MIS À JOUR - Duo 50/50) -->
+            <div class="card span-6" onclick="openPhotoModal('nature_urbex', 'Nature & Urbex')">
                 <div class="card-inner">
-                    <img class="card-img" src="images/nature1.jpg" alt="Nature" loading="lazy" decoding="async">
+                    <img class="card-img" src="images/nature1.jpg" alt="Nature et Urbex" loading="lazy" decoding="async">
                     <div class="card-overlay">
-                        <h3 class="card-title">Nature</h3>
-                        <p class="card-subtitle">Paysages & flore</p>
+                        <h3 class="card-title">Nature & Urbex</h3>
+                        <p class="card-subtitle">Grands espaces sauvages & vestiges abandonnés</p>
                         <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
             </div>
 
-            <!-- 7. Drone (Duo 50/50) -->
+            <!-- 8. Drone (Duo 50/50) -->
             <div class="card span-6" onclick="openPhotoModal('drone', 'Prises de vues Drone')">
                 <div class="card-inner">
                     <img class="card-img" src="images/hiver2.jpg" alt="Prises de vues drones" loading="lazy" decoding="async">
                     <div class="card-overlay">
                         <h3 class="card-title">Drone</h3>
-                        <p class="card-subtitle">Perspectives aériennes</p>
+                        <p class="card-subtitle">Hauteurs vertigineuses & vues aériennes</p>
                         <span class="card-btn">Voir la galerie <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
             </div>
 
-            <!-- 8. Montages Variés (Pleine largeur avec la bonne miniature YouTube zoomée) -->
+            <!-- 9. Montages Variés (Pleine largeur avec la bonne miniature YouTube zoomée) -->
             <div class="card span-12" onclick="openVideoModal('montages_varies')">
                 <div class="card-inner">
                     <img class="card-img cropped-thumbnail" src="https://img.youtube.com/vi/N5z96sImUpc/maxresdefault.jpg" alt="Montages variés - Balade équestre" loading="lazy" decoding="async">
                     <div class="card-overlay">
                         <h3 class="card-title">Montages Variés</h3>
-                        <p class="card-subtitle">Créations, clips drone & montages jeux vidéo</p>
+                        <p class="card-subtitle">Clips dynamiques, montages drone & gaming</p>
                         <span class="card-btn">Visionner <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
@@ -672,12 +696,13 @@
 
     <script>
         const photoGalleries = {
-            noir_et_blanc: ['images/rue.jpg', 'images/rose.jpg', 'images/noiretblanc.jpg', 'images/expo3.jpg', 'images/oiseaux.jpg', 'images/b&w1.jpg'],
+            noir_et_blanc: ['images/noiretblanc.jpg', 'images/expo3.jpg', 'images/oiseaux.jpg', 'images/b&w1.jpg'],
             drone: ['images/hiver2.jpg', 'images/hiver1.jpg', 'images/hiver3.jpg', 'images/hiver4.jpg', 'images/hiver5.jpg', 'images/hiver6.jpg', 'images/drone1.jpg', 'images/drone2.jpg', 'images/drone3.jpg'],
             portraits: ['images/portrait1.jpg', 'images/portrait11.jpg', 'images/école3.jpg', 'images/portrait2.jpg', 'images/pompier2.jpg', 'images/portrait3.jpg', 'images/portrait13.jpg', 'images/portrait6.jpg', 'images/portrait7.jpg', 'images/portrait10.jpg', 'images/portrait4.jpg', 'images/portrait12.jpg', 'images/école.jpg', 'images/pompier1.jpg', 'images/portrait15.jpg', 'images/école2.jpg', 'images/portrait5.jpg', 'images/portrait14.jpg'],
             architecture: ['images/archi1.jpg', 'images/archi5.jpg', 'images/chateau1.jpg', 'images/chateau2.jpg', 'images/archi4.jpg', 'images/archi3.jpg', 'images/archi2.jpg', 'images/batiment1.jpg', 'images/archi6.jpg', 'images/archi7.jpg', 'images/archi8.jpg', 'images/archi9.jpg'],
+            street_reportage: ['images/rue.jpg', 'images/rose.jpg'], // Ajoute tes photos de manifs et street ici
             pose_longue: ['images/flou1.jpg', 'images/expo1.jpg', 'images/flou9.jpg', 'images/Voitnoire.jpg', 'images/flou7.jpg', 'images/expo2.jpg', 'images/flou3.jpg', 'images/flou10.jpg'],
-            nature: ['images/nature2.jpg', 'images/nature11.jpg', 'images/hiver7.jpg', 'images/nature8.jpg', 'images/ciel2.jpg', 'images/nature7.jpg', 'images/nature6.jpg', 'images/nature9.jpg', 'images/nature4.jpg', 'images/nature1.jpg', 'images/ciel1.jpg', 'images/nature3.jpg', 'images/nature5.jpg', 'images/nature10.jpg']
+            nature_urbex: ['images/nature2.jpg', 'images/nature11.jpg', 'images/hiver7.jpg', 'images/nature8.jpg', 'images/ciel2.jpg', 'images/nature7.jpg', 'images/nature6.jpg', 'images/nature9.jpg', 'images/nature4.jpg', 'images/nature1.jpg', 'images/ciel1.jpg', 'images/nature3.jpg', 'images/nature5.jpg', 'images/nature10.jpg'] // Ajoute tes photos d'urbex ici
         };
 
         const videoGalleries = {
